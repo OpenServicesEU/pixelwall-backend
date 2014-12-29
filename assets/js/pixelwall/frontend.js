@@ -1,4 +1,4 @@
-angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gridster', 'sailsResource'])
+angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gridster', 'sailsResource', 'ngMdIcons'])
 .factory('bridgeFactory', function() {
   return {
     listen: function(bridge, signal, callback) {

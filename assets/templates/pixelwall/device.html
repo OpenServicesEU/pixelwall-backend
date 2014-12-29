@@ -1,7 +1,17 @@
 <md-content>
+  <md-toolbar>
+    <h2 class="md-toolbar-tools">
+      <span>Select device</span>
+    </h2>
+  </md-toolbar>
   <md-list>
-    <md-item ng-repeat="device in devices" ui-sref="device.display({deviceId: device.id})">
+    <md-item ng-repeat="device in devices">
       <md-item-content>
+        <div class="md-tile-left">
+          <md-button class="md-primary md-fab">
+            <ng-md-icon icon="launch" ui-sref="device.display({deviceId: device.id})"></ng-md-icon>
+          </md-button>
+        </div>
         <div class="md-tile-content">
           <h3>{{device.name}}</h3>
           <p>
