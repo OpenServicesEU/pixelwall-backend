@@ -131,18 +131,10 @@ angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gr
             defaultSizeX: 1,
             defaultSizeY: 1,
             resizable: {
-              enabled: true,
-              handles: 'n, e, s, w, ne, se, sw, nw',
-              start: function(event, uiWidget, $element) {},
-              resize: function(event, uiWidget, $element) {},
-              stop: function(event, uiWidget, $element) {}
+              enabled: false
             },
             draggable: {
-              enabled: true,
-              //handle: '.my-class', // optional selector for resize handle
-              start: function(event, uiWidget, $element) {},
-              drag: function(event, uiWidget, $element) {},
-              stop: function(event, uiWidget, $element) {}
+              enabled: false
             }
           };
         }
@@ -171,26 +163,12 @@ angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gr
         '$element',
         '$attrs',
         '$timeout',
-        'boxFactory',
         function (
           $scope,
           $element,
           $attrs,
-          $timeout,
-          boxFactory
+          $timeout
         ) {
-          var watcher = function(property) {
-            $scope.$watch('box.' + property, function() {
-              boxFactory.get({id: $scope.box.id}, function(b) {
-                if (b[property] != $scope.box[property]) {
-                  b[property] = $scope.box[property];
-                  console.log("Changed: " + property, $scope.box[property]);
-                  b.$save();
-                }
-              })
-            }, true);
-          };
-          ['left', 'top', 'width', 'height'].forEach(watcher);
           $scope._timeout = $timeout(function() {
             console.log("Default page timeout finished!")
             $scope.box._defer.resolve();
