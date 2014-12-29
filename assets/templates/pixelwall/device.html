@@ -1,0 +1,14 @@
+<md-content>
+  <md-list>
+    <md-item ng-repeat="device in devices" ui-sref="device.display({deviceId: device.id})">
+      <md-item-content>
+        <div class="md-tile-content">
+          <h3>{{device.name}}</h3>
+          <p>
+            {{device.pages.length}} pages
+          </p>
+        </div>
+      </md-item-content>
+    </md-item>
+  </md-list>
+</md-content>
