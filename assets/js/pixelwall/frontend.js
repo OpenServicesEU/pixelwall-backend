@@ -1,4 +1,14 @@
-angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gridster', 'sailsResource', 'ngMdIcons'])
+angular.module(
+  'PixelWallFrontEnd',
+  [
+    'ngAnimate',
+    'ui.bootstrap',
+    'ui.router',
+    'gridster',
+    'sailsResource',
+    'picardy.fontawesome'
+  ]
+)
 .factory('bridgeFactory', function() {
   return {
     listen: function(bridge, signal, callback) {
@@ -31,7 +41,7 @@ angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gr
     return sailsResource('box', {}, {verbose: true});
   }
 ])
-.controller('DeviceController', [
+.controller('SelectController', [
   '$scope',
   'devices',
   function (
@@ -41,44 +51,35 @@ angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gr
     $scope.devices = devices;
   }
 ])
-.controller('DeviceDisplayController', [
+.controller('DeviceController', [
   '$scope',
-  '$q',
   '$state',
-  '$mdToast',
   'bridgeFactory',
   'device',
   function(
     $scope,
-    $q,
     $state,
-    $mdToast,
     bridgeFactory,
     device
   ) {
-    $scope.currentPage = 0;
     $scope.device = device;
-    var rotation = function() {
-      $mdToast.show($mdToast.simple().content('CurrentPage: ' + $scope.currentPage + ' (' + $scope.device.pages[$scope.currentPage].id + ')'));
-      $state.go('device.display.page', {deviceId: $scope.device.id, pageId: $scope.device.pages[$scope.currentPage].id});
-      $scope.device.pages[$scope.currentPage]._defer = $q.defer();
-      $scope.device.pages[$scope.currentPage]._defer.promise.then(function() {
-          $scope.currentPage = ($scope.currentPage + 1 ) % $scope.device.pages.length;
-          rotation();
-      });
-    };
-    rotation();
+    $scope.currentPage = 0;
     //  bridge.listen('', 'message', function(data) {
     //    console.log(data);
     //  });
+    if ($scope.device.pages.length > 0) {
+      $state.go('device.page', {deviceId: $scope.device.id, pageId: $scope.device.pages[$scope.currentPage].id});
+    }
   }
 ])
-.controller('DeviceDisplayPageController', [
+.controller('PageController', [
   '$scope',
+  '$state',
   '$q',
   'page',
   function(
     $scope,
+    $state,
     $q,
     page
   ) {
@@ -90,7 +91,8 @@ angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gr
     $q.all($scope.page.boxes.map(function(box) {
       return box._defer.promise;
     })).then(function() {
-      $scope.device.pages[$scope.currentPage]._defer.resolve();
+      $scope.$parent.currentPage = ($scope.$parent.currentPage + 1 ) % $scope.device.pages.length;
+      $state.go('device.page', {deviceId: $scope.device.id, pageId: $scope.device.pages[$scope.$parent.currentPage].id});
     });
   }
 ])
@@ -259,14 +261,13 @@ angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gr
 //}])
 .config([
   '$stateProvider',
-  '$urlRouterProvider',
   '$locationProvider',
-  function($stateProvider, $urlRouterProvider, $locationProvider) {
+  function($stateProvider, $locationProvider) {
     $stateProvider
-    .state('device', {
+    .state('select', {
       url: "/d",
-      template: JST['assets/templates/pixelwall/device.html'],
-      controller: 'DeviceController',
+      template: JST['assets/templates/pixelwall/select.html'],
+      controller: 'SelectController',
       resolve: {
         devices: [
           'deviceFactory',
@@ -278,46 +279,38 @@ angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gr
         ]
       }
     })
-    .state('device.display', {
-      url: "/{deviceId:[0-9a-f]+}",
-      views: {
-        "@": {
-          template: JST['assets/templates/pixelwall/display.html'],
-          controller: 'DeviceDisplayController',
-          resolve: {
-            device: [
-              '$stateParams',
-              'deviceFactory',
-              function(
-                $stateParams,
-                deviceFactory
-              ) {
-                return deviceFactory.get({id: $stateParams.deviceId}).$promise;
-              }
-            ]
+    .state('device', {
+      url: "/d/{deviceId:[0-9a-f]+}",
+      template: JST['assets/templates/pixelwall/device.html'],
+      controller: 'DeviceController',
+      resolve: {
+        device: [
+          '$stateParams',
+          'deviceFactory',
+          function(
+            $stateParams,
+            deviceFactory
+          ) {
+            return deviceFactory.get({id: $stateParams.deviceId}).$promise;
           }
-        }
+        ]
       }
     })
-    .state('device.display.page', {
+    .state('device.page', {
       url: "/{pageId:[0-9a-f]+}",
-      views: {
-        "page": {
-          template: JST['assets/templates/pixelwall/page.html'],
-          controller: 'DeviceDisplayPageController',
-          resolve: {
-            page: [
-              '$stateParams',
-              'pageFactory',
-              function(
-                $stateParams,
-                pageFactory
-              ) {
-                return pageFactory.get({id: $stateParams.pageId}).$promise;
-              }
-            ]
+      template: JST['assets/templates/pixelwall/page.html'],
+      controller: 'PageController',
+      resolve: {
+        page: [
+          '$stateParams',
+          'pageFactory',
+          function(
+            $stateParams,
+            pageFactory
+          ) {
+            return pageFactory.get({id: $stateParams.pageId}).$promise;
           }
-        }
+        ]
       }
     })
     $locationProvider.html5Mode(true);
