@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand logo"></div>
+    </div>
+  </div>
+</nav>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table table-bordered table-hover table-condensed">
+      <tr style="font-weight: bold">
+        <td style="width:35%">Device</td>
+        <td style="width:25%">Show</td>
+      </tr>
+      <tr ng-repeat="device in devices">
+        <td>{{ device.name || 'Unnamed' }}</td>
+        <td style="white-space: nowrap">
+          <div class="buttons">
+            <button class="btn btn-primary" ui-sref="device({deviceId: device.id})">
+              <fa name="play"/>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

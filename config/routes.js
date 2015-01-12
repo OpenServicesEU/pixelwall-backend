@@ -35,11 +35,14 @@ module.exports.routes = {
   '/d': {
     view: 'frontend'
   },
-  '/d/:deviceId': {
+  '/d/*': {
     view: 'frontend'
   },
-  '/d/:deviceId/:pageId': {
-    view: 'frontend'
+  '/b': {
+    view: 'backend'
+  },
+  '/b/*': {
+    view: 'backend'
   }
 
   /***************************************************************************

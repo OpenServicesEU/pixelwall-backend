@@ -105,7 +105,10 @@ angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gr
     return {
       restrict: 'E',
       scope: {
-        page: '='
+        rows: '=',
+        columns: '=',
+        timeout: '=',
+        boxes: '='
       },
       transclude: true,
       template: JST['assets/templates/pixelwall/grid.html'],
@@ -114,15 +117,15 @@ angular.module('PixelWallFrontEnd', ['ngAnimate', 'ngMaterial', 'ui.router', 'gr
         '$element',
         function($scope, $element) {
           $scope.gridsterOpts = {
-            columns: $scope.page.columns,
-            minColumns: $scope.page.columns,
-            minRows: $scope.page.rows,
-            maxRows: $scope.page.rows,
+            columns: $scope.columns,
+            minColumns: $scope.columns,
+            minRows: $scope.rows,
+            maxRows: $scope.rows,
             pushing: false,
             floating: false,
             width: 'auto',
             colWidth: 'auto',
-            rowHeight: ($element.parents('[ui-view=""]').height()-10) / $scope.page.rows,
+            rowHeight: ($element.parents('[ui-view=""]').height()-10) / $scope.rows,
             margins: [10, 10],
             outerMargin: true,
             isMobile: false,
