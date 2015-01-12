@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand logo"></div>
+    </div>
+    <button type="button" class="btn btn-default navbar-btn" ng-click="addDevice()">New device</button>
+  </div>
+</nav>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table table-bordered table-hover table-condensed">
+      <tr style="font-weight: bold">
+        <td style="width:35%">Name</td>
+        <td style="width:20%">Status</td>
+        <td style="width:25%">Edit</td>
+      </tr>
+      <tr ng-repeat="device in devices">
+        <td>
+          <!-- editable username (text with validation) -->
+          <span editable-text="device.name" e-name="name" e-form="rowform" e-required>
+            {{ device.name || 'Unnamed' }}
+          </span>
+        </td>
+        <td>
+          <!-- editable status (select-local) -->
+          <span editable-checkbox="device.active" e-name="active" e-form="rowform" e-title="Active">
+            {{ device.active && "Active" || "Inactive" }}
+          </span>
+        </td>
+        <td style="white-space: nowrap">
+          <!-- form -->
+          <form editable-form name="rowform" onbeforesave="saveDevice($index, $data)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == device">
+            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+              <fa name="save"/>
+            </button>
+            <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+              <fa name="close"/>
+            </button>
+          </form>
+          <div class="buttons" ng-show="!rowform.$visible">
+            <button class="btn btn-success" ui-sref="devices.pages({deviceId: device.id})">
+              <fa name="table"/>
+            </button>
+            <button class="btn btn-primary" ng-click="rowform.$show()">
+              <fa name="edit"/>
+            </button>
+            <button class="btn btn-danger" ng-click="removeDevice($index)">
+              <fa name="trash"/>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

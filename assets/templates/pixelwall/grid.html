@@ -1,7 +1,18 @@
 <div gridster="gridsterOpts" class="fullscreen">
   <ul>
-    <li class="box" gridster-item row="item.top" col="item.left" size-x="item.width" size-y="item.height" ng-repeat="item in page.boxes">
-      <box box="item" timeout="page.duration"></box>
+    <li class="box" gridster-item row="box.top" col="box.left" size-x="box.width" size-y="box.height" ng-repeat="box in boxes">
+      <box box="box" timeout="timeout"/>
+      <div class="overlay buttons" ng-controller="OverlayBoxController">
+        <button class="btn tn-default drag-handle">
+          <fa name="arrows"/>
+        </button>
+        <button class="btn btn-primary" ng-click="editBox(box)">
+          <fa name="edit"/>
+        </button>
+        <button class="btn btn-danger pull-right" ng-click="removeBox(box)">
+          <fa name="trash"/>
+        </button>
+      </div>
     </li>
   </ul>
 </div>

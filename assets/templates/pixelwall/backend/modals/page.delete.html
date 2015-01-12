@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h3 class="modal-title">Delete page?</h3>
+</div>
+<div class="modal-body">
+  Really delete <strong>{{ page.name }}</strong>?
+  <div class="well" ng-if="page.devices.length > 1">
+    It is used by {{page.devices.length}} devices:
+    <ul>
+      <li ng-repeat="device in page.devices">{{device.name }}</li>
+    </ul>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-danger" ng-click="$close()"><fa name="trash"/> Delete</button>
+  <button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
+</div>

@@ -1,0 +1,32 @@
+.backend {
+  .logo {
+    background: url(/images/logo.svg) center center no-repeat;
+    width: 120px;
+  }
+
+  .overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    //bottom:0;
+    background-color:rgba(0, 0, 0, 0.5);
+    color:white;
+    display: none;
+    padding: 5px;
+    //align-items: center;
+    //text-align: center;
+    //vertical-align: middle;
+    .drag-handle {
+      cursor: move;
+    }
+  }
+
+  .box {
+    border:1px dotted #fff;
+    &:hover .overlay {
+      display: initial;
+    }
+  }
+
+}

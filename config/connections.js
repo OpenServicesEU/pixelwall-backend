@@ -26,7 +26,7 @@ module.exports.connections = {
         host: 'localhost',
         port: 27017,
         user: 'pixelwall',
-        password: '',
+        password: 'aiXiel0beejohfo0',
         database: 'pixelwall'
     },
     disk: {
