@@ -178,24 +178,17 @@ angular.module(
     ) {
         $scope.page = page;
         $scope.boxes = boxes;
-        $scope.addBox = function() {
-            var box = new boxFactory({name: "bla", width: 1, height: 1, type: "html", page: $scope.page.id});
-            var modalInstance = $modal.open({
-                template: JST['assets/templates/pixelwall/backend/modals/box.add.html'],
-                controller: ['$scope', 'box', function($scope, page) {
-                    $scope.box = box;
-                }],
-                resolve: {
-                    box: function () {
-                        return box;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function () {
-                $scope.boxes.push(box);
-                box.$save()
-            });
+        $scope.boxTypes = [
+            'html',
+            'iframe',
+            'video',
+            'gallery'
+        ];
+        
+        $scope.addBox = function(type) {
+            var box = new boxFactory({name: "bla", width: 1, height: 1, type: type, page: $scope.page.id});
+            $scope.boxes.push(box);
+            box.$save();
         };
     }
 ])
