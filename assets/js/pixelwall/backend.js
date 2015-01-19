@@ -180,9 +180,17 @@ angular.module(
     ) {
         $scope.page = page;
         $scope.boxes = boxes;
-        $scope.addBox = function() {
+        $scope.types = {
+            html: "HTML",
+            iframe: "IFrame",
+            video: "Video",
+            images: "Images",
+            calendar: "Calendar"
+        };
+        $scope.addBox = function(type) {
             var box = new boxFactory(
                 {
+                    type: type,
                     width: 1,
                     height: 1,
                     page: $scope.page.id,
@@ -193,30 +201,15 @@ angular.module(
                 templateUrl: 'assets/templates/pixelwall/backend/modals/box.add.html',
                 controller: [
                     '$scope',
-                    '$compile',
                     '$sce',
-                    'WizardHandler',
                     'box',
                     function(
                         $scope,
-                        $compile,
                         $sce,
-                        WizardHandler,
                         box
                     ) {
                         $scope.box = box;
-                        $scope.types = {
-                            html: "HTML",
-                            iframe: "IFrame",
-                            video: "Video",
-                            images: "Images",
-                            calendar: "Calendar"
-                        };
-                        $scope.selectType = function(type) {
-                            $scope.box.type = type;
-                            $scope.form = 'assets/templates/pixelwall/backend/forms/' + type + '.html';
-                            WizardHandler.wizard('box.add').next();
-                        };
+                        $scope.form = 'assets/templates/pixelwall/backend/forms/' + box.type + '.html';
                         $scope.removeVideo = function(video) {
                             if (box.data.video === video) {
                                 box.data.video = undefined;

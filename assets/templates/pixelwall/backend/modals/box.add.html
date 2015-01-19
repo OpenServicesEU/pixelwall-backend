@@ -1,27 +1,10 @@
-<wizard name="box.add" on-finish="finishedWizard()" hide-indicators="true">
-  <wz-step title="Type">
-    <div class="modal-header">
-      <h3 class="modal-title">Add new box<fa name="cubes" class="pull-right"/></h3>
-    </div>
-    <div class="modal-body">
-      <p>Select the type of box you would like to add.</p>
-      <button type="button" class="btn btn-default btn-lg btn-block" ng-repeat="(id, name) in types" ng-click="selectType(id)">{{ name }}</button>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-default" ng-click="$dismiss()"><fa name="close"/> Cancel</button>
-    </div>
-  </wz-step>
-  <wz-step title="Data">
-    <div class="modal-header">
-      <h3 class="modal-title">Define new box properties <fa name="cogs" class="pull-right"/></h3>
-    </div>
-    <div class="modal-body">
-      <div ng-include="form"/>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-default" wz-previous><fa name="arrow-left"/> Back</button>
-      <button class="btn btn-default" ng-click="$dismiss()"><fa name="close"/> Cancel</button>
-      <button class="btn btn-success" ng-click="$close()"><fa name="check"/> Create</button>
-    </div>
-  </wz-step>
-</wizard>
+<div class="modal-header">
+  <h3 class="modal-title">Define new box properties <fa name="cogs" class="pull-right"/></h3>
+</div>
+<div class="modal-body">
+  <div ng-include="form"/>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="$dismiss()"><fa name="close"/> Cancel</button>
+  <button class="btn btn-success" ng-click="$close()"><fa name="check"/> Create</button>
+</div>
