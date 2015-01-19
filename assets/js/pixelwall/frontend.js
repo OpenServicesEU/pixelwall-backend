@@ -40,6 +40,16 @@ angular.module(
     return sailsResource('box', {}, {verbose: true});
   }
 ])
+.filter('trustedUrl', ['$sce', function ($sce) {
+  return function(url) {
+    return $sce.trustAsResourceUrl(url);
+  };
+}])
+.filter('trustedHtml', ['$sce', function ($sce) {
+  return function(html) {
+    return $sce.trustAsHtml(html);
+  };
+}])
 .controller('SelectController', [
   '$scope',
   'devices',
@@ -95,12 +105,70 @@ angular.module(
     });
   }
 ])
-.filter('trusted', ['$sce', function ($sce) {
-  return function(url) {
-    return $sce.trustAsResourceUrl(url);
-  };
-}])
-.directive('grid', [
+.controller('OverlayBoxController', [function() {}])
+.directive('pwBounce',
+    function() {
+        return {
+            controller: [
+                '$element',
+                '$interval',
+                '$timeout',
+                '$scope',
+                function(
+                    $element,
+                    $interval,
+                    $timeout,
+                    $scope
+                ) {
+                    $scope.$watch(
+                        function() {
+                            console.log($element.prop('clientHeight'));
+                            return $element.prop('clientHeight');
+                        },
+                        function(newVal, oldVal) {
+                            console.log(newVal, oldVal);
+                        }
+                    );
+                    $scope.$watch(
+                        function() {
+                            console.log($element.prop('scrollHeight'));
+                            return $element.prop('scrollHeight');
+                        },
+                        function(newVal, oldVal) {
+                            console.log(newVal, oldVal);
+                        }
+                    );
+                    $timeout(function() {
+                        var current = 0;
+                        var start = 0;
+                        var direction = 1;
+                        if ($element.prop('scrollHeight') > $element.prop('clientHeight')) {
+                            var scroller = $interval(function() {
+                                var duration = $element.prop('scrollHeight') - $element.prop('clientHeight');
+                                var change = duration * direction;
+                                //var pos = sinease(current, start, change, duration);
+                                var pos = -change / 2 * (Math.cos(Math.PI * current / duration) - 1) + start;
+                                current = current + 1;
+                                // Set the current position.
+                                $scope.apply(function() {
+                                    $element.prop('scrollTop', pos);
+                                });
+                                // See if we went through a full circle.
+                                if (current >= duration) {
+                                    // Reverse direction of scroll.
+                                    start = start + (duration * direction);
+                                    direction = direction * -1;
+                                    current = 0;
+                                }
+                            }, 40);
+                        }
+                    }, 1000);
+                }
+            ]
+        };
+    }
+)
+.directive('pwGrid', [
   '$compile',
   function($compile) {
     return {
@@ -146,7 +214,7 @@ angular.module(
     };
   }
 ])
-.directive('box', [
+.directive('pwBox', [
   '$compile',
   function($compile) {
     return {
@@ -155,11 +223,10 @@ angular.module(
         box: '=',
         timeout: '='
       },
-      replace: true,
       link: function (scope, elements, attrs) {
-        var html = '<box-' + scope.box.type + '/>';
+        var html = '<pw-box-' + scope.box.type + '/>';
         var e = angular.element(html);
-        elements.append(e);
+        elements.replaceWith(e);
         $compile(e)(scope);
       },
       controller: [
@@ -182,31 +249,27 @@ angular.module(
     };
   }
 ])
-.directive('boxHtml', [
-  '$compile',
-  function($compile) {
-    return {
-      restrict: 'E',
-      replace: true,
-      link: function (scope, elements, attrs) {
-        var e = angular.element(scope.box.data.html || '<div>No HTML content for box!</div>');
-        elements.append(e);
-        $compile(e)(scope);
-      }
-    };
-  }
+.directive('pwBoxHtml', [
+    '$compile',
+    function($compile) {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: JST['assets/templates/pixelwall/box/html.html']
+        };
+    }
 ])
-.directive('boxIframe', [
-  '$compile',
-  function($compile) {
-    return {
-      restrict: 'E',
-      replace: true,
-      template: JST['assets/templates/pixelwall/box/iframe.html']
-    };
-  }
+.directive('pwBoxIframe', [
+    '$compile',
+    function($compile) {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: JST['assets/templates/pixelwall/box/iframe.html']
+        };
+    }
 ])
-.directive('boxVideo', [
+.directive('pwBoxVideo', [
   '$compile',
   function($compile) {
     return {
