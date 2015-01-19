@@ -5,8 +5,7 @@ angular.module(
     'ui.bootstrap',
     'ui.router',
     'gridster',
-    'sailsResource',
-    'picardy.fontawesome'
+    'sailsResource'
   ]
 )
 .factory('bridgeFactory', function() {
