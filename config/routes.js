@@ -43,7 +43,11 @@ module.exports.routes = {
   },
   '/b/*': {
     view: 'backend'
-  }
+  },
+  'post /u/video': 'VideoController.upload',
+  'get /u/video/:video': 'VideoController.download',
+  'post /u/images': 'ImagesController.upload',
+  'get /u/images/:image': 'ImagesController.download'
 
   /***************************************************************************
   *                                                                          *
