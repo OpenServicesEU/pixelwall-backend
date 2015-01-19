@@ -30,12 +30,22 @@
     "lodash": "~2.4.1",
     "angular-fontawesome": "~0.3.0",
     "ng-sortable": "~1.1.9",
-    "ng-quill": "~1.0.3"
+    "ng-quill": "~1.0.3",
+    "angular-wizard": "~0.4.2",
+    "bootstrap-theme-cosmo": "~3.1.1",
+    "ng-file-upload": "~2.1.1"
   },
   "exportsOverride": {
     "quill": {
       "js": "dist/quill.js",
       "css": "dist/quill.snow.css"
+    },
+    "angular-wizard": {
+      "js": "dist/angular-wizard.js",
+      "css": "dist/angular-wizard.css"
+    },
+    "bootstrap-theme-cosmo": {
+      "css": "cosmo.min.css"
     }
   },
   "resolutions": {
