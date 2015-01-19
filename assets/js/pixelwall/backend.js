@@ -67,7 +67,7 @@ angular.module(
         }
         $scope.removeDevice = function($index) {
             var modalInstance = $modal.open({
-                template: JST['assets/templates/pixelwall/backend/modals/device.delete.html'],
+                templateUrl: 'assets/templates/pixelwall/backend/modals/device.delete.html',
                 controller: ['$scope', 'device', function($scope, device) {
                     $scope.device = device;
                 }],
@@ -148,7 +148,7 @@ angular.module(
         }
         $scope.removePage = function($index) {
             var modalInstance = $modal.open({
-                template: JST['assets/templates/pixelwall/backend/modals/page.delete.html'],
+                templateUrl: 'assets/templates/pixelwall/backend/modals/page.delete.html',
                 controller: ['$scope', 'page', function($scope, page) {
                     $scope.page = page;
                 }],
@@ -203,7 +203,7 @@ angular.module(
     ){
         $scope.editBox = function(box) {
             var modalInstance = $modal.open({
-                template: JST['assets/templates/pixelwall/backend/modals/box.edit.html'],
+                templateUrl: 'assets/templates/pixelwall/backend/modals/box.edit.html',
                 controller: ['$scope', 'box', function($scope, page) {
                     $scope.box = box;
                 }],
@@ -220,7 +220,7 @@ angular.module(
         };
         $scope.removeBox = function(box) {
             var modalInstance = $modal.open({
-                template: JST['assets/templates/pixelwall/backend/modals/box.delete.html'],
+                templateUrl: 'assets/templates/pixelwall/backend/modals/box.delete.html',
                 controller: ['$scope', 'box', function($scope, page) {
                     $scope.box = box;
                 }],
@@ -300,7 +300,7 @@ angular.module(
                 boxes: '='
             },
             transclude: true,
-            template: JST['assets/templates/pixelwall/grid.html'],
+            templateUrl: 'assets/templates/pixelwall/grid.html',
             controller: [
                 '$scope',
                 '$element',
@@ -392,12 +392,7 @@ angular.module(
         return {
             restrict: 'E',
             replace: true,
-            template: JST['assets/templates/pixelwall/box/html.html']
-            //link: function (scope, elements, attrs) {
-            //    var e = angular.element(scope.box.data.html || '<div>No HTML content for box!</div>');
-            //    elements.replaceWith(e);
-            //    $compile(e)(scope);
-            //}
+            templateUrl: 'assets/templates/pixelwall/box/html.html'
         };
     }
 ])
@@ -407,7 +402,7 @@ angular.module(
         return {
             restrict: 'E',
             replace: true,
-            template: JST['assets/templates/pixelwall/box/iframe.html']
+            templateUrl: 'assets/templates/pixelwall/box/iframe.html'
         };
     }
 ])
@@ -417,7 +412,7 @@ angular.module(
         return {
             restrict: 'E',
             replace: true,
-            template: JST['assets/templates/pixelwall/box/video.html'],
+            templateUrl: 'assets/templates/pixelwall/box/video.html',
             controller: [
                 '$scope',
                 '$element',
@@ -469,10 +464,29 @@ angular.module(
 .config([
     '$stateProvider',
     '$locationProvider',
+    '$provide',
     function(
         $stateProvider,
-        $locationProvider
+        $locationProvider,
+        $provide
     ) {
+        $provide.decorator('$templateCache', function($delegate, $sniffer) {
+            var originalGet = $delegate.get;
+
+            $delegate.get = function(key) {
+                var value;
+                value = originalGet(key);
+                if (!value) {
+                    value = JST[key]();
+                    if (value) {
+                        $delegate.put(key, value);
+                    }
+                }
+                return value;
+            };
+
+            return $delegate;
+        });
         $stateProvider
         .state('devices', {
             url: '/b',
