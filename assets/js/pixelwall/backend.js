@@ -237,7 +237,7 @@ angular.module(
         };
     }
 ])
-.directive('bounce',
+.directive('pwBounce',
     function() {
         return {
             controller: [
@@ -288,7 +288,7 @@ angular.module(
         };
     }
 )
-.directive('grid', [
+.directive('pwGrid', [
     '$compile',
     function($compile) {
         return {
@@ -343,7 +343,7 @@ angular.module(
         };
     }
 ])
-.directive('box', [
+.directive('pwBox', [
     '$compile',
     function($compile) {
         return {
@@ -354,7 +354,7 @@ angular.module(
             },
             replace: true,
             link: function (scope, elements, attrs) {
-                var html = '<box-' + scope.box.type + '/>';
+                var html = '<pw-box-' + scope.box.type + '/>';
                 var e = angular.element(html);
                 elements.replaceWith(e);
                 $compile(e)(scope);
@@ -386,7 +386,7 @@ angular.module(
         };
     }
 ])
-.directive('boxHtml', [
+.directive('pwBoxHtml', [
     '$compile',
     function($compile) {
         return {
@@ -396,7 +396,7 @@ angular.module(
         };
     }
 ])
-.directive('boxIframe', [
+.directive('pwBoxIframe', [
     '$compile',
     function($compile) {
         return {
@@ -406,7 +406,7 @@ angular.module(
         };
     }
 ])
-.directive('boxVideo', [
+.directive('pwBoxVideo', [
     '$compile',
     function($compile) {
         return {
