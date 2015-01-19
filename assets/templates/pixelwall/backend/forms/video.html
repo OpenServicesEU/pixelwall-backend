@@ -1,0 +1,12 @@
+<div>
+  <pw-upload-video url="'/u/video'" data="box.data.video"></pw-upload-video>
+  <div class="well" ng-if="box.data.video">
+    <video controls>
+      <source ng-src="{{ '/u/video/' + box.data.video | trustedUrl }}" type='video/webm;codecs="vp8, vorbis"'/>
+    </video>
+    <button type="button" class="btn btn-danger btn-sm btn-block" ng-click="removeVideo(box.data.video)">
+      <fa name="trash"></fa>
+      Remove video
+    </button>
+  </div>
+</div>

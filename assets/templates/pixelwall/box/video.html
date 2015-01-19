@@ -1,3 +1,3 @@
-<video autoplay>
-  <source src="{{box.data.url | trusted}}" type='video/webm;codecs="vp8, vorbis"'/>
+<video autoplay ng-if="box.data.video">
+  <source ng-src="{{ '/u/video/' + box.data.video | trustedUrl }}" type='video/webm;codecs="vp8, vorbis"'/>
 </video>

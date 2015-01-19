@@ -2,7 +2,7 @@
   <h3 class="modal-title">Edit HTML box</h3>
 </div>
 <div class="modal-body">
-  <ng-quill-editor ng-model="box.data.html" toolbar="true" link-tooltip="true" image-tooltip="true" toolbar-entries="font size bold list bullet italic underline strike align color background link image" editor-required="true" required="" error-class="input-error"></ng-quill-editor>
+  <div ng-include="form"/>
 </div>
 <div class="modal-footer">
   <button class="btn btn-success" ng-click="$close()"><fa name="save"/> Save</button>

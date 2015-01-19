@@ -1,0 +1,10 @@
+<div>
+  <pw-upload-images url="'/u/images'" data="box.data.images"></pw-upload-images>
+  <div class="container" hg-show="box.data.images.length">
+    <ul class="row">
+      <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4" ng-repeat="image in box.data.images">
+        <img ng-src="'/u/images/' + image"/>
+      </li>
+    </ul>
+  </div>
+</div>

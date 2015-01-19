@@ -180,17 +180,65 @@ angular.module(
     ) {
         $scope.page = page;
         $scope.boxes = boxes;
-        $scope.boxTypes = [
-            'html',
-            'iframe',
-            'video',
-            'gallery'
-        ];
-        
-        $scope.addBox = function(type) {
-            var box = new boxFactory({name: "bla", width: 1, height: 1, type: type, page: $scope.page.id});
-            $scope.boxes.push(box);
-            box.$save();
+        $scope.addBox = function() {
+            var box = new boxFactory(
+                {
+                    width: 1,
+                    height: 1,
+                    page: $scope.page.id,
+                    data: {}
+                }
+            );
+            var modalInstance = $modal.open({
+                templateUrl: 'assets/templates/pixelwall/backend/modals/box.add.html',
+                controller: [
+                    '$scope',
+                    '$compile',
+                    '$sce',
+                    'WizardHandler',
+                    'box',
+                    function(
+                        $scope,
+                        $compile,
+                        $sce,
+                        WizardHandler,
+                        box
+                    ) {
+                        $scope.box = box;
+                        $scope.types = {
+                            html: "HTML",
+                            iframe: "IFrame",
+                            video: "Video",
+                            images: "Images",
+                            calendar: "Calendar"
+                        };
+                        $scope.selectType = function(type) {
+                            $scope.box.type = type;
+                            $scope.form = 'assets/templates/pixelwall/backend/forms/' + type + '.html';
+                            WizardHandler.wizard('box.add').next();
+                        };
+                        $scope.removeVideo = function(video) {
+                            if (box.data.video === video) {
+                                box.data.video = undefined;
+                            }
+                        };
+                        $scope.$watch('box.data', function (newVal) {
+                            console.log("Watcher: ", newVal);
+                        });
+                    }
+                ],
+                resolve: {
+                    box: function () {
+                        return box;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+                console.log(box);
+                box.$save()
+                $scope.boxes.push(box);
+            });
         };
     }
 ])
@@ -206,6 +254,12 @@ angular.module(
                 templateUrl: 'assets/templates/pixelwall/backend/modals/box.edit.html',
                 controller: ['$scope', 'box', function($scope, page) {
                     $scope.box = box;
+                    $scope.form = 'assets/templates/pixelwall/backend/forms/' + box.type + '.html';
+                    $scope.removeVideo = function(video) {
+                        if (box.data.video === video) {
+                            box.data.video = undefined;
+                        }
+                    };
                 }],
                 resolve: {
                     box: function () {
@@ -235,6 +289,97 @@ angular.module(
                 return box.$delete();
             });
         };
+    }
+])
+.directive('pwUploadImages', [
+    '$compile',
+    function($compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                url: '=',
+                data: '='
+            },
+            replace: true,
+            templateUrl: 'assets/templates/pixelwall/backend/utils/images-upload.html',
+            controller: [
+                '$scope',
+                '$element',
+                '$upload',
+                function(
+                    $scope,
+                    $element,
+                    $upload
+                ) {
+                    $scope.$watch('uploads', function(images) {
+                        if (typeof images === 'undefined') {
+                            return;
+                        }
+                        $upload.upload({
+                            url: $scope.url,
+                            file: images,
+                            fileFormDataName: 'images'
+
+                        }).progress(function(evt) {
+                            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+                        }).success(function(data, status, headers, config) {
+                            console.log('Response: ', data);
+                            $scope.uploading = false;
+                            if (typeof $scope.data === 'undefined') {
+                                $scope.data = data.files;
+                            } else {
+                                $scope.data = $scope.data.concat(data.files);
+                            }
+                        });
+                    });
+                }
+            ]
+        }
+    }
+])
+.directive('pwUploadVideo', [
+    '$compile',
+    function($compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                url: '=',
+                data: '='
+            },
+            replace: true,
+            templateUrl: 'assets/templates/pixelwall/backend/utils/video-upload.html',
+            controller: [
+                '$scope',
+                '$element',
+                '$upload',
+                function(
+                    $scope,
+                    $element,
+                    $upload
+                ) {
+                    $scope.uploading = false;
+                    $scope.progress = 0;
+                    $scope.$watch('uploads', function(video) {
+                        if (typeof video === 'undefined') {
+                            return;
+                        }
+                        $scope.progress = 0;
+                        $scope.uploading = true;
+                        $scope.upload = $upload.upload({
+                            url: $scope.url,
+                            file: video,
+                            fileFormDataName: 'video'
+                        }).progress(function(evt) {
+                            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+                        }).success(function(data, status, headers, config) {
+                            console.log('Response: ', data);
+                            $scope.uploading = false;
+                            $scope.data = data.files.pop();
+                        });
+                    });
+                }
+            ]
+        }
     }
 ])
 .directive('pwBounce',
@@ -299,7 +444,6 @@ angular.module(
                 timeout: '=',
                 boxes: '='
             },
-            transclude: true,
             templateUrl: 'assets/templates/pixelwall/grid.html',
             controller: [
                 '$scope',
@@ -431,8 +575,37 @@ angular.module(
                     $element.on('ended', function() {
                         console.log("Video ended, resolving defer!");
                         $scope.box._defer.resolve();
-                    })
-
+                    });
+                }
+            ]
+        };
+    }
+])
+.directive('pwBoxImages', [
+    '$compile',
+    function($compile) {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: 'assets/templates/pixelwall/box/images.html',
+            controller: [
+                '$scope',
+                '$element',
+                '$attrs',
+                '$timeout',
+                function (
+                    $scope,
+                    $element,
+                    $attrs,
+                    $timeout
+                ) {
+                    if ($scope.box.data.images.length) {
+                        $timeout.cancel($scope._timeout);
+                        var resolver = $timeout(function() {
+                            console.log("All slides played!");
+                            $scope.box._defer.resolve();
+                        }, $scope.box.data.images.length * $scope.box.data.interval * 1000);
+                    }
                 }
             ]
         };
