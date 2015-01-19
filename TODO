@@ -1,0 +1,30 @@
+General
+=======
+
+ * Share directives/controllers/configs between frontend and backend app.
+ * Content boxes:
+   - Calendar [panc]
+   - Gallery/Images [fladi]
+   - SQL-Statement -> Table
+   - PDF (?)
+   - IFrame [fladi]
+   - Map (Leaflet?)
+
+Backend
+=======
+
+ * Authentication [fladi]
+ * Remove uploaded media assets (video/images/...)
+ * Naigation buttons (device/page) in navbar
+ * Convert Overlay to separate directive (template & controller)
+ * Hilfe/Doku state (static html)
+
+Frontend
+========
+
+ * Send display resolution on first contact:
+   - Ask for display name on initialization
+   - Send data (name, resolution) to server (Zeroconf) [fladi]
+   - Store server response (id/URL) in LocalStorage
+ * Style-Sheet per page/device?
+ * Logo-bar for corporate identity?
