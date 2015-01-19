@@ -1,15 +1,17 @@
 angular.module(
     'PixelWallBackEnd',
     [
+        'angularFileUpload',
+        'gridster',
+        'mgo-angular-wizard',
         'ngAnimate',
+        'ngQuill',
+        'picardy.fontawesome',
+        'sailsResource',
         'ui.bootstrap',
         'ui.router',
         'ui.sortable',
-        'gridster',
-        'sailsResource',
-        'xeditable',
-        'picardy.fontawesome',
-        'ngQuill'
+        'xeditable'
     ]
 )
 .factory('deviceFactory', [
