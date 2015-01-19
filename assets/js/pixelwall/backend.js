@@ -405,13 +405,14 @@ angular.module(
                     //        console.log(newVal, oldVal);
                     //    }
                     //);
+                    $element.addClass("bounce");
                     $timeout(function() {
                         var current = 0;
                         var start = 0;
                         var direction = 1;
-                        if ($element.prop('scrollTopMax') > 0) {
+                        if ($element.prop('scrollHeight') > $element.prop('clientHeight')) {
                             var scroller = $interval(function() {
-                                var duration = $element.prop('scrollTopMax');
+                                var duration = $element.prop('scrollHeight') - $element.prop('clientHeight');
                                 var change = duration * direction;
                                 //var pos = sinease(current, start, change, duration);
                                 var pos = -change / 2 * (Math.cos(Math.PI * current / duration) - 1) + start;
@@ -751,6 +752,7 @@ angular.module(
             }
         });
         $locationProvider.html5Mode(true);
+        return this;
     }
 ]);
 
