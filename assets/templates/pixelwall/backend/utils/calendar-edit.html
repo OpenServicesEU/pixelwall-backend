@@ -3,8 +3,6 @@
     <input type="text" class="box-value" placeholder="ical-URL  e.g. http://demo.url/my.ics" ng-model="data.url" />
     
     <ul class="row">
-        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4" ng-repeat="event in events">
-            <p>{{event}}</p>
-        </li>
+        <pw-calendar-entry ng-repeat="event in data.events" event="event"></pw-calendar-entry>
     </ul>
 </div>

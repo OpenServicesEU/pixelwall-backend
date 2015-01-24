@@ -153,7 +153,6 @@ angular.module(
         return {
             restrict: 'E',
             scope: {
-                url: '=',
                 data: '='
             },
             replace: true,
@@ -163,30 +162,21 @@ angular.module(
                 '$element',
                 function (
                     $scope,
-                    $element) 
-                {
-
-                    $scope.events = [];
+                    $element) {
 
                     $scope.$watch('data.url', function(url) {
                         io.socket.get('/calendar/parse', { url: url }, function(data) {
-
-                            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                            
+                            // clear all stored events
+                            $scope.data.events = [];
 
                             for (var k in data) {
                                 if (!data.hasOwnProperty(k))
                                     continue;
 
-                                var ev = data[k];
-                                var start = new Date(ev.start);
-
-                                $scope.events.push("Conference" +
-                                    ev.summary +
-                                    'is in' + 
-                                    ev.location +
-                                    'on the' + start.getDate() + 'of', months[start.getMonth()]);
+                                var event = data[k];
+                                $scope.data.events.push(event);
                             }
-
                         });
                     });
                 }
@@ -377,6 +367,40 @@ angular.module(
             restrict: 'E',
             replace: true,
             templateUrl: 'assets/templates/pixelwall/box/calendar.html'
+        };
+    }
+])
+.directive('pwCalendarEntry', [
+    '$compile',
+    function ($compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                event: '=',
+            },
+            templateUrl: 'assets/templates/pixelwall/box/calendar-entry.html',
+            controller: [
+                '$scope',
+                '$element',
+                function (
+                    $scope,
+                    $element)
+                {
+                    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    var start = new Date($scope.event.start);
+
+                    $scope.summary = $scope.event.summary;
+                    $scope.start = start;
+                    $scope.month = months[start.getMonth()];
+                    $scope.location = $scope.event.location || '-';
+
+//                                "Conference" +
+//                                    ev.summary +
+//                                    'is in' + 
+//                                    ev.location +
+//                                    'on the' + start.getDate() + 'of', months[start.getMonth()]
+                }
+            ]
         };
     }
 ])
