@@ -34,7 +34,8 @@
     "sails-generate-sails.io.js ": "~0.11.2",
     "sails-mongo": "^0.10.4",
     "skipper-disk": "git://github.com/andyhu/skipper-disk",
-    "validator": "^3.25.0"
+    "validator": "^3.25.0",
+    "ics": "~0.4.1"
   },
   "name": "pixelwall",
   "private": true,

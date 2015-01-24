@@ -147,6 +147,32 @@ angular.module(
         }
     }
 ])
+.directive('pwEditCalendar', [
+    '$compile',
+    function ($compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                url: '=',
+                data: '='
+            },
+            replace: true,
+            templateUrl: 'assets/templates/pixelwall/backend/utils/calendar-edit.html',
+            controller: [
+                '$scope',
+                '$element',
+                function (
+                    $scope,
+                    $element) 
+                {
+                    $scope.$watch('data.url', function (url) {
+                        io.socket.get('/calendar/parse', {url: url});
+                    });
+                }
+            ]
+        }
+    }
+])
 .directive('pwBounce',
     function() {
         return {
