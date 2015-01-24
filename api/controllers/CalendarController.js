@@ -9,7 +9,7 @@ module.exports = {
     parse: function(req, res) {
         var url = req.param('url');
         
-        iCalParser.parseFromUrl(url, function(err, data) {
+        calendarParser.parseFromUrl(url, function(err, data) {
             if (err)
                 return res.json('ERROR');
 

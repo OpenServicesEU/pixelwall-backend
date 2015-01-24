@@ -4,7 +4,7 @@ module.exports = function(sails) {
 
         // defaults config
         defaults: {
-            iCalReload: {
+            calendarReload: {
                 "timeout": "10000"
             } 
         },
@@ -12,7 +12,7 @@ module.exports = function(sails) {
         // runs automatically when the hook initializes
         initialize: function(cb) {
             var hook = this;
-            var config = sails.config.iCalReload;
+            var config = sails.config.calendarReload;
             
             // lets wait on some of the sails core hooks to
             // finish loading before we load our hook
@@ -52,7 +52,7 @@ module.exports = function(sails) {
                     if (!box.data.url)
                         return;
 
-                    iCalParser.parseFromUrl(box.data.url, function(err, events) {
+                    calendarParser.parseFromUrl(box.data.url, function(err, events) {
                         if (err)
                             return;
 
