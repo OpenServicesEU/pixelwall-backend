@@ -5,12 +5,20 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var ics = require('ics');
+var ical = require('ical');
 
 module.exports = {
     parse: function(req, res) {
+        var url = req.param('url');
+        
         console.log("Hey there!");
-        console.log(req.param('url'));
+        console.log(url);
+
+        ical.fromURL(url, "", function(err, data) {
+            if (err)
+                return res.json('ERROR');
+
+            res.json(data);
+        });
     }
 };
-

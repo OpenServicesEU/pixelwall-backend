@@ -165,8 +165,29 @@ angular.module(
                     $scope,
                     $element) 
                 {
-                    $scope.$watch('data.url', function (url) {
-                        io.socket.get('/calendar/parse', {url: url});
+
+                    $scope.events = [];
+
+                    $scope.$watch('data.url', function(url) {
+                        io.socket.get('/calendar/parse', { url: url }, function(data) {
+
+                            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                            for (var k in data) {
+                                if (!data.hasOwnProperty(k))
+                                    continue;
+
+                                var ev = data[k];
+                                var start = new Date(ev.start);
+
+                                $scope.events.push("Conference" +
+                                    ev.summary +
+                                    'is in' + 
+                                    ev.location +
+                                    'on the' + start.getDate() + 'of', months[start.getMonth()]);
+                            }
+
+                        });
                     });
                 }
             ]
