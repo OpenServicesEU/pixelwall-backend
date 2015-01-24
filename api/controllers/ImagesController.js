@@ -6,7 +6,7 @@
  */
 
 var UUIDGenerator = require('node-uuid');
-var disk = require('skipper-disk')()
+var disk = require('skipper-disk')();
 var fs = require('fs');
 var mkdirp = require('mkdirp');
 var path = require('path');
@@ -57,7 +57,7 @@ module.exports = {
                 return res.notFound(file);
             }
             fs.createReadStream(file).pipe(res);
-        })
+        });
     }
 };
 

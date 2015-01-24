@@ -283,7 +283,7 @@ angular.module(
                     // See if we have a defer on the box that we might need to resolve.
                     if (typeof $scope.box._defer !== 'undefined') {
                         $scope._timeout = $timeout(function() {
-                        console.log("Default page timeout finished!")
+                            console.log("Default page timeout finished!");
                             $scope.box._defer.resolve();
                         }, $scope.timeout*1000);
                     }

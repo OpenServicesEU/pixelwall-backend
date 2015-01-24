@@ -46,9 +46,10 @@ module.exports.routes = {
   },
   'post /u/video': 'VideoController.upload',
   'get /u/video/:video': 'VideoController.download',
+  
   'post /u/images': 'ImagesController.upload',
-  'get /u/images/:image': 'ImagesController.download'
-
+  'get /u/images/:image': 'ImagesController.download',
+  
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
