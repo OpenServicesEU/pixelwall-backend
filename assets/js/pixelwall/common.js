@@ -164,12 +164,19 @@ angular.module(
                     $scope,
                     $element) {
 
-                    $scope.$watch('data.url', function(url) {
+                    var loadedUrl = $scope.data.url;
+
+                    $scope.$watch('data.url', function (url) {
+
+                        if (url == loadedUrl)
+                            return;
+
+                        // clear all stored events
+                        $scope.data.events = [];
+                        loadedUrl = url;
+
                         io.socket.get('/calendar/parse', { url: url }, function(data) {
                             
-                            // clear all stored events
-                            $scope.data.events = [];
-
                             for (var k in data) {
                                 if (!data.hasOwnProperty(k))
                                     continue;
