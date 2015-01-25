@@ -5,7 +5,8 @@ module.exports = function(sails) {
         // defaults config
         defaults: {
             calendarReload: {
-                "timeout": "10000"
+                "interval": "1" /* refresh interval in minutes */,
+                "disabled": "false" 
             } 
         },
 
@@ -13,7 +14,12 @@ module.exports = function(sails) {
         initialize: function(cb) {
             var hook = this;
             var config = sails.config.calendarReload;
-            
+
+            if (config.disabled === true) {
+                sails.log('Calendar reload is disabled!');
+                return cb();
+            }
+
             // lets wait on some of the sails core hooks to
             // finish loading before we load our hook
             var eventsToWaitFor = [];
@@ -26,17 +32,19 @@ module.exports = function(sails) {
 
             sails.after(eventsToWaitFor, function() {
 
-                sails.log("Spawn task to reload ical data every " + config.timeout + " ms.");
-                
-                hook.run(hook, config);
+                hook.run(config.interval);
 
                 // invoke the callback and our hook will be usable
                 return cb();
             });
         },
 
-        run: function(hook, config) {
-            setInterval(hook.reloadCalendarData, config.timeout);
+        run: function(interval) {
+            
+            var intervalInMilliseconds = interval * 60 * 1000;
+            sails.log.info("Spawn task to reload calender data every " + interval + " minutes (" + intervalInMilliseconds + " ms).");
+
+            setInterval(this.reloadCalendarData, intervalInMilliseconds);
         },
 
         reloadCalendarData: function() {
@@ -66,7 +74,7 @@ module.exports = function(sails) {
                     });
                 });
 
-                sails.log('Reloaded ical data of ' + calendarBoxes.length + ' calendar boxes.');
+                sails.log('Reloaded calendar data of ' + calendarBoxes.length + ' calendar boxes.');
             });
         }
     }

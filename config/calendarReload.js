@@ -1,5 +1,6 @@
 
 module.exports.calendarReload = {
 
-    timeout: 5000
+    interval: 0.10 /* refresh interval in minutes */
+    //disabled: true
 };
