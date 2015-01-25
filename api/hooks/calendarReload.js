@@ -70,6 +70,11 @@ module.exports = function(sails) {
                                 sails.log.error('Failed to save updated calendar events!');
                                 return;
                             }
+                            
+                            // Inform all clients about the updated calendar data.
+                            // It's not needed as the data will be reloaded with 
+                            // every page change but we do it anyway - because we can ;-)
+                            sails.models.box.publishUpdate(box.id);
                         }); 
                     });
                 });
