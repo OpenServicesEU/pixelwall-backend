@@ -172,7 +172,6 @@ angular.module(
                             return;
 
                         // clear all stored events
-                        $scope.data.events = [];
                         loadedUrl = url;
 
                         io.socket.get('/calendar/parse', { url: url }, function(events) {
