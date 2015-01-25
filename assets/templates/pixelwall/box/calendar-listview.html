@@ -1,0 +1,9 @@
+<div class="calendar-listview" pw-bounce>
+    <div ng-repeat="group in groupedEvents">
+        <div class="calendar-entry" ng-repeat="event in group.events">
+            <div>{{ event.summary }}</div>
+            <div>{{ event.location }}</div>
+            <div>{{ event.start | date:"dd.MM.yyyy 'at' hh:mm" }}</div>
+        </div>
+    </div>
+</div>

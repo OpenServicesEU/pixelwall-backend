@@ -167,18 +167,44 @@ angular.module(
                     var loadedUrl = $scope.data.url;
 
                     $scope.$watch('data.url', function (url) {
-
                         if (url == loadedUrl)
                             return;
 
-                        // clear all stored events
                         loadedUrl = url;
 
                         io.socket.get('/calendar/parse', { url: url }, function(events) {
-                            
                             $scope.data.events = events;
                         });
                     });
+                }
+            ]
+        }
+    }
+])
+.directive('pwCalendarListview', [
+    '$compile',
+    function ($compile) {
+        return {
+            restrict: 'E',
+            scope: {
+                events: '='
+            },
+            replace: true,
+            templateUrl: 'assets/templates/pixelwall/box/calendar-listview.html',
+            controller: [
+                '$scope',
+                '$element',
+                function (
+                    $scope,
+                    $element) {
+
+                    $scope.groupedEvents = [
+                    {
+                        events: $scope.events
+                    }];
+
+                    var events = $scope.events;
+
                 }
             ]
         }
