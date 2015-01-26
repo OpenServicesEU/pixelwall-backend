@@ -76,7 +76,12 @@ module.exports = {
                 },
                 saveAs: function(__newFile, cb) {
                     var newName = UUIDGenerator.v4() + ".webm";
-                    files.push(newName);
+                    files.push(
+                        {
+                            name: __newFile.filename,
+                            src: newName
+                        }
+                    );
                     cb(null, newName);
                 },
                 dirname: directory

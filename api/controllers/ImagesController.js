@@ -35,7 +35,12 @@ module.exports = {
                 },
                 saveAs: function(__newFile, cb) {
                     var newName = UUIDGenerator.v4() + path.extname(__newFile.filename);
-                    files.push(newName);
+                    files.push(
+                        {
+                            name: __newFile.filename,
+                            src: newName
+                        }
+                    );
                     cb(null, newName);
                 },
                 dirname: directory
