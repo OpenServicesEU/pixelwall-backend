@@ -491,7 +491,6 @@ angular.module(
     function ($compile) {
         return {
             restrict: 'E',
-            replace: true,
             templateUrl: 'assets/templates/pixelwall/box/calendar.html'
         };
     }
