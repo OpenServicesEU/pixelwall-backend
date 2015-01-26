@@ -17,8 +17,8 @@ module.exports = {
                 'html',
                 'iframe',
                 'video',
-                'gallery',
-                'calendar'
+                'calendar',
+                'images'
             ]
         },
         width: {
