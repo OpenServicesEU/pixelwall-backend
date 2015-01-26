@@ -516,14 +516,18 @@ angular.module(
                     $attrs,
                     $timeout
                 ) {
-                    $element.on('canplay', function() {
-                        console.log("Removing default page timeout!", $element);
-                        $timeout.cancel($scope._timeout);
-                    });
-                    $element.on('ended', function() {
-                        console.log("Video ended, resolving defer!", $element);
-                        $scope.box._defer.resolve();
-                    });
+                    if (typeof $scope._timeout !== 'undefined') {
+                      $element.on('canplay', function() {
+                          console.log("Removing default page timeout!", $element);
+                          $timeout.cancel($scope._timeout);
+                      });
+                    }
+                    if (typeof $scope.box._defer !== 'undefined') {
+                      $element.on('ended', function() {
+                          console.log("Video ended, resolving defer!", $element);
+                          $scope.box._defer.resolve();
+                      });
+                    }
                 }
             ]
         };
