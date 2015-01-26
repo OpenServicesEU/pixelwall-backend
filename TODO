@@ -8,15 +8,20 @@ General
    - PDF (?)
    - IFrame [fladi]
    - Map (Leaflet?)
+   - RSS/Atom
+   - Livestream
 
 Backend
 =======
 
  * Authentication [fladi]
  * Remove uploaded media assets (video/images/...)
- * Naigation buttons (device/page) in navbar
+ * Navigation buttons (device/page) in navbar
  * Convert Overlay to separate directive (template & controller)
  * Hilfe/Doku state (static html)
+ * Scheduler [panc]
+ * Images sorted by d&d in list with thumbnail [fladi]
+ * Sortable placeholder flickers.
 
 Frontend
 ========
