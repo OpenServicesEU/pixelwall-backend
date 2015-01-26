@@ -111,14 +111,14 @@ angular.module(
         $scope.removePage = function($index) {
             var modalInstance = $modal.open({
                 templateUrl: 'assets/templates/pixelwall/backend/modals/page.delete.html',
-                controller: ['$scope', 'page', function($scope, page) {
-                    $scope.page = page;
-                }],
-                resolve: {
-                    page: function () {
-                        return $scope.pages[$index];
+                controller: [
+                    '$scope',
+                    function(
+                        $scope
+                    ) {
+                        $scope.page = pages[$index];
                     }
-                }
+                ]
             });
 
             modalInstance.result.then(function () {
@@ -164,35 +164,33 @@ angular.module(
                 controller: [
                     '$scope',
                     '$sce',
-                    'box',
                     function(
                         $scope,
-                        $sce,
-                        box
+                        $sce
                     ) {
                         $scope.box = box;
+                        $scope.editable = box.data;
                         $scope.form = 'assets/templates/pixelwall/backend/forms/' + box.type + '.html';
                         $scope.removeVideo = function(video) {
                             if (box.data.video === video) {
                                 box.data.video = undefined;
                             }
                         };
+                        $scope.removeImage = function($index) {
+                            box.data.images.splice($index, 1);
+                        };
                         $scope.$watch('box.data', function (newVal) {
                             console.log("Watcher: ", newVal);
                         });
                     }
                 ],
-                resolve: {
-                    box: function () {
-                        return box;
-                    }
-                }
             });
 
             modalInstance.result.then(function () {
                 console.log(box);
-                box.$save()
-                $scope.boxes.push(box);
+                box.$save(function(box) {
+                    $scope.boxes.push(box);
+                })
             });
         };
     }
@@ -205,39 +203,49 @@ angular.module(
         $modal
     ){
         $scope.editBox = function(box) {
+            var editable = angular.copy(box.data);
+            console.log("Editable: ", editable);
             var modalInstance = $modal.open({
                 templateUrl: 'assets/templates/pixelwall/backend/modals/box.edit.html',
-                controller: ['$scope', 'box', function($scope, page) {
-                    $scope.box = box;
-                    $scope.form = 'assets/templates/pixelwall/backend/forms/' + box.type + '.html';
-                    $scope.removeVideo = function(video) {
-                        if (box.data.video === video) {
-                            box.data.video = undefined;
+                controller: [
+                    '$scope',
+                    function(
+                        $scope
+                    ) {
+                        $scope.box = box;
+                        $scope.editable = editable;
+                        $scope.form = 'assets/templates/pixelwall/backend/forms/' + box.type + '.html';
+                        $scope.removeVideo = function(video) {
+                            if (editable.video === video) {
+                                editable.video = undefined;
+                            }
+                        };
+                        $scope.removeImage = function($index) {
+                            editable.images.splice($index, 1);
+                        };
+                        $scope.imageSortableOptions = {
+                            axis: 'y'
                         }
-                    };
-                }],
-                resolve: {
-                    box: function () {
-                        return box;
                     }
-                }
+                ]
             });
 
             modalInstance.result.then(function () {
+                box.data = editable;
                 box.$save();
             });
         };
         $scope.removeBox = function(box) {
             var modalInstance = $modal.open({
                 templateUrl: 'assets/templates/pixelwall/backend/modals/box.delete.html',
-                controller: ['$scope', 'box', function($scope, page) {
-                    $scope.box = box;
-                }],
-                resolve: {
-                    box: function () {
-                        return box;
+                controller: [
+                    '$scope',
+                    function(
+                        $scope
+                    ) {
+                        $scope.box = box;
                     }
-                }
+                ]
             });
 
             modalInstance.result.then(function () {

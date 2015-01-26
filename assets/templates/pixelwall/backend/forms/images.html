@@ -1,10 +1,16 @@
 <div>
-  <pw-upload-images url="'/u/images'" data="box.data.images"></pw-upload-images>
-  <div class="container" hg-show="box.data.images.length">
-    <ul class="row">
-      <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4" ng-repeat="image in box.data.images">
-        <img ng-src="'/u/images/' + image"/>
-      </li>
-    </ul>
+  Slide interval: {{ editable.interval }} <slider ng-model="editable.interval" min="1" max="600" handle="square"></slider>
+  <pw-upload-images url="'/u/images'" data="editable.images"></pw-upload-images>
+  <div class="row" sv-root sv-part="editable.images">
+    <div class="col-xs-6 col-md-3" ng-repeat="image in editable.images" sv-element>
+      <div class="thumbnail">
+        <img class="img-responsive" ng-src="{{ '/u/images/' + image.src | trustedUrl }}">
+        <div class="overlay buttons">
+          <button class="btn btn-danger pull-right" ng-click="removeImage($index)">
+            <fa name="trash"/>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
