@@ -204,8 +204,39 @@ angular.module(
                         events: $scope.events
                     }];
 
-                    var events = $scope.events;
+                    var groupedEvents = {};
+                    
+                    $scope.events.forEach(function (event) {
+                        //var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                        
+                        var start = new Date(event.start);
+                        var end = new Date(event.end);
+                        
+                        var days = end.getDay() - start.getDay() + 1;
+                        
+                        for (var i = 0; i < days; i++) {
+                            var date = new Date(start);
+                            date.setDate(start.getDate() + i);
+                            var key = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear();
 
+                            if (typeof groupedEvents[key] === "undefined")
+                                groupedEvents[key] = { date: date, events: [] };
+
+                            groupedEvents[key].events.push(event);
+                        }
+
+                        /*$scope.summary = $scope.event.summary;
+                        $scope.start = start;
+                        $scope.month = months[start.getMonth()];
+                        $scope.location = $scope.event.location || '-';*/
+                    });
+
+                    $scope.groupedEvents = [];
+                    for (var property in groupedEvents) {
+                        $scope.groupedEvents.push(groupedEvents[property]);
+                    }
+
+                    console.log($scope.groupedEvents.length);
                 }
             ]
         }
