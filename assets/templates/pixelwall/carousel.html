@@ -1,0 +1,13 @@
+<div class="carousel">
+  <div class="slide" ng-repeat="image in images" ng-show="active($index)">
+    <img ng-src="{{ '/u/images/' + image.src | trustedUrl }}" />
+  </div>
+  <div class="arrows">
+    <button type="button" class="btn btn-default btn-sm" ng-click="prev()">
+      <fa name="arrow-circle-left"></fa>
+    </button>
+    <button type="button" class="btn btn-default btn-sm" ng-click="next()">
+      <fa name="arrow-circle-right"></fa>
+    </button>
+  </div>
+</div>
