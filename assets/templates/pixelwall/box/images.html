@@ -1,9 +1,1 @@
-<carousel interval="box.data.interval">
-  <slide ng-repeat="image in box.data.images" active="image.active">
-    <img ng-src="{{image.src}}" style="margin:auto;">
-    <div class="carousel-caption">
-      <h4>Slide {{$index}}</h4>
-      <p>{{slide.text}}</p>
-    </div>
-  </slide>
-</carousel>
+<pw-carousel images="box.data.images" interval="box.data.interval*1000" end="end"></pw-carousel>
