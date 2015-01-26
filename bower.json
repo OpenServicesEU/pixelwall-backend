@@ -33,7 +33,9 @@
     "ng-quill": "~1.0.3",
     "angular-wizard": "~0.4.2",
     "bootstrap-theme-cosmo": "~3.1.1",
-    "ng-file-upload": "~2.1.1"
+    "ng-file-upload": "~2.1.1",
+    "angular-bootstrap-slider": "~0.0.8",
+    "angular-sortable-view": "~0.0.12"
   },
   "exportsOverride": {
     "quill": {
