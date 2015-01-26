@@ -22,7 +22,7 @@
 </nav>
 <div class="panel panel-default">
   <div class="panel-body">
-    <table class="table table-bordered table-hover table-condensed" as-sortable="sortableOptions" ng-model="pages">
+    <table class="table table-bordered table-hover table-condensed" sv-root sv-part="pages">
       <tr style="font-weight: bold">
         <td style="width:35%">Name</td>
         <td style="width:20%">Rows</td>
@@ -30,7 +30,7 @@
         <td style="width:20%">Duration</td>
         <td style="width:25%">Edit</td>
       </tr>
-      <tr ng-repeat="page in pages" as-sortable-item>
+      <tr ng-repeat="page in pages" sv-element>
         <td>
           <span editable-text="page.name" e-name="name" e-form="rowform" e-required>
             {{ page.name || 'Unnamed' }}
@@ -64,7 +64,7 @@
             <button class="btn btn-success" ui-sref="devices.pages.boxes({deviceId: device.id, pageId: page.id})">
               <fa name="table"/>
             </button>
-            <button class="btn btn-default" as-sortable-item-handle>
+            <button class="btn btn-default" sv-handle>
               <fa name="arrows-v"/>
             </button>
             <button class="btn btn-primary" ng-click="rowform.$show()">
