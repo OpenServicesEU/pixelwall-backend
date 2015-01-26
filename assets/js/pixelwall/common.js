@@ -10,8 +10,9 @@ angular.module(
         'sailsResource',
         'ui.bootstrap',
         'ui.router',
-        'ui.sortable',
-        'xeditable'
+        'angular-sortable-view',
+        'xeditable',
+        'ui.bootstrap-slider'
     ]
 )
 .factory('bridgeFactory', function() {
