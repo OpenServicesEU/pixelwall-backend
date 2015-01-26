@@ -442,7 +442,6 @@ angular.module(
     function($compile) {
         return {
             restrict: 'E',
-            replace: true,
             templateUrl: 'assets/templates/pixelwall/box/html.html'
         };
     }
@@ -452,7 +451,6 @@ angular.module(
     function($compile) {
         return {
             restrict: 'E',
-            replace: true,
             templateUrl: 'assets/templates/pixelwall/box/iframe.html'
         };
     }
@@ -506,7 +504,6 @@ angular.module(
     function($compile) {
         return {
             restrict: 'E',
-            replace: true,
             templateUrl: 'assets/templates/pixelwall/box/video.html',
             controller: [
                 '$scope',
