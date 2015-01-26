@@ -77,6 +77,7 @@ angular.module(
                     $element,
                     $upload
                 ) {
+                    console.log('Images data:', $scope.data);
                     $scope.$watch('uploads', function(images) {
                         if (typeof images === 'undefined') {
                             return;
@@ -89,7 +90,7 @@ angular.module(
                         }).progress(function(evt) {
                             $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
                         }).success(function(data, status, headers, config) {
-                            console.log('Response: ', data);
+                            console.log('Response images: ', data);
                             $scope.uploading = false;
                             if (typeof $scope.data === 'undefined') {
                                 $scope.data = data.files;
@@ -138,7 +139,6 @@ angular.module(
                         }).progress(function(evt) {
                             $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
                         }).success(function(data, status, headers, config) {
-                            console.log('Response: ', data);
                             $scope.uploading = false;
                             $scope.data = data.files.pop();
                         });
