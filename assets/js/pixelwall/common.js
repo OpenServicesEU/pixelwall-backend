@@ -224,11 +224,6 @@ angular.module(
 
                             groupedEvents[key].events.push(event);
                         }
-
-                        /*$scope.summary = $scope.event.summary;
-                        $scope.start = start;
-                        $scope.month = months[start.getMonth()];
-                        $scope.location = $scope.event.location || '-';*/
                     });
 
                     $scope.groupedEvents = [];
@@ -492,40 +487,6 @@ angular.module(
         return {
             restrict: 'E',
             templateUrl: 'assets/templates/pixelwall/box/calendar.html'
-        };
-    }
-])
-.directive('pwCalendarEntry', [
-    '$compile',
-    function ($compile) {
-        return {
-            restrict: 'E',
-            scope: {
-                event: '=',
-            },
-            templateUrl: 'assets/templates/pixelwall/box/calendar-entry.html',
-            controller: [
-                '$scope',
-                '$element',
-                function (
-                    $scope,
-                    $element)
-                {
-                    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                    var start = new Date($scope.event.start);
-
-                    $scope.summary = $scope.event.summary;
-                    $scope.start = start;
-                    $scope.month = months[start.getMonth()];
-                    $scope.location = $scope.event.location || '-';
-
-//                                "Conference" +
-//                                    ev.summary +
-//                                    'is in' + 
-//                                    ev.location +
-//                                    'on the' + start.getDate() + 'of', months[start.getMonth()]
-                }
-            ]
         };
     }
 ])
