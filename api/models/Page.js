@@ -30,6 +30,9 @@ module.exports = {
         duration: {
             type: 'integer',
             defaultsTo: 10
+        },
+        ordering: {
+            type: 'json'
         }
     }
 };
