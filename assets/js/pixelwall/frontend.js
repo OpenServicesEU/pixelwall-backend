@@ -17,21 +17,30 @@ angular.module(
 .controller('DeviceController', [
   '$scope',
   '$state',
+  'sortService',
   'bridgeFactory',
   'device',
+  'pages',
   function(
     $scope,
     $state,
+    sortService,
     bridgeFactory,
-    device
+    device,
+    pages
   ) {
     $scope.device = device;
+    $scope.pages = pages;
     $scope.currentPage = 0;
     //  bridge.listen('', 'message', function(data) {
     //    console.log(data);
     //  });
-    if ($scope.device.pages.length > 0) {
-      $state.go('device.page', {deviceId: $scope.device.id, pageId: $scope.device.pages[$scope.currentPage].id});
+    if ($scope.pages.length > 0) {
+      var pageIndex = _.findIndex(pages, function(page) {
+        return page.ordering[$scope.device.id] == 0;
+      });
+      $scope.pages.sort(sortService.pages($scope.device.id));
+      $state.go('device.page', {deviceId: $scope.device.id, pageId: $scope.pages[0].id});
     }
   }
 ])
@@ -39,23 +48,28 @@ angular.module(
   '$scope',
   '$state',
   '$q',
+  'sortService',
   'page',
+  'boxes',
   function(
     $scope,
     $state,
     $q,
-    page
+    sortService,
+    page,
+    boxes
   ) {
     $scope.page = page;
-    $scope.page.boxes.forEach(function(box) {
+    $scope.boxes = boxes;
+    $scope.boxes.forEach(function(box) {
       box._defer = $q.defer();
     });
     // Wait for all promises.
-    $q.all($scope.page.boxes.map(function(box) {
+    $q.all($scope.boxes.map(function(box) {
       return box._defer.promise;
     })).then(function() {
-      $scope.$parent.currentPage = ($scope.$parent.currentPage + 1 ) % $scope.device.pages.length;
-      $state.go('device.page', {deviceId: $scope.device.id, pageId: $scope.device.pages[$scope.$parent.currentPage].id});
+      $scope.$parent.currentPage = ($scope.$parent.currentPage + 1 ) % $scope.$parent.pages.length;
+      $state.go('device.page', {deviceId: $scope.$parent.device.id, pageId: $scope.$parent.pages[$scope.$parent.currentPage].id});
     });
   }
 ])
@@ -95,6 +109,16 @@ angular.module(
           ) {
             return deviceFactory.get({id: $stateParams.deviceId}).$promise;
           }
+        ],
+        pages: [
+          '$stateParams',
+          'pageFactory',
+          function(
+            $stateParams,
+            pageFactory
+          ) {
+            return pageFactory.query({devices: $stateParams.deviceId}).$promise;
+          }
         ]
       }
     })
@@ -111,6 +135,16 @@ angular.module(
             pageFactory
           ) {
             return pageFactory.get({id: $stateParams.pageId}).$promise;
+          }
+        ],
+        boxes: [
+          '$stateParams',
+          'boxFactory',
+          function(
+            $stateParams,
+            boxFactory
+          ) {
+            return boxFactory.query({page: $stateParams.pageId}).$promise;
           }
         ]
       }
