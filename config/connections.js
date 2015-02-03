@@ -31,6 +31,9 @@ module.exports.connections = {
     },
     disk: {
         adapter: 'sails-disk'
+    },
+    memory: {
+        adapter: 'sails-memory'
     }
 
 };
