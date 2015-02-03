@@ -24,12 +24,11 @@ var cssFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
   // Load sails.io before everything else
-  'js/dependencies/sails.io.js',
-
+  'vendor/sails.io.js/sails.io.js',
   'vendor/javascript-detect-element-resize/detect-element-resize.js',
   'vendor/jquery/jquery.js',
   'vendor/angular/angular.js',
-  'vendor/**/*.js',
+  'vendor/*/**/*.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
