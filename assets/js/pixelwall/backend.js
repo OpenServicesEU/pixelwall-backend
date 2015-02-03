@@ -63,52 +63,35 @@ angular.module(
     ) {
         $scope.device = device;
         $scope.pages = pages;
+        $scope.pageOrder = function(page) {
+            return page.ordering[$scope.device.id];
+        };
         $scope.allPages = allPages;
-        $scope.sortableOptions = {
-            orderChanged: function(event) {
-                console.log("orderChanged", event);
-            }
-        };
-        $scope.addPage = function(page) {
-            if (page) {
-                page.devices.push($scope.device.id);
-                page.$save();
-            } else {
-                page = new pageFactory({
-                    name: '',
-                    rows: 1,
-                    columns: 1,
-                    duration: 60,
-                    devices: [$scope.device.id]
-                });
-                $scope.inserted = page;
-            }
-            $scope.pages.push(page);
-        };
-        $scope.addExistingPage = function() {
-            var modalInstance = $modal.open({
-                template: '<div>Bla</div>',
-                controller: 'ModalInstanceCtrl',
-                size: size,
-                resolve: {
-                    items: function () {
-                        return $scope.items;
-                    }
-                }
+        $scope.addExistingPage = function(page) {
+            page.devices.push($scope.device.id);
+            page.ordering[$scope.device.id] = $scope.pages.length;
+            page.$save(function(page) {
+                $scope.pages.push(page);
             });
-
-            modalInstance.result.then(function (selectedItem) {
-                $scope.selected = selectedItem;
-            }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-
         };
-        $scope.savePage = function($index, $data) {
-            angular.extend($scope.pages[$index], $data);
-            return $scope.pages[$index].$save();
-        }
-        $scope.removePage = function($index) {
+        $scope.addNewPage = function() {
+            var ordering = {};
+            ordering[$scope.device.id] = $scope.pages.length;
+            $scope.inserted = new pageFactory({
+                name: '',
+                rows: 1,
+                columns: 1,
+                duration: 60,
+                devices: [$scope.device.id],
+                ordering: ordering
+            });
+            $scope.pages.push($scope.inserted);
+        };
+        $scope.savePage = function(page, $data) {
+            angular.extend(page, $data);
+            page.$save();
+        };
+        $scope.removePage = function(page) {
             var modalInstance = $modal.open({
                 templateUrl: 'assets/templates/pixelwall/backend/modals/page.delete.html',
                 controller: [
@@ -116,15 +99,34 @@ angular.module(
                     function(
                         $scope
                     ) {
-                        $scope.page = pages[$index];
+                        $scope.page = page;
                     }
                 ]
             });
 
-            modalInstance.result.then(function () {
-                return $scope.pages[$index].$delete();
+            modalInstance.result.then(function() {
+                page.$delete();
             });
-        }
+        };
+        $scope.movePage = function($item, $partFrom, $partTo, $indexFrom, $indexTo) {
+            console.log("Moved:", $item, $partFrom, $partTo, $indexFrom, $indexTo);
+            $scope.pages.forEach(function(page) {
+                if (page.ordering[$scope.device.id] == $indexFrom) {
+                    page.ordering[$scope.device.id] = $indexTo;
+                } else {
+                    if ($indexTo < $indexFrom) {
+                        if (page.ordering[$scope.device.id] >= $indexTo && page.ordering[$scope.device.id] < $indexFrom) {
+                            page.ordering[$scope.device.id] += 1;
+                        }
+                    } else {
+                        if (page.ordering[$scope.device.id] > $indexFrom && page.ordering[$scope.device.id] <= $indexTo) {
+                            page.ordering[$scope.device.id] -= 1;
+                        }
+                    }
+                }
+                page.$save();
+            });
+        };
     }
 ])
 .controller('BoxController', [
