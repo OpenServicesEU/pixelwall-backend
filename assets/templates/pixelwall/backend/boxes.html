@@ -6,7 +6,7 @@
       </div>
       <div class="btn-group navbar-left" dropdown>
         <button type="button" class="btn btn-default dropdown-toggle navbar-btn" dropdown-toggle>
-          Add Box  <span class="caret"></span>
+          <fa name="plus-square"></fa> Add Box <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
           <li ng-repeat="(type, name) in types"><a ng-click="addBox(type)">{{ name }}</a></li>
@@ -18,6 +18,9 @@
         </button>
         <button type="button" class="btn btn-default navbar-btn">
           <fa name="arrows-h"></fa> {{page.columns}}
+        </button>
+        <button type="button" class="btn btn-default navbar-btn" ui-sref="^">
+          <fa name="arrow-left"></fa> Pages
         </button>
       </div>
     </div>
