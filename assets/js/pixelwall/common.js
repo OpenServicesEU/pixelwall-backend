@@ -375,13 +375,20 @@ angular.module(
                 rows: '=',
                 columns: '=',
                 timeout: '=',
-                boxes: '='
+                boxes: '=',
+                editable: '@'
             },
             templateUrl: 'assets/templates/pixelwall/grid.html',
             controller: [
                 '$scope',
                 '$element',
-                function($scope, $element) {
+                '$attrs',
+                function(
+                    $scope,
+                    $element,
+                    $attrs
+                ) {
+                    $scope.editable = !angular.isUndefined($attrs.editable);
                     $scope.gridsterOpts = {
                         columns: $scope.columns,
                         minColumns: $scope.columns,
@@ -401,14 +408,14 @@ angular.module(
                         defaultSizeX: 1,
                         defaultSizeY: 1,
                         resizable: {
-                            enabled: true,
+                            enabled: $scope.editable,
                             //handles: 'e, s, w, ne, se, sw, nw',
                             start: function(event, uiWidget, $element) {},
                             resize: function(event, uiWidget, $element) {},
                             stop: function(event, uiWidget, $element) {}
                         },
                         draggable: {
-                            enabled: true,
+                            enabled: $scope.editable,
                             handle: '.drag-handle', // optional selector for resize handle
                             start: function(event, uiWidget, $element) {},
                             drag: function(event, uiWidget, $element) {},

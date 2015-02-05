@@ -2,7 +2,7 @@
   <ul>
     <li class="box" gridster-item row="box.top" col="box.left" size-x="box.width" size-y="box.height" ng-repeat="box in boxes">
       <pw-box box="box" timeout="timeout"></pw-box>
-      <div class="overlay buttons" ng-controller="OverlayBoxController">
+      <div class="overlay buttons" ng-controller="OverlayBoxController" ng-if="editable">
         <button class="btn tn-default drag-handle">
           <fa name="arrows"/>
         </button>
