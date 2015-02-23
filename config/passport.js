@@ -17,5 +17,19 @@
 module.exports.passport = {
   local: {
     strategy: require('passport-local').Strategy
+  },
+
+  ldap: {
+    strategy: require('passport-ldapauth').Strategy,
+    options: {
+      server: {
+        url: 'ldap://localhost:389',
+        bindDn: 'cn=root',
+        bindCredentials: 'secret',
+        searchBase: 'ou=passport-ldapauth',
+        searchFilter: '(uid={{username}})'
+      }
+    }
   }
+
 };

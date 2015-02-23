@@ -1,3 +1,4 @@
+<ui-view>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -35,7 +36,6 @@
   <div class="panel-body">
     <table class="table table-bordered table-hover table-condensed" sv-root sv-part="pages" sv-on-sort="movePage($item, $partFrom, $partTo, $indexFrom, $indexTo)">
       <tr style="font-weight: bold">
-        <td style="width:35%">Debug</td>
         <td style="width:35%">Name</td>
         <td style="width:20%">Rows</td>
         <td style="width:20%">Columns</td>
@@ -43,9 +43,6 @@
         <td style="width:25%">Edit</td>
       </tr>
       <tr ng-repeat="page in pages | orderBy:pageOrder" sv-element>
-        <td>
-          {{ page.id }} <br/> {{ page.ordering }} <br/>{{ page.devices }}
-        </td>
         <td>
           <span editable-text="page.name" e-name="name" e-form="rowform" e-required>
             {{ page.name || 'Unnamed' }}
@@ -76,7 +73,7 @@
             </button>
           </form>
           <div class="buttons" ng-show="!rowform.$visible">
-            <button class="btn btn-success" ui-sref="devices.pages.boxes({deviceId: device.id, pageId: page.id})">
+            <button class="btn btn-success" ui-sref="backend.devices.pages.boxes({deviceId: device.id, pageId: page.id})">
               <fa name="table"/>
             </button>
             <button class="btn btn-default" sv-handle>
@@ -94,3 +91,4 @@
     </table>
   </div>
 </div>
+</ui-view>

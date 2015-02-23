@@ -8,13 +8,13 @@
     <link rel="icon" href="/images/pixelwall-logo.svg" sizes="any" type="image/svg+xml">
     <!--STYLES-->
     <link rel="stylesheet" href="/vendor/angular-gridster/angular-gridster.min.css">
-    <link rel="stylesheet" href="/vendor/angular-toastr/angular-toastr.css">
     <link rel="stylesheet" href="/vendor/angular-xeditable/xeditable.css">
     <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/vendor/bsw-yeti/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/css/angular-wizard/angular-wizard.css">
-    <link rel="stylesheet" href="/vendor/css/bootstrap-theme-cosmo/cosmo.min.css">
     <link rel="stylesheet" href="/vendor/css/quill/quill.snow.css">
     <link rel="stylesheet" href="/vendor/font-awesome/font-awesome.css">
+    <link rel="stylesheet" href="/vendor/leaflet/leaflet.css">
     <link rel="stylesheet" href="/vendor/seiyria-bootstrap-slider/bootstrap-slider.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
@@ -32,25 +32,66 @@
     <script src="/vendor/angular-animate/angular-animate.js"></script>
     <script src="/vendor/angular-bootstrap-slider/slider.js"></script>
     <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/vendor/angular-confirmable/angular-confirmable.js"></script>
+    <script src="/vendor/angular-debounce/angular-debounce.js"></script>
     <script src="/vendor/angular-fontawesome/angular-fontawesome.js"></script>
     <script src="/vendor/angular-google-maps/angular-google-maps.js"></script>
     <script src="/vendor/angular-gridster/angular-gridster.js"></script>
+    <script src="/vendor/angular-leaflet-directive/angular-leaflet-directive.js"></script>
     <script src="/vendor/angular-resource-sails/sailsResource.js"></script>
     <script src="/vendor/angular-resource/angular-resource.js"></script>
     <script src="/vendor/angular-sortable-view/angular-sortable-view.js"></script>
-    <script src="/vendor/angular-toastr/angular-toastr.js"></script>
+    <script src="/vendor/angular-svg-round-progressbar/roundProgress.min.js"></script>
     <script src="/vendor/angular-ui-router/angular-ui-router.js"></script>
     <script src="/vendor/angular-xeditable/xeditable.js"></script>
     <script src="/vendor/bootstrap/bootstrap.js"></script>
     <script src="/vendor/js/angular-wizard/angular-wizard.js"></script>
     <script src="/vendor/js/quill/quill.js"></script>
-    <script src="/vendor/lodash/lodash.compat.js"></script>
+    <script src="/vendor/leaflet/leaflet-src.js"></script>
+    <script src="/vendor/leaflet/leaflet.js"></script>
+    <script src="/vendor/lodash/lodash.js"></script>
     <script src="/vendor/ng-file-upload/angular-file-upload.js"></script>
     <script src="/vendor/ng-quill/ng-quill.min.js"></script>
+    <script src="/vendor/satellizer/satellizer.js"></script>
     <script src="/vendor/seiyria-bootstrap-slider/bootstrap-slider.js"></script>
-    <script src="/js/pixelwall/backend.js"></script>
-    <script src="/js/pixelwall/common.js"></script>
-    <script src="/js/pixelwall/frontend.js"></script>
+    <script src="/js/pixelwall/app.js"></script>
+    <script src="/js/pixelwall/controllers/backend/boxOverlay.js"></script>
+    <script src="/js/pixelwall/controllers/backend/boxes.js"></script>
+    <script src="/js/pixelwall/controllers/backend/devices.js"></script>
+    <script src="/js/pixelwall/controllers/backend/pages.js"></script>
+    <script src="/js/pixelwall/controllers/frontend/boxes.js"></script>
+    <script src="/js/pixelwall/controllers/frontend/devices.js"></script>
+    <script src="/js/pixelwall/controllers/frontend/pages.js"></script>
+    <script src="/js/pixelwall/controllers/index.js"></script>
+    <script src="/js/pixelwall/directives/bounce.js"></script>
+    <script src="/js/pixelwall/directives/box.js"></script>
+    <script src="/js/pixelwall/directives/box/calendar.js"></script>
+    <script src="/js/pixelwall/directives/box/html.js"></script>
+    <script src="/js/pixelwall/directives/box/iframe.js"></script>
+    <script src="/js/pixelwall/directives/box/images.js"></script>
+    <script src="/js/pixelwall/directives/box/video.js"></script>
+    <script src="/js/pixelwall/directives/carousel.js"></script>
+    <script src="/js/pixelwall/directives/grid.js"></script>
+    <script src="/js/pixelwall/directives/upload/images.js"></script>
+    <script src="/js/pixelwall/directives/upload/video.js"></script>
+    <script src="/js/pixelwall/factories/box.js"></script>
+    <script src="/js/pixelwall/factories/bridge.js"></script>
+    <script src="/js/pixelwall/factories/device.js"></script>
+    <script src="/js/pixelwall/factories/page.js"></script>
+    <script src="/js/pixelwall/filters/todayEvents.js"></script>
+    <script src="/js/pixelwall/filters/trustedHtml.js"></script>
+    <script src="/js/pixelwall/filters/trustedUrl.js"></script>
+    <script src="/js/pixelwall/services/sort.js"></script>
+    <script src="/js/pixelwall/services/uiRouterConsole.js"></script>
+    <script src="/js/pixelwall/states/backend/abstract.js"></script>
+    <script src="/js/pixelwall/states/backend/boxes.js"></script>
+    <script src="/js/pixelwall/states/backend/devices.js"></script>
+    <script src="/js/pixelwall/states/backend/pages.js"></script>
+    <script src="/js/pixelwall/states/frontend/abstract.js"></script>
+    <script src="/js/pixelwall/states/frontend/boxes.js"></script>
+    <script src="/js/pixelwall/states/frontend/devices.js"></script>
+    <script src="/js/pixelwall/states/frontend/pages.js"></script>
+    <script src="/js/pixelwall/states/index.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

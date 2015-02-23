@@ -1,134 +1,140 @@
 html,body {
-    margin: 0px;
-    width: 100%;
-    height: 100%;
-    padding: 0px;
-    background: #4a4a4a;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  //background: #4a4a4a;
+}
+.logo {
+  background: url(/images/pixelwall-logo.svg) center center / 42px no-repeat;
+  width: 120px;
 }
 .fullscreen {
-    //position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 10;
+  //position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  //bottom: 0;
+  //right: 0;
+  z-index: 10;
 }
 .box {
-    .bounce {
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-    }
-    video {
-        object-fit: fill;
-        width: 100%;
-        height: 100%;
-    }
-    iframe {
-        border: 0px;
-    }
-    .calendar-listview {
-        margin: 5px;
-        color: #c0c0c0;
-    }
-}
-.calendar-listview {
-     padding: 5px;
-}
-.calendar-group {
-    width: 100%;
-    border-bottom: 1px solid #c0c0c0;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-}
-.calendar-group-date {
-    font-weight: bold;
-}
-.calendar-entry {
-    padding-bottom: 10px;
-}
-.calendar-entry-time {
-    font-weight: bold;
-}
-.calendar-preview {
-    margin-top: 30px;
-}
-.carousel {
-    position: relative;
-    padding: 0px;
+  .bounce {
+    overflow: hidden;
     width: 100%;
     height: 100%;
-    margin: auto;
-    overflow: hidden;
-    .slide {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 15px #999;
-        img {
-            width: 100%;
-            height: auto;
-        }
-        .ng-hide-add,
-        .ng-hide-remove {
-            -webkit-transition: all linear 0.5s;
-            -moz-transition: all linear 0.5s;
-            -o-transition: all linear 0.5s;
-            transition: all linear 0.5s;
-            display: block!important;
-        }
-        .ng-hide-add.ng-hide-add-active,
-        .ng-hide-remove {
-            opacity: 0;
-        }
-        .ng-hide-add,
-        .ng-hide-remove.ng-hide-remove-active {
-            opacity: 1;
-        }
+  }
+  video {
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+  }
+  iframe {
+    border: 0px;
+  }
+  .calendar-listview {
+    margin: 5px;
+    color: #c0c0c0;
+  }
+}
+.calendar-listview {
+  padding: 5px;
+}
+.calendar-group {
+  width: 100%;
+  border-bottom: 1px solid #c0c0c0;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.calendar-group-date {
+  font-weight: bold;
+}
+.calendar-entry {
+  padding-bottom: 10px;
+}
+.calendar-entry-time {
+  font-weight: bold;
+}
+.calendar-preview {
+  margin-top: 30px;
+}
+.carousel {
+  position: relative;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+  .slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 0px 15px #999;
+    img {
+      width: 100%;
+      height: auto;
     }
-    .arrows {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        display: none;
+    .ng-hide-add,
+    .ng-hide-remove {
+      -webkit-transition: all linear 0.5s;
+      -moz-transition: all linear 0.5s;
+      -o-transition: all linear 0.5s;
+      transition: all linear 0.5s;
+      display: block!important;
     }
+    .ng-hide-add.ng-hide-add-active,
+    .ng-hide-remove {
+      opacity: 0;
+    }
+    .ng-hide-add,
+    .ng-hide-remove.ng-hide-remove-active {
+      opacity: 1;
+    }
+  }
+  .arrows {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+  }
 }
 .modal-body {
-    video {
-        width: 100%;
-        height: auto;
+  video {
+    width: 100%;
+    height: auto;
+  }
+  table {
+    img {
+      width: 100%;
+      height: auto;
     }
-    table {
-        img {
-            width: 100%;
-            height: auto;
-        }
-        .overlay-buttons {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
+    .overlay-buttons {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
     }
+  }
 }
 .thumbnail {
-    position: relative;
-    .overlay {
-        bottom: 0;
-    }
+  position: relative;
+  .overlay {
+    bottom: 0;
+  }
 }
 .overlay {
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    background-color:rgba(0, 0, 0, 0.5);
-    color:white;
-    display: none;
-    padding: 5px;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  background-color:rgba(0, 0, 0, 0.5);
+  color:white;
+  display: none;
+  padding: 5px;
+  z-index: 200;
 }
 .drag-handle {
-    cursor: move;
+  cursor: move;
 }
-

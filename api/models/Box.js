@@ -7,35 +7,39 @@
 
 module.exports = {
 
-    attributes: {
-        page: {
-            model: 'page'
-        },
-        type: {
-            type: 'string',
-            enum: [
-                'html',
-                'iframe',
-                'video',
-                'calendar',
-                'images'
-            ]
-        },
-        width: {
-            type: 'integer'
-        },
-        height: {
-            type: 'integer'
-        },
-        top: {
-            type: 'integer'
-        },
-        left: {
-            type: 'integer'
-        },
-        data: {
-            type: 'json'
-        }
+  attributes: {
+    page: {
+      model: 'page'
+    },
+    type: {
+      type: 'string',
+      enum: [
+        'html',
+        'iframe',
+        'video',
+        'calendar',
+        'images'
+      ]
+    },
+    width: {
+      type: 'integer'
+    },
+    height: {
+      type: 'integer'
+    },
+    top: {
+      type: 'integer'
+    },
+    left: {
+      type: 'integer'
+    },
+    scale: {
+      type: 'float',
+      defaultsTo: 1.0
+    },
+    data: {
+      type: 'json'
     }
+  }
 };
 

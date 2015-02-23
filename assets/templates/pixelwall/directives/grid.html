@@ -1,15 +1,16 @@
-<div gridster="gridsterOpts" class="fullscreen">
+<div gridster="gridsterOpts">
   <ul>
     <li class="box" gridster-item row="box.top" col="box.left" size-x="box.width" size-y="box.height" ng-repeat="box in boxes">
       <pw-box box="box" timeout="timeout"></pw-box>
-      <div class="overlay buttons" ng-controller="OverlayBoxController">
+      <div class="overlay buttons" ng-controller="BackendBoxOverlayController">
         <button class="btn tn-default drag-handle">
           <fa name="arrows"/>
         </button>
         <button class="btn btn-primary" ng-click="editBox(box)">
           <fa name="edit"/>
         </button>
-        {{ box.type }} [{{ box.top }}|{{ box.left }}]
+        {{ box.type }} [{{ box.top }}|{{ box.left }}] {{ box.scale * 100 |number:1 }}%
+        <slider ng-model="box.scale" value="box.scale || 1.0" min="1.0" max="10.0" step="0.1" handle="square" tooltip="hide"></slider>
         <button class="btn btn-danger pull-right" ng-click="removeBox(box)">
           <fa name="trash"/>
         </button>
