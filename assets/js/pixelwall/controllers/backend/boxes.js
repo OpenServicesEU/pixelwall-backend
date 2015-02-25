@@ -34,6 +34,10 @@ angular.module('PixelWall')
       calendar: {
         name: "Calendar",
         icon: 'calendar-o'
+      },
+      map: {
+        name 'Map',
+        icon: 'globe'
       }
     };
     $scope.addBox = function(type) {

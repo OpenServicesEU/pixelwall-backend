@@ -1,10 +1,10 @@
 angular.module('PixelWall')
-.directive('pwBoxHtml', [
+.directive('pwBoxMap', [
     '$compile',
     function($compile) {
         return {
             restrict: 'E',
-            templateUrl: 'assets/templates/pixelwall/directives/box/html.html'
+            templateUrl: 'assets/templates/pixelwall/directives/box/map.html'
         };
     }
-]);
+])
