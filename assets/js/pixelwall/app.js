@@ -8,7 +8,6 @@ angular.module(
     'ngAnimate',
     'ngQuill',
     'picardy.fontawesome',
-    'rt.debounce',
     'sailsResource',
     'ui.bootstrap',
     'ui.bootstrap-slider',

@@ -21,13 +21,11 @@ angular.module('PixelWall')
         '$element',
         '$attrs',
         '$timeout',
-        'debounce',
         function (
           $scope,
           $element,
           $attrs,
-          $timeout,
-          debounce
+          $timeout
         ) {
           // See if we have a defer on the box that we might need to resolve.
           if (typeof $scope.box._defer !== 'undefined') {
@@ -38,8 +36,7 @@ angular.module('PixelWall')
           }
           $scope.$watch(
             'box',
-            debounce(
-              1000,
+            _.debounce(
               function(newBox, oldBox) {
                 if (newBox === oldBox) {
                   return;
@@ -50,7 +47,8 @@ angular.module('PixelWall')
                 if (changed.indexOf(true) >= 0) {
                   $scope.box.$save();
                 }
-              }
+              },
+              1000
             ),
             true
           );
