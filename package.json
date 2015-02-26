@@ -37,6 +37,7 @@
     "sails": "~0.11.0",
     "sails-disk": "^0.10.7",
     "sails-generate-auth": "^0.2.0",
+    "sails-generate-avahi": "^0.11.1",
     "sails-memory": "^0.10.3",
     "sails-mongo": "^0.10.5",
     "skipper-disk": "^0.5.4",
