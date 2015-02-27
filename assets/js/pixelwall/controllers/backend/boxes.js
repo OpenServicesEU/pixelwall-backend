@@ -15,11 +15,26 @@ angular.module('PixelWall')
     $scope.page = page;
     $scope.boxes = boxes;
     $scope.types = {
-      html: "HTML",
-      iframe: "IFrame",
-      video: "Video",
-      images: "Images",
-      calendar: "Calendar"
+      html: {
+        name: 'HTML',
+        icon: 'code'
+      },
+      iframe: {
+        name: 'IFrame',
+        icon: 'file-code-o'
+      },
+      video: {
+        name: 'Video',
+        icon: 'video-camera'
+      },
+      images: {
+        name: 'Images',
+        icon: 'photo'
+      },
+      calendar: {
+        name: "Calendar",
+        icon: 'calendar-o'
+      }
     };
     $scope.addBox = function(type) {
       var box = new boxFactory(
@@ -33,6 +48,7 @@ angular.module('PixelWall')
       );
       var modalInstance = $modal.open({
         templateUrl: 'assets/templates/pixelwall/modals/box.add.html',
+        size: 'lg',
         controller: [
           '$scope',
           '$sce',

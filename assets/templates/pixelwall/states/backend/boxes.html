@@ -1,31 +1,33 @@
-<div class="backend">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <div class="navbar-brand logo"></div>
-      </div>
-      <div class="btn-group navbar-left" dropdown>
-        <button type="button" class="btn btn-default dropdown-toggle navbar-btn" dropdown-toggle>
-          <fa name="plus-square"></fa> Add Box <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li ng-repeat="(type, name) in types"><a ng-click="addBox(type)">{{ name }}</a></li>
-        </ul>
-      </div>
-      <div class="btn-group navbar-right">
-        <button type="button" class="btn btn-default navbar-btn">
-          <fa name="arrows-v"></fa> {{page.rows}}
-        </button>
-        <button type="button" class="btn btn-default navbar-btn">
-          <fa name="arrows-h"></fa> {{page.columns}}
-        </button>
-        <button type="button" class="btn btn-default navbar-btn" ui-sref="^">
-          <fa name="arrow-left"></fa> Pages
-        </button>
-      </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand logo">Pixelwall</div>
     </div>
-  </nav>
-<div>
-  <pw-grid data-rows="page.rows" data-columns="page.columns" data-timeout="page.duration" data-boxes="boxes" editable="true"></pw-grid>
-</div>
-</div>
+    <p class="navbar-text">Managing boxes</p>
+    <div class="btn-group navbar-left" dropdown>
+      <button type="button" class="btn btn-default dropdown-toggle navbar-btn" dropdown-toggle>
+        <fa name="plus-square"></fa> Add Box <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="(type, data) in types">
+          <a ng-click="addBox(type)">
+            <fa name="{{ data.icon }}"></fa>
+            {{ data.name }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="btn-group navbar-right">
+      <button type="button" class="btn btn-default navbar-btn">
+        <fa name="arrows-v"></fa> {{page.rows}}
+      </button>
+      <button type="button" class="btn btn-default navbar-btn">
+        <fa name="arrows-h"></fa> {{page.columns}}
+      </button>
+      <button type="button" class="btn btn-default navbar-btn" ui-sref="^">
+        <fa name="arrow-left"></fa> Pages
+      </button>
+    </div>
+  </div>
+</nav>
+<pw-grid data-rows="page.rows" data-columns="page.columns" data-timeout="page.duration" data-boxes="boxes" editable="true" class="backend"></pw-grid>
