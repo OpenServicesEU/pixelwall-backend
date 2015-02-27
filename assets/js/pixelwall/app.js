@@ -10,7 +10,6 @@ angular.module(
     'picardy.fontawesome',
     'sailsResource',
     'ui.bootstrap',
-    'ui.bootstrap-slider',
     'ui.router',
     'xeditable',
     'satellizer'

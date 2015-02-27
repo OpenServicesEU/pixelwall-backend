@@ -9,8 +9,10 @@
         <button class="btn btn-primary" ng-click="editBox(box)">
           <fa name="edit"/>
         </button>
-        {{ box.type }} [{{ box.top }}|{{ box.left }}] {{ box.scale * 100 |number:1 }}%
-        <slider ng-model="box.scale" value="box.scale || 1.0" min="1.0" max="10.0" step="0.1" handle="square" tooltip="hide"></slider>
+        <button class="btn btn-primary">
+          <input type="range" title="Rows" min="1" max="8" step="0.1" ng-model="box.scale">
+          {{ box.scale * 100 |number:1 }}%
+        </button>
         <button class="btn btn-danger pull-right" ng-click="removeBox(box)">
           <fa name="trash"/>
         </button>
