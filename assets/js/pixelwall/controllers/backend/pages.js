@@ -62,7 +62,6 @@ angular.module('PixelWall')
       });
     };
     $scope.movePage = function($item, $partFrom, $partTo, $indexFrom, $indexTo) {
-      console.log("Moved:", $item, $partFrom, $partTo, $indexFrom, $indexTo);
       $scope.pages.forEach(function(page) {
         if (page.ordering[$scope.device.id] == $indexFrom) {
           page.ordering[$scope.device.id] = $indexTo;

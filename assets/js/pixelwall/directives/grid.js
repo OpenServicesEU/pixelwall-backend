@@ -44,26 +44,20 @@ angular.module('PixelWall')
                             enabled: $scope.editable,
                             //handles: 'e, s, w, ne, se, sw, nw',
                             start: function(event, uiWidget, $element) {
-                              console.log('resize start:', event, uiWidget, $element);
                             },
                             resize: function(event, uiWidget, $element) {
-                              console.log('resize resize:', event, uiWidget, $element);
                             },
                             stop: function(event, uiWidget, $element) {
-                              console.log('resize stop:', event, uiWidget, $element);
                             }
                         },
                         draggable: {
                             enabled: $scope.editable,
                             handle: '.drag-handle',
                             start: function(event, uiWidget, $element) {
-                              console.log('drag start:', event, uiWidget, $element);
                             },
                             drag: function(event, uiWidget, $element) {
-                              console.log('drag drag:', event, uiWidget, $element);
                             },
                             stop: function(event, uiWidget, $element) {
-                              console.log('drag stop:', event, uiWidget, $element);
                             }
                         }
                     };
