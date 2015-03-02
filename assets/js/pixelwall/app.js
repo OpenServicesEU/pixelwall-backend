@@ -12,19 +12,19 @@ angular.module(
     'ui.bootstrap',
     'ui.router',
     'xeditable',
-    'satellizer'
+    'hitmands.auth'
   ]
 )
 .config([
   '$locationProvider',
   '$urlRouterProvider',
-  '$authProvider',
   '$provide',
+  'AuthServiceProvider',
   function(
     $locationProvider,
     $urlRouterProvider,
-    $authProvider,
-    $provide
+    $provide,
+    AuthServiceProvider
   ) {
     $provide.decorator('$templateCache', function($delegate, $sniffer) {
       var originalGet = $delegate.get;
@@ -45,11 +45,40 @@ angular.module(
     });
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
-    $authProvider.loginUrl = '/auth/local';
+    AuthServiceProvider.useRoutes({
+      login: '/auth/login',
+      logout: '/auth/logout',
+      fetch: '/user/jwt'
+    });
+    AuthServiceProvider.parseHttpAuthData(function(data, headers, statusCode) {
+      // Logic
+      var authLevel = 1000; // ['public', 'author', 'editor'];
+
+      return {
+        user: data,
+        authLevel: authLevel,
+        token: data.id
+      };
+    });
     return this;
   }
 ])
-.run(['uiRouterConsole', function(uiRouterConsole) {
-  uiRouterConsole.active = false;
-}]);
+.run([
+  '$rootScope',
+  'AuthService',
+  'uiRouterConsole',
+  function(
+    $rootScope,
+    AuthService,
+    uiRouterConsole
+  ) {
+    $rootScope.currentUser = AuthService.getCurrentUser();
+    $rootScope.isUserLoggedIn = AuthService.isUserLoggedIn();
+    $rootScope.$on('hitmands.auth:update', function(event) {
+      $rootScope.currentUser = AuthService.getCurrentUser();
+      $rootScope.isUserLoggedIn = AuthService.isUserLoggedIn();
+    });
+    uiRouterConsole.active = false;
+  }
+]);
 

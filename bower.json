@@ -35,8 +35,8 @@
     "lodash": "~3.2.0",
     "ng-file-upload": "~3.0.2",
     "ng-quill": "~1.0.6",
-    "satellizer": "~0.9.2",
-    "bsw-yeti": "~3.2.1"
+    "bsw-yeti": "~3.2.1",
+    "angular-hitmands-auth": "~1.0.0"
   },
   "exportsOverride": {
     "quill": {
@@ -56,6 +56,9 @@
     },
     "bootstrap-theme-cosmo": {
       "css": "cosmo.min.css"
+    },
+    "angular-hitmands-auth": {
+      "js": "release/angular-hitmands-auth.js"
     },
     "modernizr": {}
   },

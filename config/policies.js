@@ -18,25 +18,24 @@
 
 
 var defaultBluePrintPolicy = {
-    create: ['passport', 'sessionAuth'],
-    update: ['passport', 'sessionAuth'],
-    destroy: ['passport', 'sessionAuth'],
-    add: ['passport', 'sessionAuth'],
-    remove: ['passport', 'sessionAuth']
+    create: ['sessionAuth'],
+    update: ['sessionAuth'],
+    destroy: ['sessionAuth'],
+    add: ['sessionAuth'],
+    remove: ['sessionAuth']
 };
 var defaultUploadPolicy = {
-    upload: ['passport', 'sessionAuth']
+    upload: ['sessionAuth']
 };
 
 module.exports.policies = {
 
-    //'*': true
-    '*': [ 'passport' ],
+    '*': true,
 
-    //DeviceController: defaultBluePrintPolicy,
-    //PageController: defaultBluePrintPolicy,
-    //BoxController: defaultBluePrintPolicy,
+    DeviceController: defaultBluePrintPolicy,
+    PageController: defaultBluePrintPolicy,
+    BoxController: defaultBluePrintPolicy,
 
-    //ImagesController: defaultUploadPolicy,
-    //VideoController: defaultUploadPolicy
+    ImagesController: defaultUploadPolicy,
+    VideoController: defaultUploadPolicy
 };

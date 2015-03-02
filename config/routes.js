@@ -43,11 +43,4 @@ module.exports.routes = {
     'post /u/images': 'ImagesController.upload',
     'get /u/images/:image': 'ImagesController.download',
 
-    'post /auth/local': 'AuthController.callback',
-    'post /auth/local/:action': 'AuthController.callback',
-
-    'get /auth/:provider': 'AuthController.provider',
-    'get /auth/:provider/callback': 'AuthController.callback',
-    'get /auth/:provider/:action': 'AuthController.callback',
-
 };

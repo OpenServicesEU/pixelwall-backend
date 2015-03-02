@@ -36,14 +36,12 @@
     "rc": "~0.5.0",
     "sails": "~0.11.0",
     "sails-disk": "^0.10.7",
-    "sails-generate-auth": "^0.2.0",
     "sails-generate-avahi": "^0.11.1",
     "sails-memory": "^0.10.3",
     "sails-mongo": "^0.10.5",
     "skipper-disk": "^0.5.4",
     "validator": "^3.25.0",
-    "waterlock": "0.0.14",
-    "waterlock-local-auth": "0.0.5"
+    "waterlock": "0.0.14"
   },
   "name": "pixelwall",
   "private": true,
