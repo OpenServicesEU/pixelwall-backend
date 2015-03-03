@@ -4,6 +4,8 @@ angular.module(
     'angular-sortable-view',
     'angularFileUpload',
     'gridster',
+    'hitmands.auth',
+    'leaflet-directive',
     'mgo-angular-wizard',
     'ngAnimate',
     'ngQuill',
@@ -11,8 +13,7 @@ angular.module(
     'sailsResource',
     'ui.bootstrap',
     'ui.router',
-    'xeditable',
-    'hitmands.auth'
+    'xeditable'
   ]
 )
 .config([
