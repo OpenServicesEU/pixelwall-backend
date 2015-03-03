@@ -1,45 +1,24 @@
 angular.module('PixelWall')
 .controller('BackendBoxesController', [
   '$scope',
+  '$q',
   '$modal',
   'boxFactory',
+  'boxTypes',
   'page',
   'boxes',
   function (
     $scope,
+    $q,
     $modal,
     boxFactory,
+    boxTypes,
     page,
     boxes
   ) {
     $scope.page = page;
     $scope.boxes = boxes;
-    $scope.types = {
-      html: {
-        name: 'HTML',
-        icon: 'code'
-      },
-      iframe: {
-        name: 'IFrame',
-        icon: 'file-code-o'
-      },
-      video: {
-        name: 'Video',
-        icon: 'video-camera'
-      },
-      images: {
-        name: 'Images',
-        icon: 'photo'
-      },
-      calendar: {
-        name: "Calendar",
-        icon: 'calendar-o'
-      },
-      map: {
-        name 'Map',
-        icon: 'globe'
-      }
-    };
+    $scope.types = boxTypes;
     $scope.addBox = function(type) {
       var box = new boxFactory(
         {
@@ -50,36 +29,35 @@ angular.module('PixelWall')
           data: {}
         }
       );
+
+      var editable = box.data;
+      $scope.label = boxTypes[box.type].label;
+      $scope.icon = boxTypes[box.type].icon;
+
+      var opened = $q.defer();
+
       var modalInstance = $modal.open({
         templateUrl: 'assets/templates/pixelwall/modals/box.add.html',
         size: 'lg',
-        controller: [
-          '$scope',
-          '$sce',
-          function(
-            $scope,
-            $sce
-          ) {
-            $scope.box = box;
-            $scope.editable = box.data;
-            $scope.form = 'assets/templates/pixelwall/forms/' + box.type + '.html';
-            $scope.removeVideo = function(video) {
-              if (box.data.video === video) {
-                box.data.video = undefined;
-              }
-            };
-            $scope.removeImage = function($index) {
-              box.data.images.splice($index, 1);
-            };
-            $scope.$watch('box.data', function (newVal) {
-              console.log("Watcher: ", newVal);
-            });
+        controller: boxTypes[box.type].controller,
+        scope: $scope,
+        resolve: {
+          box: function() {
+            return box;
+          },
+          editable: function() {
+            return box.data;
+          },
+          opened: function() {
+            return opened;
           }
-        ],
+        }
       });
 
+      modalInstance.opened.then(function () {
+        opened.resolve();
+      });
       modalInstance.result.then(function () {
-        console.log(box);
         box.$save(function(box) {
           $scope.boxes.push(box);
         })

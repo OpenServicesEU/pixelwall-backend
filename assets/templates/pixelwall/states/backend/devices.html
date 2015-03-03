@@ -32,14 +32,14 @@
           <td>
             <!-- editable username (text with validation) -->
             <span editable-text="device.name" e-name="name" e-form="rowform" e-required>
-              <strong>{{ device.name || 'Unnamed' }}</strong>
+              {{ device.name || 'Unnamed' }}
             </span>
           </td>
           <td>
             <!-- editable status (select-local) -->
             <span editable-checkbox="device.active" e-name="active" e-form="rowform" e-title="Active">
-              <fa name="check-square-o" ng-show="device.active"></fa>
-              <fa name="square-o" ng-hide="device.active"></fa>
+              <fa name="eye" ng-show="device.active"></fa>
+              <fa name="eys-slash" ng-hide="device.active"></fa>
             </span>
           </td>
           <td style="white-space: nowrap">

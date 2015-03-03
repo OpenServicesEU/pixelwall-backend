@@ -2,35 +2,32 @@ angular.module('PixelWall')
 .controller('BackendBoxOverlayController', [
   '$scope',
   '$modal',
+  'boxTypes',
   function (
     $scope,
-    $modal
+    $modal,
+    boxTypes
   ){
     $scope.editBox = function(box) {
       var editable = angular.copy(box.data);
+      $scope.label = boxTypes[box.type].label;
+      $scope.icon = boxTypes[box.type].icon;
       var modalInstance = $modal.open({
         templateUrl: 'assets/templates/pixelwall/modals/box.edit.html',
-        controller: [
-          '$scope',
-          function(
-            $scope
-          ) {
-            $scope.box = box;
-            $scope.editable = editable;
-            $scope.form = 'assets/templates/pixelwall/forms/' + box.type + '.html';
-            $scope.removeVideo = function(video) {
-              if (editable.video === video) {
-                editable.video = undefined;
-              }
-            };
-            $scope.removeImage = function($index) {
-              editable.images.splice($index, 1);
-            };
-            $scope.imageSortableOptions = {
-              axis: 'y'
-            }
+        size: 'lg',
+        controller: boxTypes[box.type].controller,
+        scope: $scope,
+        resolve: {
+          box: function() {
+            return box;
+          },
+          editable: function() {
+            return editable;
+          },
+          modal: function() {
+            return modalInstance;
           }
-        ]
+        }
       });
 
       modalInstance.result.then(function () {
@@ -38,6 +35,7 @@ angular.module('PixelWall')
         box.$save();
       });
     };
+
     $scope.removeBox = function(box) {
       var modalInstance = $modal.open({
         templateUrl: 'assets/templates/pixelwall/modals/box.delete.html',
@@ -52,7 +50,7 @@ angular.module('PixelWall')
       });
 
       modalInstance.result.then(function () {
-        return box.$delete();
+        box.$delete();
       });
     };
   }

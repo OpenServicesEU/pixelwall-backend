@@ -1,10 +1,19 @@
 <div class="modal-header">
-  <h3 class="modal-title">Define new box properties <fa name="cogs" class="pull-right"/></h3>
+  <h3 class="modal-title">
+    Create new {{ label }} box
+    <fa name="{{ icon }}" class="pull-right"/>
+  </h3>
 </div>
 <div class="modal-body">
   <div ng-include="form"/>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-click="$dismiss()"><fa name="close"/> Cancel</button>
-  <button class="btn btn-success" ng-click="$close()"><fa name="check"/> Create</button>
+  <button class="btn btn-default" ng-click="$dismiss()">
+    <fa name="close"/>
+    Cancel
+  </button>
+  <button class="btn btn-success" ng-click="$close()">
+    <fa name="check"/>
+    Create
+  </button>
 </div>

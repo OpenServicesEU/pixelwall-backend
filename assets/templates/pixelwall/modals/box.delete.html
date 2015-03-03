@@ -1,10 +1,19 @@
 <div class="modal-header">
-  <h3 class="modal-title">Delete box?</h3>
+  <h3 class="modal-title">
+    Delete {{ label }} box?
+    <fa name="{{ icon }}" class="pull-right"/>
+  </h3>
 </div>
 <div class="modal-body">
-  Really delete {{ box.type }}-box?
+  Really delete this {{ label }} box?
 </div>
 <div class="modal-footer">
-  <button class="btn btn-danger" ng-click="$close()"><fa name="trash"/> Delete</button>
-  <button class="btn btn-default" ng-click="$dismiss()">Cancel</button>
+  <button class="btn btn-danger" ng-click="$close()">
+    <fa name="trash"/>
+    Delete
+  </button>
+  <button class="btn btn-default" ng-click="$dismiss()">
+    <fa name="close"/>
+    Cancel
+  </button>
 </div>
