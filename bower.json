@@ -36,7 +36,8 @@
     "ng-file-upload": "~3.0.2",
     "ng-quill": "~1.0.6",
     "bsw-yeti": "~3.2.1",
-    "angular-hitmands-auth": "~1.0.0"
+    "angular-hitmands-auth": "~1.0.0",
+    "angular-local-storage": "~0.1.5"
   },
   "exportsOverride": {
     "quill": {

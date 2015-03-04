@@ -6,6 +6,7 @@ angular.module(
     'gridster',
     'hitmands.auth',
     'leaflet-directive',
+    'LocalStorageModule',
     'mgo-angular-wizard',
     'ngAnimate',
     'ngQuill',
@@ -21,11 +22,13 @@ angular.module(
   '$urlRouterProvider',
   '$provide',
   'AuthServiceProvider',
+  'localStorageServiceProvider',
   function(
     $locationProvider,
     $urlRouterProvider,
     $provide,
-    AuthServiceProvider
+    AuthServiceProvider,
+    localStorageServiceProvider
   ) {
     $provide.decorator('$templateCache', function($delegate, $sniffer) {
       var originalGet = $delegate.get;
@@ -61,23 +64,37 @@ angular.module(
         token: data.id
       };
     });
+    localStorageServiceProvider
+      .setPrefix('pixelwall')
+      .setStorageType('sessionStorage')
+      .setNotify(true, true);
     return this;
   }
 ])
 .run([
   '$rootScope',
   'AuthService',
+  'localStorageService',
   'uiRouterConsole',
   function(
     $rootScope,
     AuthService,
+    localStorageService,
     uiRouterConsole
   ) {
+    var auth = localStorageService.get('auth');
+    if (auth) {
+      AuthService.setCurrentUser(auth.user, 1000, auth.token);
+    }
     $rootScope.currentUser = AuthService.getCurrentUser();
     $rootScope.isUserLoggedIn = AuthService.isUserLoggedIn();
     $rootScope.$on('hitmands.auth:update', function(event) {
       $rootScope.currentUser = AuthService.getCurrentUser();
       $rootScope.isUserLoggedIn = AuthService.isUserLoggedIn();
+      localStorageService.set('auth', {
+        user: AuthService.getCurrentUser(),
+        token: AuthService.getAuthenticationToken()
+      });
     });
     uiRouterConsole.active = false;
   }
