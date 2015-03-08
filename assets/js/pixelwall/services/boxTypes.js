@@ -1,32 +1,37 @@
 angular.module('PixelWall')
 .service('boxTypes', function() {
   var types = {
-    html: {
+    'html': {
       label: 'HTML',
       icon: 'code',
       controller: 'HtmlFormController'
     },
-    iframe: {
+    'iframe': {
       label: 'IFrame',
       icon: 'file-code-o',
       controller: 'IframeFormController'
     },
-    video: {
+    'video': {
       label: 'Video',
-      icon: 'video-camera',
+      icon: 'file-video-o',
       controller: 'VideoFormController'
     },
-    images: {
+    'video-stream': {
+      label: 'Videostream',
+      icon: 'video-camera',
+      controller: 'VideoStreamFormController'
+    },
+    'images': {
       label: 'Images',
       icon: 'photo',
       controller: 'ImagesFormController'
     },
-    calendar: {
+    'calendar': {
       label: "Calendar",
       icon: 'calendar-o',
       controller: 'CalendarFormController'
     },
-    map: {
+    'map': {
       label: 'Map',
       icon: 'globe',
       controller: 'MapFormController'

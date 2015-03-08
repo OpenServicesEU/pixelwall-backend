@@ -17,6 +17,7 @@ module.exports = {
         'html',
         'iframe',
         'video',
+        'video-stream',
         'calendar',
         'images',
         'map'
