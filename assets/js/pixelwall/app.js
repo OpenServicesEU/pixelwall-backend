@@ -4,6 +4,7 @@ angular.module(
     'angular-locker',
     'angular-sortable-view',
     'angularFileUpload',
+    'cfp.hotkeys',
     'gridster',
     'hitmands.auth',
     'leaflet-directive',

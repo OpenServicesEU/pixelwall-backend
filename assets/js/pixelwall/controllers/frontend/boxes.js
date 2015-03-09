@@ -3,6 +3,7 @@ angular.module('PixelWall')
   '$scope',
   '$state',
   '$q',
+  'hotkeys',
   'sortService',
   'page',
   'boxes',
@@ -10,6 +11,7 @@ angular.module('PixelWall')
     $scope,
     $state,
     $q,
+    hotkeys,
     sortService,
     page,
     boxes
@@ -32,5 +34,13 @@ angular.module('PixelWall')
         }
       );
     });
+    hotkeys.bindTo($scope)
+      .add({
+        combo: 'b',
+        description: 'Got back to the main menu',
+        callback: function() {
+          $state.go('index');
+        }
+      });
   }
 ]);
