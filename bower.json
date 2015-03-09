@@ -37,7 +37,9 @@
     "ng-quill": "~1.0.6",
     "bsw-yeti": "~3.2.1",
     "angular-hitmands-auth": "~1.0.0",
-    "angular-locker": "~1.2.1"
+    "angular-locker": "~1.2.1",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.5",
+    "mousetrap": "~1.4.6"
   },
   "exportsOverride": {
     "quill": {
@@ -65,6 +67,13 @@
       "css": "dist/leaflet.css",
       "js": "dist/leaflet-src.js",
       "images": "dist/images/*.png"
+    },
+    "mousetrap": {
+      "js": "mousetrap.js"
+    },
+    "angular-hotkeys": {
+      "css": "src/hotkeys.css",
+      "js": "src/hotkeys.js"
     },
     "modernizr": {}
   },
