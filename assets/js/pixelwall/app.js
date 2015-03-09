@@ -1,12 +1,12 @@
 angular.module(
   'PixelWall',
   [
+    'angular-locker',
     'angular-sortable-view',
     'angularFileUpload',
     'gridster',
     'hitmands.auth',
     'leaflet-directive',
-    'LocalStorageModule',
     'mgo-angular-wizard',
     'ngAnimate',
     'ngQuill',
@@ -21,14 +21,14 @@ angular.module(
   '$locationProvider',
   '$urlRouterProvider',
   '$provide',
+  'lockerProvider',
   'AuthServiceProvider',
-  'localStorageServiceProvider',
   function(
     $locationProvider,
     $urlRouterProvider,
     $provide,
-    AuthServiceProvider,
-    localStorageServiceProvider
+    lockerProvider,
+    AuthServiceProvider
   ) {
     $provide.decorator('$templateCache', function($delegate, $sniffer) {
       var originalGet = $delegate.get;
@@ -64,26 +64,25 @@ angular.module(
         token: data.id
       };
     });
-    localStorageServiceProvider
-      .setPrefix('pixelwall')
-      .setStorageType('sessionStorage')
-      .setNotify(true, true);
+    lockerProvider.setDefaultNamespace('Pixelwall')
+      .setSeparator('.')
+      .setEventsEnabled(false);
     return this;
   }
 ])
 .run([
   '$rootScope',
+  'locker',
   'AuthService',
-  'localStorageService',
   'uiRouterConsole',
   function(
     $rootScope,
+    locker,
     AuthService,
-    localStorageService,
     uiRouterConsole
   ) {
-    var auth = localStorageService.get('auth');
-    if (auth) {
+    if (locker.driver('session').has('auth')) {
+      var auth = locker.driver('session').get('auth');
       AuthService.setCurrentUser(auth.user, 1000, auth.token);
     }
     $rootScope.currentUser = AuthService.getCurrentUser();
@@ -91,7 +90,7 @@ angular.module(
     $rootScope.$on('hitmands.auth:update', function(event) {
       $rootScope.currentUser = AuthService.getCurrentUser();
       $rootScope.isUserLoggedIn = AuthService.isUserLoggedIn();
-      localStorageService.set('auth', {
+      locker.driver('session').put('auth', {
         user: AuthService.getCurrentUser(),
         token: AuthService.getAuthenticationToken()
       });

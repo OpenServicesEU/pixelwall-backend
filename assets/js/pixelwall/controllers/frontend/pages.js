@@ -2,6 +2,7 @@ angular.module('PixelWall')
 .controller('FrontendPagesController', [
   '$scope',
   '$state',
+  'locker',
   'sortService',
   'bridgeFactory',
   'device',
@@ -9,6 +10,7 @@ angular.module('PixelWall')
   function(
     $scope,
     $state,
+    locker,
     sortService,
     bridgeFactory,
     device,
@@ -20,6 +22,9 @@ angular.module('PixelWall')
     //  bridge.listen('', 'message', function(data) {
     //    console.log(data);
     //  });
+    if (navigator.userAgent == "Pixelwall") {
+      locker.driver('local').put('device', device.id);
+    }
     if ($scope.pages.length > 0) {
       var pageIndex = _.findIndex(pages, function(page) {
         return page.ordering[$scope.device.id] == 0;
