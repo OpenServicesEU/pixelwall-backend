@@ -33,6 +33,13 @@ angular.module('PixelWall')
               console.log("Default page timeout finished!");
               $scope.box._defer.resolve();
             }, $scope.timeout*1000);
+            $scope.$on(
+              '$destroy',
+              function() {
+                $timeout.cancel($scope._timeout);
+                $scope.box._defer.reject();
+              }
+            );
           }
           $scope.$watch(
             'box',
