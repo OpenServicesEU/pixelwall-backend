@@ -43,7 +43,8 @@
     "waterlock": "0.0.14"
   },
   "optionalDependencies": {
-    "dbus-native": "^0.1.2"
+    "dbus-native": "^0.1.2",
+    "waterlock-ldap-auth": "git://github.com/fladi/waterlock-ldap-auth.git"
   },
   "name": "pixelwall",
   "private": true,
