@@ -2,8 +2,8 @@
  * avahi hook
  */
 
+var os = require('os');
 var Enum = require('enum');
-var DBus = require('dbus-native');
 
 // Mimicking the constants from python-avahi library for conventience.
 // Some unused constants are missing.
@@ -20,8 +20,18 @@ var avahi = new Enum({
 });
 
 module.exports = function (sails) {
+  
+  var platform = os.platform();
+    
+  if (platform.indexOf("win") == 0) {
+      sails.log.warn("Avahi hook not started, as it is only support when the application is running on linux!");
+      return {};
+  }  
+
   //process.env.DISPLAY = ':0';
   //process.env.DBUS_SESSION_BUS_ADDRESS = 'unix:path=/run/dbus/system_bus_socket';
+    
+  var DBus = require('dbus-native');
   var bus = DBus.systemBus();
 
   // Scoped variables to hold the various objects retrieved from dbus.
