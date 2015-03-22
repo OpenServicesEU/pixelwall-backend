@@ -43,4 +43,5 @@ module.exports.routes = {
     'post /u/images': 'ImagesController.upload',
     'get /u/images/:image': 'ImagesController.download',
 
+    'post /auth/register': 'AuthController.register',
 };
