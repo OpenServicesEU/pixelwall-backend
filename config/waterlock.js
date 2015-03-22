@@ -22,12 +22,19 @@ module.exports.waterlock = {
   // file for more information on the attributes necessary. This is an example
   // of the local authentication method with password reset tokens disabled.
   authMethod: [
-    {
+    /*{
       name:'waterlock-ldap-auth',
       connection: {
         url: "ldap://localhost:389",
         searchBase: "dc=fladi,dc=at",
         searchFilter: "(uid={{username}})"
+      }
+    }*/
+    {
+      name: 'waterlock-local-auth',
+      createOnNotFound: true,
+      passwordReset: {
+        tokens: false
       }
     }
   ],
