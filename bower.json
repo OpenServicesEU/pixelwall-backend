@@ -19,15 +19,12 @@
     "angular-bootstrap": "~0.12.0",
     "angular-confirmable": "~1.0.0",
     "angular-fontawesome": "~0.3.0",
-    "angular-google-maps": "~2.0.12",
     "angular-gridster": "0.10.7",
     "angular-leaflet-directive": "~0.7.11",
     "angular-resource": "~1.3.11",
     "angular-resource-sails": "~1.1.4",
     "angular-sortable-view": "~0.0.12",
-    "angular-svg-round-progressbar": "~0.2.4",
     "angular-ui-router": "~0.2.13",
-    "angular-wizard": "~0.4.2",
     "angular-xeditable": "~0.1.8",
     "bootstrap": "~3.3.1",
     "font-awesome": "~4.3.0",
@@ -44,20 +41,6 @@
     "quill": {
       "js": "dist/quill.js",
       "css": "dist/quill.snow.css"
-    },
-    "angular-timeline": {
-      "js": "src/angular-timeline.js",
-      "css": [
-        "src/angular-timeline.css",
-        "src/angular-timeline-bootstrap.css"
-      ]
-    },
-    "angular-wizard": {
-      "js": "dist/angular-wizard.js",
-      "css": "dist/angular-wizard.css"
-    },
-    "bootstrap-theme-cosmo": {
-      "css": "cosmo.min.css"
     },
     "angular-hitmands-auth": {
       "js": "release/angular-hitmands-auth.js"
