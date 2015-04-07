@@ -6,7 +6,6 @@ angular.module(
     'angularFileUpload',
     'cfp.hotkeys',
     'gridster',
-    'hitmands.auth',
     'leaflet-directive',
     'mgo-angular-wizard',
     'ngAnimate',
@@ -23,13 +22,11 @@ angular.module(
   '$urlRouterProvider',
   '$provide',
   'lockerProvider',
-  'AuthServiceProvider',
   function(
     $locationProvider,
     $urlRouterProvider,
     $provide,
-    lockerProvider,
-    AuthServiceProvider
+    lockerProvider
   ) {
     $provide.decorator('$templateCache', function($delegate, $sniffer) {
       var originalGet = $delegate.get;
@@ -50,21 +47,6 @@ angular.module(
     });
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
-    AuthServiceProvider.useRoutes({
-      login: '/auth/login',
-      logout: '/auth/logout',
-      fetch: '/user/jwt'
-    });
-    AuthServiceProvider.parseHttpAuthData(function(data, headers, statusCode) {
-      // Logic
-      var authLevel = 1000; // ['public', 'author', 'editor'];
-
-      return {
-        user: data,
-        authLevel: authLevel,
-        token: data.id
-      };
-    });
     lockerProvider.setDefaultNamespace('Pixelwall')
       .setSeparator('.')
       .setEventsEnabled(false);
@@ -74,14 +56,13 @@ angular.module(
 .run([
   '$rootScope',
   'locker',
-  'AuthService',
   'uiRouterConsole',
   function(
     $rootScope,
     locker,
-    AuthService,
     uiRouterConsole
   ) {
+/*
     if (locker.driver('session').has('auth')) {
       var auth = locker.driver('session').get('auth');
       AuthService.setCurrentUser(auth.user, 1000, auth.token);

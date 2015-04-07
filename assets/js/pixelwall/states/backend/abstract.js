@@ -9,7 +9,6 @@ angular.module('PixelWall')
       abstract: true,
       template: '<ui-view/>',
       data: {
-        authLevel: 1000
       }
     });
   }

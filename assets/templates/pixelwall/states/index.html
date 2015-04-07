@@ -16,21 +16,6 @@
       <div class="jumbotron">
         <h1>Administration</h1>
         <p>
-        <form name="loginForm" auth-login="credentials" ng-hide="isUserLoggedIn">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter username" ng-model="credentials.username" required autofocus>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="credentials.password" required>
-          </div>
-          <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-primary btn-lg btn-block">
-            <fa name="lock"></fa>
-            Login
-          </button>
-        </form>
-        <div ng-show="isUserLoggedIn">
           <button type="button" class="btn btn-lg btn-block" ui-sref="backend.devices">
             <fa name="gears"></fa>
             Manage devices
