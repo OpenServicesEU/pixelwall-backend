@@ -44,7 +44,8 @@
   },
   "optionalDependencies": {
     "dbus-native": "^0.1.2",
-    "waterlock-ldap-auth": "git://github.com/fladi/waterlock-ldap-auth.git"
+    "waterlock-ldap-auth": "git://github.com/fladi/waterlock-ldap-auth.git",
+    "waterlock-local-auth": "0.0.5"
   },
   "name": "pixelwall",
   "private": true,
