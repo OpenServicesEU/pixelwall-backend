@@ -54,13 +54,17 @@ angular.module(
   }
 ])
 .run([
+  '$state',
   '$rootScope',
   'locker',
   'uiRouterConsole',
+  'loginModal',
   function(
+    $state,
     $rootScope,
     locker,
-    uiRouterConsole
+    uiRouterConsole,
+    loginModal
   ) {
 /*
     if (locker.driver('session').has('auth')) {
@@ -76,6 +80,22 @@ angular.module(
         user: AuthService.getCurrentUser(),
         token: AuthService.getAuthenticationToken()
       });
+    });
+*/
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+      var requireLogin = toState.data.requireLogin;
+
+      if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
+        event.preventDefault();
+
+        loginModal()
+        .then(function () {
+          return $state.go(toState.name, toParams);
+        })
+        .catch(function () {
+          return $state.go('index');
+        });
+      }
     });
     uiRouterConsole.active = false;
   }

@@ -9,6 +9,7 @@ angular.module('PixelWall')
       abstract: true,
       template: '<ui-view/>',
       data: {
+        requireLogin: true
       }
     });
   }
