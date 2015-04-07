@@ -66,22 +66,9 @@ angular.module(
     uiRouterConsole,
     loginModal
   ) {
-/*
-    if (locker.driver('session').has('auth')) {
-      var auth = locker.driver('session').get('auth');
-      AuthService.setCurrentUser(auth.user, 1000, auth.token);
+    if (locker.driver('session').has('user')) {
+      $rootScope.currentUser= locker.driver('session').get('user');
     }
-    $rootScope.currentUser = AuthService.getCurrentUser();
-    $rootScope.isUserLoggedIn = AuthService.isUserLoggedIn();
-    $rootScope.$on('hitmands.auth:update', function(event) {
-      $rootScope.currentUser = AuthService.getCurrentUser();
-      $rootScope.isUserLoggedIn = AuthService.isUserLoggedIn();
-      locker.driver('session').put('auth', {
-        user: AuthService.getCurrentUser(),
-        token: AuthService.getAuthenticationToken()
-      });
-    });
-*/
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
       var requireLogin = toState.data.requireLogin;
 

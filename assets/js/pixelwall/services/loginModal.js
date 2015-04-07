@@ -2,9 +2,11 @@ angular.module('PixelWall')
 .service('loginModal', [
   '$modal',
   '$rootScope',
+  'locker',
   function (
     $modal,
-    $rootScope
+    $rootScope,
+    locker
   ) {
 
     return function() {
@@ -16,6 +18,7 @@ angular.module('PixelWall')
 
       return instance.result.then(function (user) {
         $rootScope.currentUser = user;
+        locker.driver('session').put('user', user);
         return user;
       });
     };
