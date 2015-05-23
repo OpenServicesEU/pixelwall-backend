@@ -7,7 +7,6 @@ angular.module(
     'cfp.hotkeys',
     'gridster',
     'leaflet-directive',
-    'mgo-angular-wizard',
     'ngAnimate',
     'ngQuill',
     'picardy.fontawesome',
