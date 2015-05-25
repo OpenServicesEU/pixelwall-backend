@@ -30,7 +30,6 @@ angular.module('PixelWall')
         }
       );
 
-      var editable = box.data;
       $scope.label = boxTypes[box.type].label;
       $scope.icon = boxTypes[box.type].icon;
 
@@ -58,9 +57,9 @@ angular.module('PixelWall')
         opened.resolve();
       });
       modalInstance.result.then(function () {
-        box.$save(function(box) {
-          $scope.boxes.push(box);
-        })
+        box.$save(function(b) {
+          $scope.boxes.push(b);
+        });
       });
     };
   }

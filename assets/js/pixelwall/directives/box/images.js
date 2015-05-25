@@ -10,13 +10,11 @@ angular.module('PixelWall')
                 '$element',
                 '$attrs',
                 '$timeout',
-                '$interval',
                 function (
                     $scope,
                     $element,
                     $attrs,
-                    $timeout,
-                    $interval
+                    $timeout
                 ) {
                     $scope.images = $scope.box.data.images.map(function(image) {
                       return {

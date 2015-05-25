@@ -23,8 +23,8 @@ angular.module('PixelWall')
     $scope.addExistingPage = function(page) {
       page.devices.push($scope.device.id);
       page.ordering[$scope.device.id] = $scope.pages.length;
-      page.$save(function(page) {
-        $scope.pages.push(page);
+      page.$save(function(p) {
+        $scope.pages.push(p);
       });
     };
     $scope.addNewPage = function() {

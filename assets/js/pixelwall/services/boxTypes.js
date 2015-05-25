@@ -11,6 +11,11 @@ angular.module('PixelWall')
       icon: 'file-code-o',
       controller: 'IframeFormController'
     },
+    'rss': {
+      label: 'RSS-Feed',
+      icon: 'rss',
+      controller: 'RssFormController'
+    },
     'video': {
       label: 'Video',
       icon: 'file-video-o',

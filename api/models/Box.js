@@ -20,7 +20,8 @@ module.exports = {
         'video-stream',
         'calendar',
         'images',
-        'map'
+        'map',
+        'rss'
       ]
     },
     width: {
