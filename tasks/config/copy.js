@@ -28,7 +28,7 @@ module.exports = function(grunt) {
           expand: true,
           flatten: true,
           cwd: './assets/vendor',
-          src: ['**/*.eot', '**/*.woff', '**/*.ttf'],
+          src: ['**/*.eot', '**/*.woff', '**/*.woff2', '**/*.ttf'],
           dest: '.tmp/public/vendor/fonts'
         }
       ]

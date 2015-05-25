@@ -69,7 +69,7 @@ angular.module(
       $rootScope.currentUser= locker.driver('session').get('user');
     }
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-      var requireLogin = toState.data.requireLogin;
+      var requireLogin = toState.data ? toState.data.requireLogin : false;
 
       if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
         event.preventDefault();
