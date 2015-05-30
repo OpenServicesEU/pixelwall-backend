@@ -1,7 +1,9 @@
-<ul class="timeline" pw-bounce>
-    <li ng-repeat="article in box.data.articles">
-        <div class="">
-            <p>{{ article.title }}</p>
+<ul class="rss-articles" pw-bounce>
+    <li ng-repeat="article in box.data.articles | limitTo: box.data.itemsCount">
+        <div class="rss-article">
+            <a ng-href="{{ article.feed.link }}"><h3>{{ article.title }}</h3></a>
+            <h5>{{ article.published }}</h5>
+            <p>{{ article.content | limitTo: 400 }}</p>
         </div>
     </li>
 </ul>

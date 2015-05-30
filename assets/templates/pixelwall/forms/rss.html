@@ -1,5 +1,20 @@
 <div>
-    <p>Set the URL to the RSS feed.</p>
-    <input type="text" class="box-value" placeholder="RSS-Feed-URL  e.g. http://demo.url/rss.xml" ng-model="editable.url" />
+    <p>Set the url to the RSS feed and the number of items to show.</p>
+    
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="url" class="col-sm-2 control-label">Url:</label>
+            <div class="col-sm-10">
+                <input type="text" class="box-value" id="url" placeholder="RSS-Feed-URL  e.g. http://demo.url/rss.xml" ng-model="editable.url" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="itemscount" class="col-sm-2 control-label">Items count:</label>
+            <div class="col-sm-10">
+                <input type="text" class="box-value" id="itemscount" placeholder="Number of items to show..." ng-model="editable.itemsCount" />
+            </div>
+        </div>
+    </div>
     
 </div>
