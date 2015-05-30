@@ -4,6 +4,11 @@ module.exports = {
     parseFromUrl: function (url, cb) {
         
         ical.fromURL(url, "", function(err, data) {
+            
+            if (err) {
+                cb(err, null);
+                return;
+            }
 
             var events = [];
             var today = new Date();
@@ -22,7 +27,7 @@ module.exports = {
                     events.push(event);
             }
 
-            cb(err, events);
+            cb(null, events);
         });
     }
 };

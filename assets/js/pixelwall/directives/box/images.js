@@ -34,7 +34,6 @@ angular.module('PixelWall')
                     $scope.$watch('box.data.interval', function(newVal) {
                       console.log('Interval: ', newVal);
                     });
-
                 }
             ]
         };

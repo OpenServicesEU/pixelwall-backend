@@ -1,3 +1,7 @@
-<!-- TODO -->
-
-<iframe class="fullscreen" src="{{ box.data.url | trustedUrl }}"></iframe>
+<ul class="timeline" pw-bounce>
+    <li ng-repeat="article in box.data.articles">
+        <div class="">
+            <p>{{ article.title }}</p>
+        </div>
+    </li>
+</ul>

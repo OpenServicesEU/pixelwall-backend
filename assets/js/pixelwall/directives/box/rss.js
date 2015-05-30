@@ -1,10 +1,10 @@
 angular.module('PixelWall')
-.directive('pwBoxRssL', [
+.directive('pwBoxRss', [
     '$compile',
     function($compile) {
         return {
             restrict: 'E',
-            templateUrl: 'assets/templates/pixelwall/directives/box/rss.html'
+            templateUrl: 'assets/templates/pixelwall/directives/box/rss.html',
         };
     }
 ]);
