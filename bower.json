@@ -35,7 +35,8 @@
     "bsw-yeti": "~3.2.1",
     "angular-locker": "~1.2.1",
     "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.5",
-    "mousetrap": "~1.4.6"
+    "mousetrap": "~1.4.6",
+    "angular-pdf": "~0.4.0"
   },
   "exportsOverride": {
     "quill": {

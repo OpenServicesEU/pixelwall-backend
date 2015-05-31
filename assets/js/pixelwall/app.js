@@ -13,7 +13,8 @@ angular.module(
     'sailsResource',
     'ui.bootstrap',
     'ui.router',
-    'xeditable'
+    'xeditable',
+    'pdf'
   ]
 )
 .config([
