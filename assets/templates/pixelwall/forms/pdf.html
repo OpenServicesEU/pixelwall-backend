@@ -1,0 +1,10 @@
+<div>
+  <pw-upload-pdf url="'/u/pdf'" data="box.data.pdf"></pw-upload-pdf>
+  <div class="well" ng-if="box.data.pdf">
+    <!-- TODO: Show pdf preview -->
+    <button type="button" class="btn btn-danger btn-sm btn-block" ng-click="removePdf(box.data.pdf)">
+      <fa name="trash"></fa>
+      Remove {{ box.data.pdf.name }}
+    </button>
+  </div>
+</div>

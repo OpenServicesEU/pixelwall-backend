@@ -1,0 +1,11 @@
+<div>
+  <div ng-hide="uploading" class="panel panel-default">
+      <div class="panel-body bg-primary" ng-file-drop ng-model="uploads" multiple="true" allow-dir="true" accept="application/pdf" drag-over-class="{accept:'bg-success', reject:'bg-danger', delay:100}">
+          Drop your pdf here! <fa name="upload" class="pull-right" />
+      </div>
+  </div>
+  <div ng-show="uploading">
+    Upload in progress:
+    <progressbar class="progress-striped active" value="progress" type="success"><b>{{ progress }}%</b></progressbar>
+  </div>
+</div>

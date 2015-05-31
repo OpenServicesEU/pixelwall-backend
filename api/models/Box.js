@@ -21,7 +21,8 @@ module.exports = {
         'calendar',
         'images',
         'map',
-        'rss'
+        'rss',
+        'pdf'
       ]
     },
     width: {

@@ -16,6 +16,11 @@ angular.module('PixelWall')
       icon: 'rss',
       controller: 'RssFormController'
     },
+    'pdf': {
+      label: 'PDF',
+      icon: 'file-pdf-o',
+      controller: 'PdfFormController'
+    },
     'video': {
       label: 'Video',
       icon: 'file-video-o',
