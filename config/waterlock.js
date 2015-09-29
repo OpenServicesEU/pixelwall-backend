@@ -28,6 +28,23 @@ module.exports.waterlock = {
         url: "ldap://localhost:389",
         searchBase: "dc=fladi,dc=at",
         searchFilter: "(uid={{username}})"
+      },
+      attributes: {
+        uid: {
+          uid: {
+            type: 'string'
+          }
+        },
+        cn: {
+          fullname: {
+            type: 'string'
+          }
+        },
+        mail: {
+          email: {
+            type: 'string'
+          }
+        }
       }
     },
     {

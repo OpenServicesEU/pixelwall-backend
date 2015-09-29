@@ -10,7 +10,7 @@ angular.module('PixelWall')
   ) {
     $scope.box = box;
     $scope.editable = editable;
-    $scope.form = 'assets/templates/pixelwall/forms/calendar.html';
+    $scope.form = 'pixelwall/forms/calendar.html';
   }
 ]);
 

@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h3 class="modal-title">Delete pageset?</h3>
+</div>
+<div class="modal-body">
+  Really delete <strong>{{ pageset.name }}</strong>?
+  <div class="well" ng-if="devices.length > 0">
+    It is used by {{ devices.length }} devices:
+    <span ng-repeat="device in devices">
+      <span
+        ng-class="{'bg-success': device.active}">
+        {{ device.name }}
+      </span>
+      {{$last ? '' : ', '}}
+    </span>
+  </div>
+  <div class="well" ng-if="pages.length > 0">
+    It contains {{ pages.length }} pages:
+    <span ng-repeat="page in pages">
+      {{ page.name }}{{$last ? '' : ', '}}
+    </span>
+  </div>
+</div>
+<div class="modal-footer">
+  <span class="btn btn-danger" ng-click="$close()">
+    <fa name="trash"/>
+    {{ 'Delete' | translate }}
+  </span>
+  <span class="btn btn-default" ng-click="$dismiss()">
+    <fa name="close"/>
+    {{ 'Cancel' | translate }}
+  </span>
+</div>

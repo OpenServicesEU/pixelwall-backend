@@ -1,1 +1,15 @@
-<pw-grid data-rows="page.rows" data-columns="page.columns" data-timeout="page.duration" data-boxes="boxes"></pw-grid>
+<wg-grid
+  class="box-grid"
+  columns="{{page.columns}}"
+  rows="{{page.rows}}"
+  options="gridOptions"
+  id="boxGrid">
+  <wg-widget
+    ng-repeat="box in boxes"
+    top="box.top"
+    left="box.left"
+    width="box.width"
+    height="box.height">
+    <pw-box box="box" duration="{{ page.duration }}"></pw-box>
+  </wg-widget>
+</wg-grid>

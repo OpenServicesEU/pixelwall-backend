@@ -3,31 +3,65 @@
     <div class="navbar-header">
       <div class="navbar-brand logo">Pixelwall</div>
     </div>
-    <p class="navbar-text">Managing boxes</p>
-    <div class="btn-group navbar-left" dropdown>
-      <button type="button" class="btn btn-default dropdown-toggle navbar-btn" dropdown-toggle>
-        <fa name="plus-square"></fa> Add Box <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li ng-repeat="(type, data) in types">
-          <a ng-click="addBox(type)">
-            <fa name="{{ data.icon }}"></fa>
-            {{ data.label }}
-          </a>
-        </li>
-      </ul>
-    </div>
+    <p class="navbar-text">
+      <pw-user></pw-user>
+      <fa name="angle-double-right"></fa>
+      {{ 'Managing boxes' | translate }}
+      <fa name="angle-double-right"></fa>
+      {{ page.name }}
+    </p>
     <div class="btn-group navbar-right">
-      <button type="button" class="btn btn-default navbar-btn">
-        <fa name="arrows-v"></fa> {{page.rows}}
-      </button>
-      <button type="button" class="btn btn-default navbar-btn">
-        <fa name="arrows-h"></fa> {{page.columns}}
-      </button>
-      <button type="button" class="btn btn-default navbar-btn" ui-sref="^">
-        <fa name="arrow-left"></fa> Pages
-      </button>
+      <span
+         class="btn-group"
+        dropdown
+        ng-show="additionPossible">
+        <span
+          type="button"
+          class="btn btn-default dropdown-toggle navbar-btn"
+          dropdown-toggle>
+          <fa name="plus-square"></fa>
+          Add Box <span class="caret"></span>
+        </span>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="(type, data) in types">
+            <a ng-click="addBox(type)">
+              <fa name="{{ data.icon }}"></fa>
+              {{ data.label }}
+            </a>
+          </li>
+        </ul>
+      </span>
+      <span class="btn btn-default navbar-btn">
+        <fa name="arrows-h"></fa>
+        {{page.rows}}
+      </span>
+      <span class="btn btn-default navbar-btn">
+        <fa name="arrows-v"></fa>
+        {{page.columns}}
+      </span>
+      <span class="btn btn-default navbar-btn" ui-sref="^">
+        <fa name="arrow-left"></fa>
+        Pages
+      </span>
     </div>
   </div>
 </nav>
-<pw-grid data-rows="page.rows" data-columns="page.columns" data-timeout="page.duration" data-boxes="boxes" editable="true" class="backend"></pw-grid>
+<wg-grid
+  class="box-grid"
+  columns="{{page.columns}}"
+  rows="{{page.rows}}"
+  options="gridOptions"
+  id="boxGrid">
+  <wg-widget
+    wg-resizable
+    wg-movable
+    editable="{{editable}}"
+    ng-repeat="box in boxes"
+    top="box.top"
+    left="box.left"
+    width="box.width"
+    height="box.height">
+    <pw-box box="box"></pw-box>
+    <pw-box-overlay box="box"></pw-box>
+  </wg-widget>
+</wg-grid>

@@ -9,13 +9,15 @@
 module.exports = {
 
   attributes: require('waterlock').models.user.attributes({
-    
-    /* e.g.
-    nickname: 'string'
-    */
-    
+   enabled: {
+    type: 'boolean',
+    defaultsTo: true
+   },
+   groups: {
+     collection: 'usergroup',
+     via: 'user'
+   }
   }),
-  
   beforeCreate: require('waterlock').models.user.beforeCreate,
   beforeUpdate: require('waterlock').models.user.beforeUpdate
 };

@@ -1,0 +1,23 @@
+<div>
+  <p>Enter the name of the city and optionally followed by a country code.</p>
+  <input type="text" class="box-value" placeholder="Name of City e.g. Graz,AT" ng-model="editable.city" />
+  <p>Select the type of weather data you want to show.</p>
+  <div class="radio">
+    <label>
+      <input type="radio" name="scope" value="current" ng-model="editable.scope">
+      Current weather condition.
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="scope" value="forecast5" ng-model="editable.scope">
+      5 days weather forecast, updated every 3 hours.
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="scope" value="forecast16" ng-model="editable.scope">
+      16 days weather forecast, updated once a day.
+    </label>
+  </div>
+</div>

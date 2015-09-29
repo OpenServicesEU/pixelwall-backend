@@ -1,41 +1,48 @@
 <form ng-submit="submit(username, password, type)" class="form-horizontal">
 <div class="modal-header">
-  <h3 class="modal-title">Login</h3>
+  <h3 class="modal-title">{{ 'Login' | translate }}</h3>
 </div>
 <div class="modal-body">
   <div class="form-group">
-    <label for="username" class="col-sm-2 control-label">Username</label>
+    <label for="username" class="col-sm-2 control-label">
+      {{ 'Username' |translate }}
+    </label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="username" placeholder="Username" ng-model="username" />
+      <input type="text" class="form-control" id="username" placeholder="{{ 'Username' | translate }}" ng-model="username" pw-focus="rendered"/>
     </div>
   </div>
   <div class="form-group">
-    <label for="password" class="col-sm-2 control-label">Password</label>
+    <label for="password" class="col-sm-2 control-label">
+      {{ 'Password' |translate }}
+    </label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="password" placeholder="Password" ng-model="password" />
+      <input type="password" class="form-control" id="password" placeholder="{{ 'Password' | translate }}" ng-model="password" />
     </div>
   </div>
   <div class="form-group">
-    <label class="col-sm-2 control-label">Authentication</label>
+    <label class="col-sm-2 control-label">
+      {{ 'Authentication' | translate }}
+    </label>
     <div class="col-sm-10">
       <div class="btn-group btn-group-justified">
-        <label class="btn btn-block" ng-model="type" btn-radio="'ldap'" uncheckable ng-class="type=='ldap' && 'btn-primary'">
-          LDAP
+        <label class="btn btn-block btn-sm" ng-model="type" btn-radio="'ldap'" uncheckable ng-class="type=='ldap' && 'btn-primary'">
+          {{ 'LDAP' | translate }}
         </label>
-        <label class="btn btn-block" ng-model="type" btn-radio="'local'" uncheckable ng-class="type=='local' && 'btn-primary'">
-          Local
+        <label class="btn btn-block btn-sm" ng-model="type" btn-radio="'local'" uncheckable ng-class="type=='local' && 'btn-primary'">
+          {{ 'Local' | translate }}
         </label>
       </div>
     </div>
   </div>
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" ng-animate="'animate'">{{alert.msg}}</alert>
   <div class="modal-footer">
     <button class="btn btn-success" type="submit">
       <fa name="lock" />
-      Login
+      {{ 'Login' | translate }}
     </button>
     <button class="btn btn-danger" ng-click="$dismiss()">
       <fa name="close" />
-      Cancel
+      {{ 'Cancel' | translate }}
     </button>
-  </div>
+  </div> 
 </form>

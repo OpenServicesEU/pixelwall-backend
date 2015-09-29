@@ -8,99 +8,138 @@
     <link rel="icon" href="/images/pixelwall-logo.svg" sizes="any" type="image/svg+xml">
     <!--STYLES-->
     <link rel="stylesheet" href="/vendor/angular-gridster/angular-gridster.min.css">
+    <link rel="stylesheet" href="/vendor/angular-ui-clock/angular-clock.css">
+    <link rel="stylesheet" href="/vendor/angular-ui-select/select.css">
+    <link rel="stylesheet" href="/vendor/angular-widget-grid/angular-widget-grid.css">
     <link rel="stylesheet" href="/vendor/angular-xeditable/xeditable.css">
-    <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="/vendor/angularjs-color-picker/angularjs-color-picker.css">
     <link rel="stylesheet" href="/vendor/bsw-yeti/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/css/angular-hotkeys/hotkeys.css">
-    <link rel="stylesheet" href="/vendor/css/angular-wizard/angular-wizard.css">
+    <link rel="stylesheet" href="/vendor/css/font-awesome/font-awesome.css">
     <link rel="stylesheet" href="/vendor/css/leaflet/leaflet.css">
     <link rel="stylesheet" href="/vendor/css/quill/quill.snow.css">
-    <link rel="stylesheet" href="/vendor/font-awesome/font-awesome.css">
+    <link rel="stylesheet" href="/vendor/ng-sortable/ng-sortable.css">
+    <link rel="stylesheet" href="/vendor/ng-sortable/ng-sortable.style.css">
+    <link rel="stylesheet" href="/vendor/ngBoxFill/ng-boxfill.css">
+    <link rel="stylesheet" href="/vendor/weather-icons/weather-icons.css">
+    <link rel="stylesheet" href="/vendor/weather-icons/weather-icons.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
   </head>
-  <body>
+  <body flow-prevent-drop>
     <%- body %>
-    <!--TEMPLATES-->
-    <script type="text/javascript" src="/jst.js"></script>
-    <!--TEMPLATES END-->
     <!--SCRIPTS-->
     <script src="/vendor/sails.io.js/sails.io.js"></script>
     <script src="/vendor/javascript-detect-element-resize/detect-element-resize.js"></script>
     <script src="/vendor/jquery/jquery.js"></script>
     <script src="/vendor/angular/angular.js"></script>
+    <script src="/vendor/angular-translate/angular-translate.js"></script>
+    <script src="/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
     <script src="/vendor/angular-animate/angular-animate.js"></script>
     <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="/vendor/angular-confirmable/angular-confirmable.js"></script>
     <script src="/vendor/angular-fontawesome/angular-fontawesome.js"></script>
-    <script src="/vendor/angular-google-maps/angular-google-maps.js"></script>
     <script src="/vendor/angular-gridster/angular-gridster.js"></script>
     <script src="/vendor/angular-leaflet-directive/angular-leaflet-directive.js"></script>
     <script src="/vendor/angular-locker/angular-locker.min.js"></script>
     <script src="/vendor/angular-resource-sails/sailsResource.js"></script>
     <script src="/vendor/angular-resource/angular-resource.js"></script>
-    <script src="/vendor/angular-sortable-view/angular-sortable-view.js"></script>
+    <script src="/vendor/angular-sanitize/angular-sanitize.js"></script>
     <script src="/vendor/angular-svg-round-progressbar/roundProgress.min.js"></script>
+    <script src="/vendor/angular-ui-clock/angular-clock.js"></script>
     <script src="/vendor/angular-ui-router/angular-ui-router.js"></script>
+    <script src="/vendor/angular-ui-select/select.js"></script>
+    <script src="/vendor/angular-widget-grid/angular-widget-grid.js"></script>
     <script src="/vendor/angular-xeditable/xeditable.js"></script>
+    <script src="/vendor/angularjs-color-picker/angularjs-color-picker.js"></script>
     <script src="/vendor/bootstrap/bootstrap.js"></script>
-    <script src="/vendor/js/angular-hitmands-auth/angular-hitmands-auth.js"></script>
     <script src="/vendor/js/angular-hotkeys/hotkeys.js"></script>
-    <script src="/vendor/js/angular-wizard/angular-wizard.js"></script>
     <script src="/vendor/js/leaflet/leaflet-src.js"></script>
     <script src="/vendor/js/mousetrap/mousetrap.js"></script>
     <script src="/vendor/js/quill/quill.js"></script>
-    <script src="/vendor/lodash/lodash.js"></script>
-    <script src="/vendor/ng-file-upload/angular-file-upload.js"></script>
+    <script src="/vendor/leaflet-providers/leaflet-providers.js"></script>
+    <script src="/vendor/mathjs/math.min.js"></script>
+    <script src="/vendor/ng-fi-text/ng-fi-text.js"></script>
+    <script src="/vendor/ng-file-upload/ng-file-upload.js"></script>
+    <script src="/vendor/ng-lodash/ng-lodash.js"></script>
     <script src="/vendor/ng-quill/ng-quill.min.js"></script>
+    <script src="/vendor/ng-sortable/ng-sortable.js"></script>
+    <script src="/vendor/ngBoxFill/ng-boxfill.js"></script>
+    <script src="/vendor/ngOpenWeatherMap/ng-openweathermap.js"></script>
+    <script src="/vendor/tinycolor/tinycolor.js"></script>
     <script src="/js/pixelwall/app.js"></script>
-    <script src="/js/pixelwall/controllers/backend/boxOverlay.js"></script>
     <script src="/js/pixelwall/controllers/backend/boxes.js"></script>
     <script src="/js/pixelwall/controllers/backend/devices.js"></script>
     <script src="/js/pixelwall/controllers/backend/forms/calendar.js"></script>
+    <script src="/js/pixelwall/controllers/backend/forms/clock-analog.js"></script>
+    <script src="/js/pixelwall/controllers/backend/forms/clock-digital.js"></script>
     <script src="/js/pixelwall/controllers/backend/forms/html.js"></script>
     <script src="/js/pixelwall/controllers/backend/forms/iframe.js"></script>
     <script src="/js/pixelwall/controllers/backend/forms/images.js"></script>
     <script src="/js/pixelwall/controllers/backend/forms/map.js"></script>
     <script src="/js/pixelwall/controllers/backend/forms/video.js"></script>
     <script src="/js/pixelwall/controllers/backend/forms/videostream.js"></script>
+    <script src="/js/pixelwall/controllers/backend/forms/weather.js"></script>
     <script src="/js/pixelwall/controllers/backend/pages.js"></script>
+    <script src="/js/pixelwall/controllers/backend/pagesets.js"></script>
+    <script src="/js/pixelwall/controllers/backend/settings.js"></script>
+    <script src="/js/pixelwall/controllers/backend/users.js"></script>
     <script src="/js/pixelwall/controllers/frontend/boxes.js"></script>
     <script src="/js/pixelwall/controllers/frontend/devices.js"></script>
-    <script src="/js/pixelwall/controllers/frontend/pages.js"></script>
+    <script src="/js/pixelwall/controllers/frontend/pagesets.js"></script>
     <script src="/js/pixelwall/controllers/index.js"></script>
+    <script src="/js/pixelwall/controllers/loginModal.js"></script>
     <script src="/js/pixelwall/directives/bounce.js"></script>
+    <script src="/js/pixelwall/directives/box-overlay.js"></script>
     <script src="/js/pixelwall/directives/box.js"></script>
     <script src="/js/pixelwall/directives/box/calendar.js"></script>
+    <script src="/js/pixelwall/directives/box/clock-analog.js"></script>
+    <script src="/js/pixelwall/directives/box/clock-digital.js"></script>
     <script src="/js/pixelwall/directives/box/html.js"></script>
     <script src="/js/pixelwall/directives/box/iframe.js"></script>
     <script src="/js/pixelwall/directives/box/images.js"></script>
     <script src="/js/pixelwall/directives/box/map.js"></script>
     <script src="/js/pixelwall/directives/box/video.js"></script>
     <script src="/js/pixelwall/directives/box/videostream.js"></script>
+    <script src="/js/pixelwall/directives/box/weather.js"></script>
     <script src="/js/pixelwall/directives/carousel.js"></script>
+    <script src="/js/pixelwall/directives/focus.js"></script>
     <script src="/js/pixelwall/directives/grid.js"></script>
     <script src="/js/pixelwall/directives/upload/images.js"></script>
     <script src="/js/pixelwall/directives/upload/video.js"></script>
+    <script src="/js/pixelwall/directives/user.js"></script>
     <script src="/js/pixelwall/factories/box.js"></script>
     <script src="/js/pixelwall/factories/bridge.js"></script>
     <script src="/js/pixelwall/factories/device.js"></script>
+    <script src="/js/pixelwall/factories/group.js"></script>
     <script src="/js/pixelwall/factories/page.js"></script>
+    <script src="/js/pixelwall/factories/pageset.js"></script>
+    <script src="/js/pixelwall/factories/setting.js"></script>
+    <script src="/js/pixelwall/factories/user.js"></script>
     <script src="/js/pixelwall/filters/todayEvents.js"></script>
     <script src="/js/pixelwall/filters/trustedHtml.js"></script>
     <script src="/js/pixelwall/filters/trustedUrl.js"></script>
-    <script src="/js/pixelwall/services/boxTypes.js"></script>
+    <script src="/js/pixelwall/services/backendModal.js"></script>
+    <script src="/js/pixelwall/services/enums.js"></script>
+    <script src="/js/pixelwall/services/loginModal.js"></script>
+    <script src="/js/pixelwall/services/settings.js"></script>
     <script src="/js/pixelwall/services/sort.js"></script>
     <script src="/js/pixelwall/services/uiRouterConsole.js"></script>
     <script src="/js/pixelwall/states/backend/abstract.js"></script>
     <script src="/js/pixelwall/states/backend/boxes.js"></script>
     <script src="/js/pixelwall/states/backend/devices.js"></script>
     <script src="/js/pixelwall/states/backend/pages.js"></script>
+    <script src="/js/pixelwall/states/backend/pagesets.js"></script>
+    <script src="/js/pixelwall/states/backend/settings.js"></script>
+    <script src="/js/pixelwall/states/backend/users.js"></script>
     <script src="/js/pixelwall/states/frontend/abstract.js"></script>
     <script src="/js/pixelwall/states/frontend/boxes.js"></script>
     <script src="/js/pixelwall/states/frontend/devices.js"></script>
-    <script src="/js/pixelwall/states/frontend/pages.js"></script>
+    <script src="/js/pixelwall/states/frontend/pageset.js"></script>
     <script src="/js/pixelwall/states/index.js"></script>
     <!--SCRIPTS END-->
+    <!--TEMPLATES-->
+    <script type="text/javascript" src="/templates.js"></script>
+    <!--TEMPLATES END-->
   </body>
 </html>

@@ -5,10 +5,10 @@ angular.module('PixelWall')
       $stateProvider
   ) {
     $stateProvider
-    .state('frontend.devices.pages', {
-      url: "/{deviceId:[0-9a-f]+}",
+    .state('frontend.devices.pageset', {
+      url: "/{deviceId:[0-9a-f]+}/{pagesetId:[0-9a-f]+}",
       template: '<ui-view/>',
-      controller: 'FrontendPagesController',
+      controller: 'FrontendPagesetController',
       resolve: {
         device: [
           '$stateParams',
@@ -27,7 +27,7 @@ angular.module('PixelWall')
             $stateParams,
             pageFactory
           ) {
-            return pageFactory.query({devices: $stateParams.deviceId}).$promise;
+            return pageFactory.query({set: $stateParams.pagesetId, sort: 'ordering'}).$promise;
           }
         ]
       }

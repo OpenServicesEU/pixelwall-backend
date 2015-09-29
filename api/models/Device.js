@@ -1,7 +1,7 @@
 /**
  * Device.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @description :: A display device.
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
 
@@ -15,9 +15,15 @@ module.exports = {
             type: 'boolean',
             defaultsTo: true
         },
-        pages: {
-            collection: 'page',
-            via: 'devices'
+        set: {
+            model: 'pageset'
+        },
+        groups: {
+          collection: 'devicegroup',
+          via: 'device'
+        },
+        properties: {
+          type: 'json'
         }
     }
 };

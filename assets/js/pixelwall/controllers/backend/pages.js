@@ -3,50 +3,44 @@ angular.module('PixelWall')
   '$scope',
   '$modal',
   'pageFactory',
-  'device',
+  'pageset',
   'pages',
-  'allPages',
   function (
     $scope,
     $modal,
     pageFactory,
-    device,
-    pages,
-    allPages
+    pageset,
+    pages
   ) {
-    $scope.device = device;
+    $scope.pageset = pageset;
     $scope.pages = pages;
-    $scope.pageOrder = function(page) {
-      return page.ordering[$scope.device.id];
-    };
-    $scope.allPages = allPages;
-    $scope.addExistingPage = function(page) {
-      page.devices.push($scope.device.id);
-      page.ordering[$scope.device.id] = $scope.pages.length;
-      page.$save(function(page) {
-        $scope.pages.push(page);
-      });
-    };
-    $scope.addNewPage = function() {
-      var ordering = {};
-      ordering[$scope.device.id] = $scope.pages.length;
+    $scope.addPage = function() {
       $scope.inserted = new pageFactory({
+        set: $scope.pageset.id,
         name: '',
-        rows: 1,
-        columns: 1,
+        rows: 10,
+        columns: 10,
         duration: 60,
-        devices: [$scope.device.id],
-        ordering: ordering
+        order: $scope.pages.length
       });
       $scope.pages.push($scope.inserted);
     };
     $scope.savePage = function(page, $data) {
       angular.extend(page, $data);
+      if (page == $scope.inserted) {
+        $scope.inserted = undefined;
+      }
       page.$save();
+    };
+    $scope.cancelPage = function(page, $index) {
+      if (page == $scope.inserted) {
+        $scope.pages.splice($index, 1);
+        $scope.inserted = undefined;
+      }
     };
     $scope.removePage = function(page) {
       var modalInstance = $modal.open({
-        templateUrl: 'assets/templates/pixelwall/modals/page.delete.html',
+        templateUrl: 'pixelwall/modals/page.delete.html',
         controller: [
           '$scope',
           function(
@@ -56,28 +50,38 @@ angular.module('PixelWall')
           }
         ]
       });
-
       modalInstance.result.then(function() {
+        $scope.pages.filter(function(p) {
+          return p.id != page.id;
+        }).forEach(function(p) {
+          if (p.order> page.order) {
+            p.order -= 1;
+            p.$save();
+          }
+        });
         page.$delete();
       });
     };
-    $scope.movePage = function($item, $partFrom, $partTo, $indexFrom, $indexTo) {
-      $scope.pages.forEach(function(page) {
-        if (page.ordering[$scope.device.id] == $indexFrom) {
-          page.ordering[$scope.device.id] = $indexTo;
-        } else {
-          if ($indexTo < $indexFrom) {
-            if (page.ordering[$scope.device.id] >= $indexTo && page.ordering[$scope.device.id] < $indexFrom) {
-              page.ordering[$scope.device.id] += 1;
-            }
-          } else {
-            if (page.ordering[$scope.device.id] > $indexFrom && page.ordering[$scope.device.id] <= $indexTo) {
-              page.ordering[$scope.device.id] -= 1;
-            }
+    $scope.sortedPageOptions = {
+      orderChanged: function(event) {
+        console.log(event);
+        event.source.itemScope.page.order = event.dest.index;
+        event.source.itemScope.page.$save();
+        $scope.pages.filter(function(page) {
+          return page.id != event.source.itemScope.page.id;
+        }).forEach(function(page) {
+          if (page.order >= event.dest.index && page.order < event.source.index) {
+            page.order += 1;
+            page.$save();
+            return;
           }
-        }
-        page.$save();
-      });
+          if (page.order > event.source.index && page.order <= event.dest.index) {
+            page.order -= 1;
+            page.$save();
+            return;
+          }
+        });
+      }
     };
   }
 ]);

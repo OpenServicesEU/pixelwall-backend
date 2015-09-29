@@ -1,6 +1,13 @@
 <div>
   <div ng-hide="uploading" class="panel panel-default">
-    <div class="panel-body bg-primary" ng-file-drop ng-model="uploads" multiple="true" allow-dir="true" accept="video/*" drag-over-class="{accept:'bg-success', reject:'bg-danger', delay:100}">
+    <div
+      class="panel-body bg-primary"
+      ng-file-drop
+      ng-model="uploads"
+      multiple="true"
+      allow-dir="true"
+      accept="video/*"
+      drag-over-class="{accept:'bg-success', reject:'bg-danger', delay:100}">
       Drop your video here! <fa name="upload" class="pull-right"/>
     </div>
   </div>

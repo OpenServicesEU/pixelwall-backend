@@ -28,6 +28,8 @@ var jsFilesToInject = [
   'vendor/javascript-detect-element-resize/detect-element-resize.js',
   'vendor/jquery/jquery.js',
   'vendor/angular/angular.js',
+  'vendor/angular-translate/angular-translate.js',
+  'vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
   'vendor/*/**/*.js',
 
   // Dependencies like jQuery, or Angular are brought in here

@@ -9,7 +9,7 @@ angular.module('PixelWall')
                 data: '='
             },
             replace: true,
-            templateUrl: 'assets/templates/pixelwall/directives/upload/video.html',
+            templateUrl: 'pixelwall/directives/upload/video.html',
             controller: [
                 '$scope',
                 '$element',

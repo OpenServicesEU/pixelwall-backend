@@ -11,7 +11,7 @@ angular.module('PixelWall')
                 boxes: '=',
                 editable: '='
             },
-            templateUrl: 'assets/templates/pixelwall/directives/grid.html',
+            templateUrl: 'pixelwall/directives/grid.html',
             controller: [
                 '$scope',
                 '$element',

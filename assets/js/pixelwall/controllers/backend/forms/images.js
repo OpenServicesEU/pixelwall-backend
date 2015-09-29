@@ -10,7 +10,7 @@ angular.module('PixelWall')
   ) {
     $scope.box = box;
     $scope.editable = editable;
-    $scope.form = 'assets/templates/pixelwall/forms/images.html';
+    $scope.form = 'pixelwall/forms/images.html';
     $scope.imageSortableOptions = {
       axis: 'y'
     };

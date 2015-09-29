@@ -1,22 +1,49 @@
 .backend {
-    .box {
-        border:1px dotted #fff;
-        &:hover .overlay {
-            display: initial;
-        }
-        .carousel {
-            .arrows {
-                display: initial;
-            }
-        }
+  .box {
+    border:1px dotted #fff;
+    &:hover .overlay {
+      display: initial;
     }
+    .carousel {
+      .arrows {
+        display: initial;
+      }
+    }
+  }
+  .box-grid {
+    top: 45px;
+  }
 }
 .thumbnail {
-    &:hover .overlay {
-        display: initial;
-    }
+  &:hover .overlay {
+    display: initial;
+  }
 }
-
+.dragging {
+  background-color: #358753;
+  border-color: #2b6e44;
+}
 input.box-value {
-    width: 100%;
+  width: 100%;
+}
+.rotate {
+  -webkit-animation-name: spinner;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 6s;
+
+  animation-name: spinner;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 6s;
+
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+
+  &:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
 }

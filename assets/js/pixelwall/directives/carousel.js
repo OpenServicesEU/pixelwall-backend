@@ -10,7 +10,7 @@ angular.module('PixelWall')
                 end: '=',
                 current: '='
             },
-            templateUrl: 'assets/templates/pixelwall/directives/carousel.html',
+            templateUrl: 'pixelwall/directives/carousel.html',
             controller: [
                 '$element',
                 '$interval',

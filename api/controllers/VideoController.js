@@ -58,8 +58,7 @@ module.exports = {
                 }
             }
         );
-        store
-        .on('error', function(err) {
+        store.on('error', function(err) {
             res.serverError(err);
         });
         var files = [];

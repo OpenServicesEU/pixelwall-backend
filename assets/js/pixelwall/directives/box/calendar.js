@@ -4,7 +4,7 @@ angular.module('PixelWall')
   function ($compile) {
     return {
       restrict: 'E',
-      templateUrl: 'assets/templates/pixelwall/directives/box/calendar.html'
+      templateUrl: 'pixelwall/directives/box/calendar.html'
     };
   }
 ]);

@@ -1,29 +1,38 @@
 <div class="page-header">
-<h1><img src="/images/pixelwall-logo.svg"/> PixelWall <small>the smart public display solution</small></h1>
+  <h1><img src="/images/pixelwall-logo.svg"/> PixelWall <small>{{ 'the smart public display solution' | translate }}</small></h1>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-md-6">
       <div class="jumbotron">
-        <h1>Display Frontend</h1>
-        <p>Select the content you want to display.</p>
+        <h1>{{ 'Display Frontend' | translate }}</h1>
+        <p>{{ 'Select the content you want to display.' | translate }}</p>
         <button type="button" class="btn btn-success btn-lg btn-block" ui-sref="frontend.devices">
-          <fa name="play"></fa> Launch display
+          <fa name="play"></fa>
+          {{ 'Launch display' | translate }}
         </button>
       </div>
     </div>
     <div class="col-md-6">
       <div class="jumbotron">
-        <h1>Administration</h1>
+        <h1>{{ 'Administration' | translate }}</h1>
         <p>
         <div>
+          <button type="button" class="btn btn-lg btn-block" ui-sref="backend.pagesets">
+            <fa name="puzzle-piece"></fa>
+            {{ 'Content' | translate }}
+          </button>
           <button type="button" class="btn btn-lg btn-block" ui-sref="backend.devices">
-            <fa name="gears"></fa>
-            Manage devices
+            <fa name="desktop"></fa>
+            {{ 'Devices' | translate }}
           </button>
           <button type="button" class="btn btn-lg btn-block" ui-sref="backend.users">
             <fa name="users"></fa>
-            Manage users
+            {{ 'Users' | translate }}
+          </button>
+          <button type="button" class="btn btn-lg btn-block" ui-sref="backend.settings">
+            <fa name="gears"></fa>
+            {{ 'System settings' | translate }}
           </button>
         </div>
         </p>

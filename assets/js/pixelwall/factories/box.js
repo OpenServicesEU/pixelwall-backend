@@ -4,6 +4,6 @@ angular.module('PixelWall')
     function(
       sailsResource
     ) {
-        return sailsResource('box', {}, {verbose: true});
+        return sailsResource('box');
     }
 ]);

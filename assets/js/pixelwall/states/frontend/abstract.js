@@ -7,7 +7,8 @@ angular.module('PixelWall')
     $stateProvider
     .state('frontend', {
       abstract: true,
-      template: '<ui-view/>'
+      url: '/d',
+      template: '<ui-view class="frontend"/>'
     });
   }
 ]);

@@ -24,6 +24,15 @@ var defaultBluePrintPolicy = {
     add: ['sessionAuth'],
     remove: ['sessionAuth']
 };
+var authOnlyBluePrintPolicy = {
+    find: ['sessionAuth'],
+    populate: ['sessionAuth'],
+    create: ['sessionAuth'],
+    update: ['sessionAuth'],
+    destroy: ['sessionAuth'],
+    add: ['sessionAuth'],
+    remove: ['sessionAuth']
+};
 var defaultUploadPolicy = {
     upload: ['sessionAuth']
 };
@@ -33,8 +42,13 @@ module.exports.policies = {
     '*': true,
 
     DeviceController: defaultBluePrintPolicy,
+    PagesetController: defaultBluePrintPolicy,
     PageController: defaultBluePrintPolicy,
     BoxController: defaultBluePrintPolicy,
+    SettingController: defaultBluePrintPolicy,
+
+    AuthController: authOnlyBluePrintPolicy,
+    UserController: authOnlyBluePrintPolicy,
 
     ImagesController: defaultUploadPolicy,
     VideoController: defaultUploadPolicy

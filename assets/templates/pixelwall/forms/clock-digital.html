@@ -1,0 +1,11 @@
+<div class="form-group">
+  <label for="theme">
+    {{ 'Format' | translate }}
+  </label>
+  <select class="form-control" ng-model="editable.format">
+    <option value="HH:mm">{{ currentTime | date:'HH:mm' }}</option>
+    <option value="HH:mm:ss">{{ currentTime | date:'HH:mm:ss' }}</option>
+    <option value="dd-MMM-yyyy HH:mm:ss">{{ currentTime | date:'dd-MMM-yyyy HH:mm:ss' }}</option>
+    <option value="EEEE MMMM d, yyyy HH:mm:ss">{{ currentTime | date:'EEEE MMMM d, yyyy HH:mm:ss' }}</option>
+  </select>
+</div>

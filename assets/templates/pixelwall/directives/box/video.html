@@ -1,3 +1,3 @@
-<video autoplay ng-show="box.data.video">
-  <source ng-src="{{ '/u/video/' + box.data.video.src | trustedUrl }}" type='video/webm;codecs="vp8, vorbis"'/>
+<video autoplay ng-show="box.data.src" class="fullscreen">
+  <source ng-src="{{ '/u/video/' + box.data.src | trustedUrl }}" type='video/webm;codecs="vp8, vorbis"'/>
 </video>

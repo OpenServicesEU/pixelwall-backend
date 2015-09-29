@@ -8,6 +8,12 @@
 module.exports = {
 
     attributes: {
+        set: {
+            model: 'pageset'
+        },
+        order: {
+          type: 'integer'
+        },
         name: {
             type: 'string'
         },
@@ -19,10 +25,6 @@ module.exports = {
             type: 'integer',
             defaultsTo: 4
         },
-        devices: {
-            collection: 'device',
-            via: 'pages'
-        },
         boxes: {
             collection: 'box',
             via: 'page'
@@ -31,9 +33,6 @@ module.exports = {
             type: 'integer',
             defaultsTo: 10
         },
-        ordering: {
-            type: 'json'
-        }
     }
 };
 

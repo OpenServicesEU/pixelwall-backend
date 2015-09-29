@@ -1,0 +1,150 @@
+<ui-view>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand logo">Pixelwall</div>
+    </div>
+    <p class="navbar-text">
+      <pw-user></pw-user>
+      <fa name="angle-double-right"></fa>
+      {{ 'Managing settings' | translate }}
+    </p>
+    <div class="btn-group navbar-right">
+      <span
+        class="btn btn-default navbar-btn pull-right"
+        ui-sref="index">
+        <fa name="arrow-left"></fa>
+        {{ 'Main menu' | translate }}
+      </span>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <tabset>
+    <tab>
+      <tab-heading>
+        <fa name="university"></fa>
+        Identity
+      </tab-heading>
+      <ng-include src="'pixelwall/settings/identity.html'">
+    </tab>
+    <tab ng-if="authentication">
+      <tab-heading>
+        <fa name="lock"></fa>
+        Authentication
+      </tab-heading>
+      I've got an HTML heading, and a select callback. Pretty cool!
+    </tab>
+    <tab ng-if="proxy">
+      <tab-heading>
+        <fa name="exchange"></fa>
+        Proxy
+      </tab-heading>
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <h4 class="pull-left">
+            {{ 'Proxy status' | translate }}
+          </h4>
+          <span class="button-group pull-right">
+            <span
+              class="btn btn-sm"
+              ng-click="proxy.toggle()"
+              ng-class="{'btn-success': proxy.setting.value.enabled, 'btn-default': !proxy.setting.value.enabled}"
+              tooltip="Click to turn proxy {{ proxy.setting.value.enabled ? 'off' : 'on' }}"
+              tooltip-placement="left">
+              <fa name="{{ proxy.setting.value.enabled ? 'toggle-on' : 'toggle-off' }}"></fa>
+              {{ proxy.setting.value.enabled ? 'Enabled' : 'Disabled' | translate }}
+            </span>
+          </span>
+        </div>
+        <div class="panel-body">
+          Enabling the proxy allows the devices to fetch remote content in a
+          controlled way through the server.
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <h4 class="pull-left">
+            {{ 'Allowed patterns' | translate }}
+          </h4>
+          <span class="input-group pull-right" style="width:25%">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Pattern (regular expression)"
+              ng-model="proxy.pattern"
+              tooltip="Enter pattern to activate button"
+              tooltip-enable="!proxy.pattern"
+              style="width:100%">
+            <span class="input-group-btn">
+              <span
+                class="btn"
+                ng-click="proxy.addPattern()"
+                ng-disabled="!proxy.pattern"
+                ng-class="{'btn-primary': proxy.pattern, 'btn-default': !proxy.pattern}"
+                tooltip="Add pattern from input field"
+                tooltip-placement="left">
+                <fa name="plus"></fa>
+              </span>
+            </span>
+          </span>
+        </div>
+        <div class="panel-body">
+          Patterns are used to grant access to remote resources (URLs) for
+          display devices. If a pattern matches a URL it will fetch the resource
+          on behalf of the device. If no pattern matches, an error will be
+          presented to the device.
+        </div>
+        <ul class="list-group">
+          <li
+            class="list-group-item clearfix"
+            ng-repeat="pattern in proxy.setting.value.patterns track by $index">
+            <fa name="filter"></fa>
+            {{ pattern }}
+            <span
+              class="btn btn-xs btn-danger pull-right"
+              ng-click="proxy.removePattern($index)"
+              tooltip="Remove pattern"
+              tooltip-placement="left">
+              <fa name="trash"></fa>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <span
+        class="btn btn-sm btn-success"
+        ng-click="proxy.save()">
+        <fa name="save"></fa>
+        {{ 'Save' | translate }}
+      </span>
+    </tab>
+    <tab ng-if="settings.alerts">
+      <tab-heading>
+        <fa name="bell"></fa>
+        Alerts
+      </tab-heading>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+    </tab>
+  </tabset>
+</div>
+</ui-view>

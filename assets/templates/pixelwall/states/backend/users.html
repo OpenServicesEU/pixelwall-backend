@@ -1,0 +1,94 @@
+<ui-view>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand logo">Pixelwall</div>
+    </div>
+    <p class="navbar-text">
+      <pw-user></pw-user>
+      <fa name="angle-double-right"></fa>
+      {{ 'Managing users' | translate }}
+    </p>
+    <div class="btn-group navbar-right">
+      <span
+        class="btn btn-default navbar-btn"
+        ng-hide="inserted"
+        ng-click="addDevice()">
+        <fa name="plus-square"></fa>
+        {{ 'New user' | translate }}
+      </span>
+      <span
+        class="btn btn-default navbar-btn pull-right"
+        ui-sref="index">
+        <fa name="arrow-left"></fa>
+        {{ 'Main menu' | translate }}
+      </span>
+    </div>
+  </div>
+</nav>
+<ul data-gridster="gridsterOptions">
+  <li data-gridster-item ng-repeat="user in users">
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <form
+          editable-form
+          name="rowform"
+          onbeforesave="saveUser(user, $data)"
+          oncancel="cancelUser(user, $index)"
+          shown="inserted == user">
+          <h4 class="pull-left">
+            {{ user.auth.username || 'Unnamed' }}
+          </h4>
+          <span class="button-group pull-right">
+            <span ng-show="!rowform.$visible">
+              <span class="btn btn-primary btn-sm" ng-click="rowform.$show()">
+                <fa name="edit"></fa>
+                {{ 'Edit' | translate }}
+              </span>
+              <span class="btn btn-danger btn-sm" ng-click="removeUser(user)">
+                <fa name="trash"></fa>
+                {{ 'Remove' | translate }}
+              </span>
+            </span>
+            <span ng-show="rowform.$visible">
+              <button
+                class="btn btn-primary btn-sm"
+                type="submit"
+                ng-disabled="rowform.$waiting">
+                <fa name="save"></fa>
+                {{ 'Save' | translate }}
+              </button>
+              <span
+                class="btn btn-default btn-sm"
+                ng-disabled="rowform.$waiting"
+                ng-click="rowform.$cancel()">
+                <fa name="close"></fa>
+                {{ 'Cancel' | translate }}
+              </span>
+            </span>
+          </span>
+        </form>
+      </div>
+      <div class="panel-body">
+        <span
+           ng-if="user.auth.password"
+           editable-password="user.auth.password"
+           e-name="password"
+           e-form="rowform">
+          {{ 'Password set' | translate }}
+        </span>
+      </div>
+      <div class="panel-footer clearfix">
+        <span
+            class="btn btn-sm pull-right"
+            ng-class="{'btn-success': device.active}"
+            ng-hide="device == inserted"
+            ng-click="toggleUser(user)">
+          <fa name="{{ user.active ? 'toggle-off' : 'toggle-on' }}"/>
+          {{ user.active ? 'Enabled' : 'Disabled' | translate }}
+        </span>
+      </div>
+    </div>
+  </li>
+</ul>
+</ui-view>

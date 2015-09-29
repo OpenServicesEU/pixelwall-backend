@@ -6,14 +6,12 @@ angular.module('PixelWall')
       restrict: 'E',
       scope: {
         box: '=',
-        timeout: '='
+        duration: '@'
       },
       replace: true,
-      link: function (scope, elements, attrs) {
-        var html = '<pw-box-' + scope.box.type + '/>';
-        var e = angular.element(html);
-        e.attr('ng-style', '{"font-size": "" + box.scale * 100 + "%"}')
-        elements.replaceWith(e);
+      link: function (scope, element, attrs) {
+        var e = angular.element('<pw-box-' + scope.box.type + '/>');
+        element.replaceWith(e);
         $compile(e)(scope);
       },
       controller: [
@@ -32,7 +30,7 @@ angular.module('PixelWall')
             $scope._timeout = $timeout(function() {
               console.log("Default page timeout finished!");
               $scope.box._defer.resolve();
-            }, $scope.timeout*1000);
+            }, ($scope.duration * 1000) || 60000);
             $scope.$on(
               '$destroy',
               function() {
@@ -41,24 +39,6 @@ angular.module('PixelWall')
               }
             );
           }
-          $scope.$watch(
-            'box',
-            _.debounce(
-              function(newBox, oldBox) {
-                if (newBox === oldBox) {
-                  return;
-                }
-                var changed = ['left', 'top', 'width', 'height', 'scale'].map(function(property) {
-                  return newBox[property] !== oldBox[property];
-                });
-                if (changed.indexOf(true) >= 0) {
-                  $scope.box.$save();
-                }
-              },
-              1000
-            ),
-            true
-          );
         }
       ]
     };

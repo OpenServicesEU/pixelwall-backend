@@ -1,1 +1,14 @@
-<leaflet center="box.data.center" geojson="box.data.geojson" defaults="box.data.defaults" height="480px" width="100%"></leaflet>
+<div class="well">
+  <leaflet id="editMap" center="editable.center" geojson="editable.geojson" defaults="defaults" height="480px" width="100%" tiles="getTiles(editable.tiles)"></leaflet>
+</div>
+<div class="form-horizontal">
+  <div class="form-group">
+    <label for="tiles" class="col-sm-2 control-label">Tiles</label>
+    <div class="col-sm-10">
+      <select class="form-control" id="tiles" ng-model="editable.tiles" ng-options="key as value.name for (key, value) in tiles">
+        <option>Google Satellite</option>
+      </select>
+    </div>
+{{ editable.tiles }}
+  </div>
+</div>

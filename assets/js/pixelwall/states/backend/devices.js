@@ -6,11 +6,11 @@ angular.module('PixelWall')
   ) {
     $stateProvider
     .state('backend.devices', {
-      url: '/b',
+      url: '/devices',
       data: {
         roles: ['Admin']
       },
-      templateUrl: 'assets/templates/pixelwall/states/backend/devices.html',
+      templateUrl: 'pixelwall/states/backend/devices.html',
       controller: 'BackendDevicesController',
       resolve: {
         devices: [
@@ -19,6 +19,14 @@ angular.module('PixelWall')
             deviceFactory
           ) {
             return deviceFactory.query().$promise;
+          }
+        ],
+        pagesets: [
+          'pagesetFactory',
+          function(
+            pagesetFactory
+          ) {
+            return pagesetFactory.query().$promise;
           }
         ]
       }

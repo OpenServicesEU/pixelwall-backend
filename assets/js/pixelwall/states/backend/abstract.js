@@ -7,7 +7,8 @@ angular.module('PixelWall')
     $stateProvider
     .state('backend', {
       abstract: true,
-      template: '<ui-view/>',
+      url: '/b',
+      template: '<ui-view class="backend"/>',
       data: {
         requireLogin: true
       }

@@ -4,94 +4,146 @@
     <div class="navbar-header">
       <div class="navbar-brand logo">Pixelwall</div>
     </div>
-    <p class="navbar-text">Managing pages</p>
-    <div class="btn-group navbar-left">
-      <button type="button" class="btn btn-default navbar-btn" ng-click="addNewPage()">
-        <fa name="plus-square"></fa> New page
-      </button>
-      <div class="btn-group" dropdown>
-        <button type="button" class="btn btn-default dropdown-toggle navbar-btn" dropdown-toggle>
-          <fa name="caret-square-o-down"></fa> Add existing page
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li ng-repeat="page in allPages">
-            <a ng-click="addExistingPage(page)">
-              <fa name="plus-square"></fa> {{ page.name }}
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <p class="navbar-text">
+      <pw-user></pw-user>
+      <fa name="angle-double-right"></fa>
+      {{ 'Managing pages' | translate }}
+      <fa name="angle-double-right"></fa>
+      {{ pageset.name }}
+    </p>
     <div class="btn-group navbar-right">
-      <button type="button" class="btn btn-default navbar-btn pull-right" ui-sref="^">
-        <fa name="arrow-left"></fa> Devices
-      </button>
+      <span
+        class="btn btn-default navbar-btn"
+        ng-hide="inserted"
+        ng-click="addPage()">
+        <fa name="plus-square"></fa>
+        {{ 'New page' | translate }}
+      </span>
+      <span
+        class="btn btn-default navbar-btn pull-right"
+        ui-sref="^">
+        <fa name="arrow-left"></fa>
+        {{ 'Pagesets' | translate }}
+      </span>
     </div>
   </div>
 </nav>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <table class="table table-hover table-vert" sv-root sv-part="pages" sv-on-sort="movePage($item, $partFrom, $partTo, $indexFrom, $indexTo)">
-      <tr style="font-weight: bold">
-        <td style="width:20%">Name</td>
-        <td style="width:20%">Rows <fa name="arrows-v"></fa></td>
-        <td style="width:20%">Columns <fa name="arrows-h"></fa></td>
-        <td style="width:20%">Duration <fa name="clock-o"></fa></td>
-        <td style="width:20%">Edit</td>
-      </tr>
-      <tr ng-repeat="page in pages | orderBy:pageOrder" sv-element>
-        <td>
-          <span editable-text="page.name" e-name="name" e-form="rowform" e-required>
-            {{ page.name || 'Unnamed' }}
+<div
+  class="container-fluid"
+  data-as-sortable="sortedPageOptions"
+  data-ng-model="pages">
+  <div class="panel panel-default" ng-repeat="page in pages" data-as-sortable-item>
+    <div class="panel-heading clearfix">
+      <form
+        name="rowform"
+        onbeforesave="savePage(page, $data)"
+        oncancel="cancelPage(page, $index)"
+        shown="inserted == page"
+        editable-form>
+        <h4
+          class="pull-left"
+          editable-text="page.name"
+          e-name="name"
+          e-form="rowform"
+          e-title="Name">
+          {{ page.name }}
+        </h4>
+        <span class="button-group pull-right">
+          <span
+            class="btn btn-default btn-sm"
+            ng-hide="inserted"
+            data-as-sortable-item-handle>
+            <fa name="sort"></fa>
+            {{ 'Order' | translate }}
           </span>
-        </td>
-        <td>
-          <span editable-range="page.rows" e-name="rows" e-form="rowform" e-title="Rows" e-min="1" e-max="8">
-            {{ page.rows }}
+          <span ng-show="!rowform.$visible">
+            <span
+              class="btn btn-success btn-sm"
+              ui-sref="backend.pagesets.pages.boxes({pagesetId: pageset.id, pageId: page.id})">
+              <fa name="table"></fa>
+              {{ 'Boxes' | translate }}
+            </span>
+            <span class="btn btn-primary btn-sm" ng-click="rowform.$show()">
+              <fa name="edit"></fa>
+              {{ 'Edit' || translate }}
+            </span>
+            <span class="btn btn-danger btn-sm" ng-click="removePage(page)">
+              <fa name="trash"></fa>
+              {{ 'Remove' | translate }}
+            </span>
           </span>
-        </td>
-        <td>
-          <span editable-range="page.columns" e-name="columns" e-form="rowform" e-title="Columns" e-min="1" e-max="8">
-            {{ page.columns }}
+          <span ng-show="rowform.$visible">
+            <button
+              class="btn btn-primary btn-sm"
+              type="submit"
+              ng-disabled="rowform.$waiting">
+              <fa name="save"></fa>
+              {{ 'Save' | translate }}
+            </button>
+            <span
+              class="btn btn-default btn-sm"
+              ng-disabled="rowform.$waiting"
+              ng-click="rowform.$cancel()">
+              <fa name="close"></fa>
+              {{ 'Cancel' | translate }}
+            </span>
           </span>
-        </td>
-        <td>
-          <span editable-number="page.duration" e-name="duration" e-form="rowform" e-title="seconds" e-min="5">
-            {{ page.duration }} seconds
-          </span>
-        </td>
-        <td style="white-space: nowrap">
-          <form editable-form name="rowform" onbeforesave="savePage(page, $data)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == page">
-            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary btn-sm">
-              <fa name="save"/>
-              Save
-            </button>
-            <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default btn-sm">
-              <fa name="close"/>
-              Cancel
-            </button>
-          </form>
-          <div class="buttons" ng-show="!rowform.$visible">
-            <button class="btn btn-success btn-sm" ui-sref="backend.devices.pages.boxes({deviceId: device.id, pageId: page.id})">
-              <fa name="table"/>
-              Boxes
-            </button>
-            <button class="btn btn-default btn-sm" sv-handle>
-              <fa name="arrows-v"/>
-              Order
-            </button>
-            <button class="btn btn-primary btn-sm" ng-click="rowform.$show()">
-              <fa name="edit"/>
-              Edit
-            </button>
-            <button class="btn btn-danger btn-sm" ng-click="removePage(page)">
-              <fa name="trash"/>
-              Remove
-            </button>
+        </span>
+      </form>
+    </div>
+    <div class="panel-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4 well">
+            <label for="rows" class="control-label">
+              <fa name="arrows-h"></fa>
+              {{ 'Rows' | translate }}:
+            </label>
+            <span
+              class="form-control-static"
+              editable-range="page.rows"
+              e-name="rows"
+              e-form="rowform"
+              e-title="Rows"
+              e-min="1"
+              e-max="60">
+              {{ page.rows }}
+            </span>
           </div>
-        </td>
-      </tr>
-    </table>
+          <div class="col-md-4 well">
+            <label for="columns" class="control-label">
+              <fa name="arrows-v"></fa>
+              {{ 'Columns' | translate }}:
+            </label>
+            <span
+              class="form-control-static"
+              editable-range="page.columns"
+              e-name="columns"
+              e-form="rowform"
+              e-title="Columns"
+              e-min="1"
+              e-max="40">
+              {{ page.columns }}
+            </span>
+          </div>
+          <div class="col-md-4 well">
+            <label for="duration" class="control-label">
+              <fa name="clock-o"></fa>
+              {{ 'Duration' | translate }}:
+            </label>
+            <span
+              class="form-control-static"
+              editable-number="page.duration"
+              e-name="duration"
+              e-form="rowform"
+              e-title="seconds"
+              e-min="5">
+              {{ page.duration }} {{ 'seconds' | translate }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </ui-view>

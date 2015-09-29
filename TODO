@@ -9,14 +9,14 @@ General
    - IFrame [fladi]
    - Map (Leaflet?)
    - RSS/Atom
-   - Livestream
+   - Livestream [fladi]
 
 Backend
 =======
 
- * Authentication [fladi]
+ * Authentication [fladi,panc]
  * Remove uploaded media assets (video/images/...)
- * Navigation buttons (device/page) in navbar
+ * Navigation buttons (device/page) in navbar [fladi]
  * Convert Overlay to separate directive (template & controller)
  * Hilfe/Doku state (static html)
  * Scheduler [panc]
@@ -29,6 +29,8 @@ Frontend
  * Send display resolution on first contact:
    - Ask for display name on initialization
    - Send data (name, resolution) to server (Zeroconf) [fladi]
-   - Store server response (id/URL) in LocalStorage
+   - Store server response (id/URL) in LocalStorage [QT/fladi]
  * Style-Sheet per page/device?
  * Logo-bar for corporate identity?
+ * Widgets für Header-Bar.
+ * Vorschaubalken, mit gesonderter Konfiguration.

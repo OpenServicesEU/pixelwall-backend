@@ -3,7 +3,6 @@ angular.module('PixelWall')
   '$scope',
   '$state',
   '$q',
-  'hotkeys',
   'sortService',
   'page',
   'boxes',
@@ -11,7 +10,6 @@ angular.module('PixelWall')
     $scope,
     $state,
     $q,
-    hotkeys,
     sortService,
     page,
     boxes
@@ -27,20 +25,13 @@ angular.module('PixelWall')
     })).then(function() {
       $scope.$parent.currentPage = ($scope.$parent.currentPage + 1 ) % $scope.$parent.pages.length;
       $state.go(
-        'frontend.devices.pages.boxes',
+        'frontend.devices.pageset.boxes',
         {
           deviceId: $scope.$parent.device.id,
+          pagesetId: $scope.$parent.device.set,
           pageId: $scope.$parent.pages[$scope.$parent.currentPage].id
         }
       );
     });
-    hotkeys.bindTo($scope)
-      .add({
-        combo: 'b',
-        description: 'Got back to the main menu',
-        callback: function() {
-          $state.go('index');
-        }
-      });
   }
 ]);

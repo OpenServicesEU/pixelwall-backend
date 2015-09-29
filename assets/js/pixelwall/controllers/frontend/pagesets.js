@@ -1,5 +1,5 @@
 angular.module('PixelWall')
-.controller('FrontendPagesController', [
+.controller('FrontendPagesetController', [
   '$scope',
   '$state',
   'locker',
@@ -26,15 +26,12 @@ angular.module('PixelWall')
       locker.driver('local').put('device', device.id);
     }
     if ($scope.pages.length > 0) {
-      var pageIndex = _.findIndex(pages, function(page) {
-        return page.ordering[$scope.device.id] == 0;
-      });
-      $scope.pages.sort(sortService.pages($scope.device.id));
       $state.go(
-        'frontend.devices.pages.boxes',
+        'frontend.devices.pageset.boxes',
         {
           deviceId: $scope.device.id,
-          pageId: $scope.pages[0].id
+          pagesetId: $scope.device.set,
+          pageId: $scope.pages[$scope.currentPage].id
         }
       );
     }

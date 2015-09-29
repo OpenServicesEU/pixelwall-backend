@@ -29,6 +29,16 @@ module.exports.connections = {
         password: 'aiXiel0beejohfo0',
         database: 'pixelwall'
     },
+    config: {
+      adapter: 'sails-postgresql',
+      database: 'pixelwall.openservices.at',
+      host: 'localhost',
+      user: 'pixelwall.openservices.at',
+      password: '',
+      port: 5432,
+      pool: false,
+      ssl: false
+    },
     disk: {
         adapter: 'sails-disk'
     },

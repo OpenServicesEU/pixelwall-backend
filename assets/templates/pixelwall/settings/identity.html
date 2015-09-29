@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    <h4 class="pull-left">
+      {{ 'Organization name' | translate }}
+    </h4>
+  </div>
+  <div class="panel-body">
+    <input
+      type="text"
+      class="form-control"
+      id="organization"
+      placeholder="Organization"
+      ng-model="settings.identity.organization">
+  </div>
+</div>
+<span
+  class="btn btn-sm btn-success"
+  ng-click="identity.save()">
+  <fa name="save"></fa>
+  {{ 'Save' | translate }}
+</span>

@@ -5,9 +5,9 @@ angular.module('PixelWall')
     $stateProvider
   ) {
     $stateProvider
-    .state('backend.devices.pages.boxes', {
+    .state('backend.pagesets.pages.boxes', {
       url: "/{pageId:[0-9a-f]+}",
-      templateUrl: 'assets/templates/pixelwall/states/backend/boxes.html',
+      templateUrl: 'pixelwall/states/backend/boxes.html',
       controller: 'BackendBoxesController',
       resolve: {
         page: [

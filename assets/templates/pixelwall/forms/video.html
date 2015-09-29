@@ -1,10 +1,26 @@
 <div>
-  <pw-upload-video url="'/u/video'" data="box.data.video"></pw-upload-video>
-  <div class="well" ng-if="box.data.video">
+  <div
+    class="btn btn-default btn-block"
+    accept="video/*"
+    ng-disabled="uploadFile"
+    ngf-drop
+    ngf-select
+    ngf-drag-over-class="{accept:'bg-success', reject:'bg-danger', delay:100}"
+    ngf-multiple="false"
+    ngf-allow-dir="false">
+    ngf-change="upload($file)">
+    Drag &amp; Drop video file here or click to select file
+  </div>
+  <div ng-show="uploadFile">
+    <progressbar class="progress-striped active" value="uploadProgress" type="success">
+    Uploading {{ uploadFile.name }}: <b>{{ uploadProgress }}%</b>
+    </progressbar>
+  </div>
+  <div class="well" ng-if="editable.src">
     <video controls>
-      <source ng-src="{{ '/u/video/' + box.data.video.src | trustedUrl }}" type='video/webm;codecs="vp8, vorbis"'/>
+      <source ng-src="{{ '/u/video/' + editable.src | trustedUrl }}" type='video/webm;codecs="vp8, vorbis"'/>
     </video>
-    <button type="button" class="btn btn-danger btn-sm btn-block" ng-click="removeVideo(box.data.video)">
+    <button type="button" class="btn btn-danger btn-sm btn-block" ng-click="removeVideo(editable.src)">
       <fa name="trash"></fa>
       Remove {{ box.data.video.name }}
     </button>

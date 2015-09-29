@@ -7,7 +7,7 @@ angular.module('PixelWall')
         $stateProvider
         .state('index', {
             url: '/',
-            templateUrl: 'assets/templates/pixelwall/states/index.html',
+            templateUrl: 'pixelwall/states/index.html',
             controller: 'IndexController'
         });
         return this;

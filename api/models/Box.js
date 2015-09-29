@@ -20,7 +20,10 @@ module.exports = {
         'video-stream',
         'calendar',
         'images',
-        'map'
+        'map',
+        'clock-analog',
+        'clock-digital',
+        'weather'
       ]
     },
     width: {
@@ -42,6 +45,15 @@ module.exports = {
     data: {
       type: 'json'
     }
+  },
+  beforeUpdate: function(valuesToUpdate, cb) {
+    cb();
+  },
+  afterUpdate: function(updatedRecord, cb) {
+    cb();
+  },
+  beforeDestroy: function(criteria, cb) {
+    cb();
   }
 };
 

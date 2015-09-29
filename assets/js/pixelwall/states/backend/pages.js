@@ -5,19 +5,19 @@ angular.module('PixelWall')
     $stateProvider
   ) {
     $stateProvider
-    .state('backend.devices.pages', {
-      url: "/{deviceId:[0-9a-f]+}",
-      templateUrl: 'assets/templates/pixelwall/states/backend/pages.html',
+    .state('backend.pagesets.pages', {
+      url: "/{pagesetId:[0-9a-f]+}",
+      templateUrl: 'pixelwall/states/backend/pages.html',
       controller: 'BackendPagesController',
       resolve: {
-        device: [
+        pageset: [
           '$stateParams',
-          'deviceFactory',
+          'pagesetFactory',
           function(
             $stateParams,
-            deviceFactory
+            pagesetFactory
           ) {
-            return deviceFactory.get({id: $stateParams.deviceId}).$promise;
+            return pagesetFactory.get({id: $stateParams.pagesetId}).$promise;
           }
         ],
         pages: [
@@ -27,15 +27,7 @@ angular.module('PixelWall')
             $stateParams,
             pageFactory
           ) {
-            return pageFactory.query({devices: $stateParams.deviceId}).$promise;
-          }
-        ],
-        allPages: [
-          'pageFactory',
-          function(
-            pageFactory
-          ) {
-            return pageFactory.query().$promise;
+            return pageFactory.query({set: $stateParams.pagesetId, sort: "ordering"}).$promise;
           }
         ]
       }

@@ -6,8 +6,8 @@ angular.module('PixelWall')
   ) {
     $stateProvider
     .state('frontend.devices', {
-      url: "/d",
-      templateUrl: 'assets/templates/pixelwall/states/frontend/devices.html',
+      url: "/devices",
+      templateUrl: 'pixelwall/states/frontend/devices.html',
       controller: 'FrontendDevicesController',
       resolve: {
         devices: [
@@ -16,6 +16,14 @@ angular.module('PixelWall')
             deviceFactory
           ) {
             return deviceFactory.query({active: true}).$promise;
+          }
+        ],
+        pagesets: [
+          'pagesetFactory',
+          function(
+            pagesetFactory
+          ) {
+            return pagesetFactory.query().$promise;
           }
         ]
       }
