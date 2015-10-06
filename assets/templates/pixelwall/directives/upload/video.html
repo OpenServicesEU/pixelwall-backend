@@ -8,11 +8,14 @@
       allow-dir="true"
       accept="video/*"
       drag-over-class="{accept:'bg-success', reject:'bg-danger', delay:100}">
-      Drop your video here! <fa name="upload" class="pull-right"/>
+      Drop your video here!
+      <i class="fa fa-upload pull-right"></i>
     </div>
   </div>
   <div ng-show="uploading">
     Upload in progress:
-    <progressbar class="progress-striped active" value="progress" type="success"><b>{{ progress }}%</b></progressbar>
+    <progressbar class="progress-striped active" value="progress" type="success">
+      <b>{{ progress }}%</b>
+    </progressbar>
   </div>
 </div>

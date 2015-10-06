@@ -37,12 +37,11 @@
   <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" ng-animate="'animate'">{{alert.msg}}</alert>
   <div class="modal-footer">
     <button class="btn btn-success" type="submit">
-      <fa name="lock" />
+      <span class="fa fa-sign-in" aria-hidden="true"></span>
       {{ 'Login' | translate }}
     </button>
     <button class="btn btn-danger" ng-click="$dismiss()">
-      <fa name="close" />
       {{ 'Cancel' | translate }}
     </button>
-  </div> 
+  </div>
 </form>

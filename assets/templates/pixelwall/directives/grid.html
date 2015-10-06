@@ -4,17 +4,17 @@
       <pw-box box="box" timeout="timeout"></pw-box>
       <div class="overlay buttons" ng-controller="BackendBoxOverlayController">
         <button class="btn drag-handle">
-          <fa name="arrows"/>
+          <i class="fa fa-arrows"></i>
         </button>
         <button class="btn btn-primary" ng-click="editBox(box)">
-          <fa name="edit"/>
+          <i class="fa fa-edit"></i>
         </button>
         <button class="btn btn-primary">
           <input type="range" title="Rows" min="1" max="8" step="0.1" ng-model="box.scale">
           {{ box.scale * 100 |number:1 }}%
         </button>
         <button class="btn btn-danger pull-right" ng-click="removeBox(box)">
-          <fa name="trash"/>
+          <i class="fa fa-trash"></i>
         </button>
       </div>
     </li>

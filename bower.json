@@ -15,44 +15,52 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.4",
-    "angular-animate": "~1.4.4",
-    "angular-bootstrap": "master",
+    "angular": "~1.4.7",
+    "angular-animate": "~1.4.7",
+    "angular-bootstrap": "~0.13.4",
     "angular-confirmable": "~1.1.0",
-    "angular-fontawesome": "~0.4.0",
-    "angular-gridster": "0.13.5",
-    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.5",
+    "angular-gridster": "~0.13.5",
+    "angular-cfp-hotkeys": "~1.6.0",
     "angular-leaflet-directive": "~0.8.1",
     "angular-locker": "~2.0.2",
     "angular-resource": "~1.3.11",
     "angular-resource-sails": "~1.1.4",
     "angular-sanitize": "~1.4.3",
-    "angular-svg-round-progressbar": "~0.2.10",
-    "angular-translate": "~2.7.2",
-    "angular-translate-loader-static-files": "~2.7.2",
-    "angular-ui-clock": "~0.4.0",
+    "angular-translate": "~2.8.1",
+    "angular-translate-loader-static-files": "~2.8.1",
+    "angular-ui-clock": "~0.5.0",
     "angular-ui-router": "~0.2.13",
-    "angular-widget-grid": "fladi/angular-widget-grid#bindings",
+    "angular-widget-grid": "~0.2.4",
     "angular-xeditable": "~0.1.8",
     "angularjs-color-picker": "~0.6.2",
-    "bootstrap": "~3.3.1",
-    "bsw-yeti": "~3.2.1",
-    "font-awesome": "~4.4.0",
+    "bootstrap": "~3.3.5",
     "jquery": "~2.1.2",
     "leaflet-providers": "~1.1.1",
-    "mathjs": "~2.0.1",
-    "mousetrap": "~1.5.2",
-    "ng-fi-text": "~0.1.0",
-    "ng-file-upload": "~6.0.2",
+    "mathjs": "~2.3.0",
+    "ng-file-upload": "~8.0.6",
     "ng-lodash": "~0.2.3",
-    "ng-quill": "~1.0.6",
+    "ng-quill": "~1.1.0",
     "ng-sortable": "~1.3.0",
     "ngBoxFill": "~1.1.0",
     "ngOpenWeatherMap": "~1.0.3",
-    "weather-icons": "~1.3.2",
-    "angular-ui-select": "~0.12.1"
+    "weather-icons": "~2.0.10",
+    "angular-ui-select": "~0.13.1",
+    "bootswatch": "~3.3.5",
+    "open-sans-fontface": "~1.4.2",
+    "mousetrap": "~1.5.3",
+    "socket.io-client": "~1.3.7",
+    "font-awesome": "~4.4.0",
+    "videogular": "*",
+    "videogular-poster": "~1.2.8",
+    "bower-videogular-youtube": "videogular-youtube#~2.0.4",
+    "videogular-dash": "~1.2.8"
   },
   "exportsOverride": {
+    "bootstrap": {
+      "js": "js/*.js",
+      "less": "**/*.less",
+      "fonts": "fonts/*"
+    },
     "dragular": {
       "js": "dist/dragular.js",
       "css": "dist/dragular.css"
@@ -69,21 +77,14 @@
       "js": "dist/leaflet-src.js",
       "images": "dist/images/*.png"
     },
-    "mousetrap": {
-      "js": "mousetrap.js"
-    },
     "angular-hotkeys": {
       "css": "src/hotkeys.css",
       "js": "src/hotkeys.js"
     },
-    "font-awesome": {
-      "css": "css/font-awesome.css"
-    },
     "modernizr": {}
   },
   "resolutions": {
-    "angular": "~1.4.4",
-    "font-awesome": "~4.4.0",
+    "angular": "~1.4.7",
     "bootstrap": "~3.3.5"
   }
 }

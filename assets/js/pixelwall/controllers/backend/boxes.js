@@ -30,12 +30,10 @@ angular.module('PixelWall')
     $scope.$on('wg-grid-full', function() {
       $scope.additionPossible = false;
     });
-    updateGridSize();
-    window.onresize = updateGridSize;
-
     $scope.$on('wg-grid-space-available', function() {
       $scope.additionPossible = true;
     });
+    /*
     function updateGridSize() {
       $timeout(function() {
         var grid = document.getElementById('boxGrid');
@@ -43,6 +41,9 @@ angular.module('PixelWall')
         $scope.gridHeight = grid.clientHeight;
       });
     }
+    updateGridSize();
+    window.onresize = updateGridSize;
+    */
     $scope.types = enums.box.types;
     $scope.addBox = function(type) {
       var box = new boxFactory(

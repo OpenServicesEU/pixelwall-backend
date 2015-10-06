@@ -24,12 +24,21 @@ var cssFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
   // Load sails.io before everything else
-  'vendor/sails.io.js/sails.io.js',
-  'vendor/javascript-detect-element-resize/detect-element-resize.js',
-  'vendor/jquery/jquery.js',
-  'vendor/angular/angular.js',
-  'vendor/angular-translate/angular-translate.js',
-  'vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
+  'vendor/javascript/jquery/detect-element-resize.js',
+  'vendor/javascript/jquery/jquery.js',
+  'vendor/javascript/jquery/jquery.resize.js',
+  'vendor/javascript/leaflet/leaflet.js',
+  'vendor/javascript/leaflet/leaflet-providers.js',
+  'vendor/javascript/io/socket.io.js',
+  'vendor/javascript/io/sails.io.js',
+  'vendor/javascript/mathjs/math.js',
+  'vendor/javascript/mousetrap/mousetrap.js',
+  'vendor/javascript/quill/quill.js',
+  'vendor/javascript/angular/angular.js',
+  'vendor/javascript/angular/angular-animate.js',
+  'vendor/javascript/angular/angular-sanitize.js',
+  'vendor/javascript/angular/angular-translate.js',
+  'vendor/javascript/angular/angular-translate-loader-static-files.js',
   'vendor/*/**/*.js',
 
   // Dependencies like jQuery, or Angular are brought in here

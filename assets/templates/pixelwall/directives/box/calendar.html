@@ -1,7 +1,7 @@
 <ul class="timeline" pw-bounce>
   <li ng-repeat="event in box.data.events">
     <div class="timeline-badge success">
-      <fa name="calendar"></fa>
+      <i class="fa fa-calendar"></i>
     </div>
     <div class="timeline-panel">
       <div class="timeline-heading">
@@ -10,11 +10,11 @@
         </h4>
         <p>
         <small class="text-muted">
-          <fa name="clock-o"></fa>
+          <i class="fa fa-clock-o"></i>
           {{ event.start | date:"hh:mm" }}
-          <fa name="arrows-h"></fa>
+          <i class="fa fa-arrows-h"></i>
           {{ event.end | date:"hh:mm" }}
-          <fa name="building"></fa>
+          <i class="fa fa-building"></i>
           {{ event.location }}
         </small>
         </p>

@@ -7,21 +7,29 @@
  *
  */
 
+var path = require('path');
+
 module.exports = function(grunt) {
 
-	grunt.config.set('bower', {
-		install: {
-			options: {
-				targetDir: './assets/vendor',
-				layout: 'byType',
-				install: true,
-				verbose: false,
-				cleanTargetDir: true,
-				cleanBowerDir: true,
-				bowerOptions: {}
-			}
-		}
-	});
+  var packages = require('../packages') || {};
 
-	grunt.loadNpmTasks('grunt-bower-task');
+  var config = {
+    options: {
+      destPrefix: './assets/vendor'
+    }
+  };
+
+  for (var prop in packages) {
+    if (packages.hasOwnProperty(prop) ) {
+      config[prop] = {
+        options: {
+          destPrefix: packages[prop].dest || path.join(config.options.destPrefix, prop)
+        },
+        files: packages[prop].files || {}
+      };
+    }
+  }
+
+  grunt.config.set('bowercopy', config);
+  grunt.loadNpmTasks('grunt-bowercopy');
 };

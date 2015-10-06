@@ -6,7 +6,7 @@
     </div>
     <p class="navbar-text">
       <pw-user></pw-user>
-      <fa name="angle-double-right"></fa>
+      <i class="fa fa-angle-double-right"></i>
       {{ 'Managing devices' | translate }}
     </p>
     <div class="btn-group navbar-right">
@@ -14,13 +14,13 @@
         class="btn btn-default navbar-btn"
         ng-hide="inserted"
         ng-click="addDevice()">
-        <fa name="plus-square"></fa>
+        <i class="fa fa-plus-square"></i>
         {{ 'New device' | translate }}
       </span>
       <span
         class="btn btn-default navbar-btn pull-right"
         ui-sref="index">
-        <fa name="arrow-left"></fa>
+        <i class="fa fa-arrow-left"></i>
         {{ 'Main menu' | translate }}
       </span>
     </div>
@@ -47,11 +47,11 @@
           <span class="button-group pull-right">
             <span ng-show="!rowform.$visible">
               <span class="btn btn-primary btn-sm" ng-click="rowform.$show()">
-                <fa name="edit"></fa>
+                <i class="fa fa-edit"></i>
                 {{ 'Edit' | translate }}
               </span>
               <span class="btn btn-danger btn-sm" ng-click="removeDevice(device)">
-                <fa name="trash"></fa>
+                <i class="fa fa-trash"></i>
                 {{ 'Remove' | translate }}
               </span>
             </span>
@@ -60,14 +60,14 @@
                 class="btn btn-primary btn-sm"
                 type="submit"
                 ng-disabled="rowform.$waiting">
-                <fa name="save"></fa>
+                <i class="fa fa-save"></i>
                 {{ 'Save' | translate }}
               </button>
               <span
                 class="btn btn-default btn-sm"
                 ng-disabled="rowform.$waiting"
                 ng-click="rowform.$cancel()">
-                <fa name="close"></fa>
+                <i class="fa fa-close"></i>
                 {{ 'Cancel' | translate }}
               </span>
             </span>
@@ -90,7 +90,7 @@
             ng-class="{'btn-success': device.active}"
             ng-hide="device == inserted"
             ng-click="toggleDevice(device)">
-          <fa name="{{ device.active ? 'toggle-off' : 'toggle-on' }}"/>
+          <i class="fa fa-{{ device.active ? 'toggle-off' : 'toggle-on' }}"></i>
           {{ device.active ? 'Enabled' : 'Disabled' | translate }}
         </span>
       </div>

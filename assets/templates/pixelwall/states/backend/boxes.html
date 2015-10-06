@@ -5,9 +5,9 @@
     </div>
     <p class="navbar-text">
       <pw-user></pw-user>
-      <fa name="angle-double-right"></fa>
+      <i class="fa fa-angle-double-right"></i>
       {{ 'Managing boxes' | translate }}
-      <fa name="angle-double-right"></fa>
+      <i class="fa fa-angle-double-right"></i>
       {{ page.name }}
     </p>
     <div class="btn-group navbar-right">
@@ -19,28 +19,28 @@
           type="button"
           class="btn btn-default dropdown-toggle navbar-btn"
           dropdown-toggle>
-          <fa name="plus-square"></fa>
+          <i class="fa fa-plus-square"></i>
           Add Box <span class="caret"></span>
         </span>
         <ul class="dropdown-menu" role="menu">
           <li ng-repeat="(type, data) in types">
             <a ng-click="addBox(type)">
-              <fa name="{{ data.icon }}"></fa>
+              <i class="fa fa-{{ data.icon }}"></i>
               {{ data.label }}
             </a>
           </li>
         </ul>
       </span>
       <span class="btn btn-default navbar-btn">
-        <fa name="arrows-h"></fa>
+        <i class="fa fa-arrows-h"></i>
         {{page.rows}}
       </span>
       <span class="btn btn-default navbar-btn">
-        <fa name="arrows-v"></fa>
+        <i class="fa fa-arrows-v"></i>
         {{page.columns}}
       </span>
       <span class="btn btn-default navbar-btn" ui-sref="^">
-        <fa name="arrow-left"></fa>
+        <i class="fa fa-arrow-left"></i>
         Pages
       </span>
     </div>
@@ -55,12 +55,9 @@
   <wg-widget
     wg-resizable
     wg-movable
-    editable="{{editable}}"
+    editable="{{ editable }}"
     ng-repeat="box in boxes"
-    top="box.top"
-    left="box.left"
-    width="box.width"
-    height="box.height">
+    position="box">
     <pw-box box="box"></pw-box>
     <pw-box-overlay box="box"></pw-box>
   </wg-widget>

@@ -16,7 +16,6 @@ angular.module(
     'ngQuill',
     'ngSanitize',
     'pascalprecht.translate',
-    'picardy.fontawesome',
     'sailsResource',
     'sailsTemplates',
     'ui.bootstrap',

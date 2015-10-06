@@ -6,14 +6,14 @@
     </div>
     <p class="navbar-text">
       <pw-user></pw-user>
-      <fa name="angle-double-right"></fa>
+      <i class="fa fa-angle-double-right"></i>
       {{ 'Managing settings' | translate }}
     </p>
     <div class="btn-group navbar-right">
       <span
         class="btn btn-default navbar-btn pull-right"
         ui-sref="index">
-        <fa name="arrow-left"></fa>
+        <i class="fa fa-arrow-left"></i>
         {{ 'Main menu' | translate }}
       </span>
     </div>
@@ -23,21 +23,21 @@
   <tabset>
     <tab>
       <tab-heading>
-        <fa name="university"></fa>
+        <i class="fa fa-university"></i>
         Identity
       </tab-heading>
       <ng-include src="'pixelwall/settings/identity.html'">
     </tab>
     <tab ng-if="authentication">
       <tab-heading>
-        <fa name="lock"></fa>
+        <i class="fa fa-lock"></i>
         Authentication
       </tab-heading>
       I've got an HTML heading, and a select callback. Pretty cool!
     </tab>
     <tab ng-if="proxy">
       <tab-heading>
-        <fa name="exchange"></fa>
+        <i class="fa fa-exchange"></i>
         Proxy
       </tab-heading>
       <div class="panel panel-default">
@@ -52,7 +52,7 @@
               ng-class="{'btn-success': proxy.setting.value.enabled, 'btn-default': !proxy.setting.value.enabled}"
               tooltip="Click to turn proxy {{ proxy.setting.value.enabled ? 'off' : 'on' }}"
               tooltip-placement="left">
-              <fa name="{{ proxy.setting.value.enabled ? 'toggle-on' : 'toggle-off' }}"></fa>
+              <i class="fa fa-fa fa-{{ proxy.setting.value.enabled ? 'toggle-on' : 'toggle-off' }}"></i>
               {{ proxy.setting.value.enabled ? 'Enabled' : 'Disabled' | translate }}
             </span>
           </span>
@@ -84,7 +84,7 @@
                 ng-class="{'btn-primary': proxy.pattern, 'btn-default': !proxy.pattern}"
                 tooltip="Add pattern from input field"
                 tooltip-placement="left">
-                <fa name="plus"></fa>
+                <i class="fa fa-plus"></i>
               </span>
             </span>
           </span>
@@ -99,14 +99,14 @@
           <li
             class="list-group-item clearfix"
             ng-repeat="pattern in proxy.setting.value.patterns track by $index">
-            <fa name="filter"></fa>
+            <i class="fa fa-filter"></i>
             {{ pattern }}
             <span
               class="btn btn-xs btn-danger pull-right"
               ng-click="proxy.removePattern($index)"
               tooltip="Remove pattern"
               tooltip-placement="left">
-              <fa name="trash"></fa>
+              <i class="fa fa-trash"></i>
             </span>
           </li>
         </ul>
@@ -114,13 +114,13 @@
       <span
         class="btn btn-sm btn-success"
         ng-click="proxy.save()">
-        <fa name="save"></fa>
+        <i class="fa fa-save"></i>
         {{ 'Save' | translate }}
       </span>
     </tab>
     <tab ng-if="settings.alerts">
       <tab-heading>
-        <fa name="bell"></fa>
+        <i class="fa fa-bell"></i>
         Alerts
       </tab-heading>
 <form>

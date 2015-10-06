@@ -68,7 +68,7 @@ angular.module('PixelWall')
             },
             'weather': {
               label: 'Weather',
-              icon: 'soundcloud',
+              icon: 'sun-o',
               controller: 'WeatherFormController'
             }
           },
